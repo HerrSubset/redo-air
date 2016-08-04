@@ -28,7 +28,7 @@ public class PersonServiceTest {
 
     @Before
     public void setupMox() {
-        Person person = new Person("Theo", "Tester");
+        Person person = new Person("Theofiel", "Tester");
         List<Person> persons = new ArrayList<>();
         persons.add(person);
         when(repository.findAll()).thenReturn(persons);
@@ -49,7 +49,7 @@ public class PersonServiceTest {
 
     @Test
     public void shouldCreateAPerson() {
-        Person person = new Person("Theo", "Tester");
+        Person person = new Person("Theofiel", "Tester");
         service.save(person);
         verify(repository).save(same(person));
     }
