@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head></head>
+<body>
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="pageTitle">Register</ui:define>
+    <ui:define name="pageContent">
+<f:view>
+    <h:form id="registration">
+        <h:panelGrid columns="2">
+            <h:outputText value="First Name: "/>
+            <h:panelGroup>
+                <h:inputText id="first" value="#{passengerBean.passenger.firstName}" required="true" rendered="#{passengerBean.editable}">
+                    <f:ajax event="blur" render="first3 firstMessageError"></f:ajax>
+                </h:inputText>
+                <h:outputText id="first3" value="" rendered="#{passengerBean.editable}">
+                </h:outputText>
+
+                <h:outputText id="first2" value="#{passengerBean.passenger.firstName}" required="true" rendered="#{not passengerBean.editable}"></h:outputText>
+                <h:message id="firstMessageError" for="first"/>
+            </h:panelGroup>
+            <h:outputText value="Last Name: "/>
+            <h:panelGroup>
+                <h:inputText id="last" value="#{passengerBean.lastName}" required="true" rendered="#{passengerBean.editable}"></h:inputText>
+                <h:outputText id="last2" value="#{passengerBean.lastName}" required="true" rendered="#{not passengerBean.editable}"></h:outputText>
+                <h:message for="last"/>
+            </h:panelGroup>
+            <h:outputText value="Gender: "/>
+            <h:panelGroup>
+                <h:selectOneRadio id="gender" label="Gender: " value="#{passengerBean.gender}">
+                    <f:selectItem itemLabel="Male" itemValue="male"></f:selectItem>
+                    <f:selectItem itemLabel="Female" itemValue="female"></f:selectItem>
+                </h:selectOneRadio>
+                <h:message for="gender"/>
+            </h:panelGroup>
+
+            <h:outputText value="Date of birth: "/>
+            <h:panelGroup>
+                <h:inputText id="dateofbirth" value="#{passengerBean.passenger.dateOfBirth}" required="true" rendered="#{passengerBean.editable}">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+                <h:outputText id="dateofbirth2" value="#{passengerBean.passenger.dateOfBirth}" required="true" rendered="#{not passengerBean.editable}"></h:outputText>
+                <h:message for="dateofbirth"/>
+            </h:panelGroup>
+            <h:outputText value="E-mail adress: "/>
+            <h:panelGroup>
+                <h:inputText id="email" value="#{passengerBean.email}" required="true" rendered="#{passengerBean.editable}"></h:inputText>
+                <h:outputText id="email2" value="#{passengerBean.email}" required="true" rendered="#{not passengerBean.editable}"></h:outputText>
+                <h:message for="email"/>
+            </h:panelGroup>
+            <h:outputText value="Service level: "/>
+            <h:panelGroup>
+                <h:selectOneMenu  label="Service lvl: " value="#{passengerBean.servicelevel}">
+                    <f:selectItem itemLabel="basic" itemValue="basic"></f:selectItem>
+                    <f:selectItem itemLabel="admin" itemValue="admin"></f:selectItem>
+                </h:selectOneMenu>
+            </h:panelGroup>
+            <h:outputText value="Phone number: "/>
+            <h:panelGroup>
+                <h:inputText id="phone" value="#{passengerBean.phonenumber}" required="true" rendered="#{passengerBean.editable}"><h:message for="phone"/></h:inputText>
+                <h:outputText id="phone2" value="#{passengerBean.phonenumber}" required="true" rendered="#{not passengerBean.editable}"><h:message for="phone2"/></h:outputText>
+                <h:message for="phone"/>
+            </h:panelGroup>
+            <h:outputText value="Account number: "/>
+            <h:panelGroup>
+                <h:inputText id="account" value="#{passengerBean.account}" required="true" rendered="#{passengerBean.editable}"></h:inputText>
+                <h:outputText id="account2" value="#{passengerBean.account}" required="true" rendered="#{not passengerBean.editable}"></h:outputText>
+                <h:message for="account"/>
+            </h:panelGroup>
+        </h:panelGrid>
+        <h:inputHidden id="hidden" value="#{passengerBean.editable}"/>
+        <h:commandButton value="Register" action="#{passengerBean.doAction}" rendered="#{passengerBean.editable}"/>
+        <h:commandButton value="main" action="main" rendered="#{not passengerBean.editable}"/>
+        <h:commandButton value="back" action="#{passengerBean.toggleEditable}" rendered="#{not passengerBean.editable}"/>
+    </h:form>
+</f:view>
+    </ui:define>g
+</ui:composition>
+
+</body>
+
+</html>
