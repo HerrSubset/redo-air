@@ -1,4 +1,4 @@
-package com.realdolmen.course.utilities.persistence;
+package com.realdolmen.redoair.utilities.persistence;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * Takes care of some streamlining for getting persistence tests to work correctly in all cases.
  * These measures would likely be taken by a real world project as well, but they are not relevant to the essence of JPA.
  *
- * Advanced course participants are free to explore this code to get some ideas. Beginner course participants can simply
+ * Advanced redoair participants are free to explore this code to get some ideas. Beginner redoair participants can simply
  * ignore the contents of this file, and assume "things will work".
  */
 public abstract class PersistenceTest extends Assert {
@@ -23,7 +23,7 @@ public abstract class PersistenceTest extends Assert {
 
     /**
      * Chooses the database engine to run this unit test.
-     * Default lets {@link com.realdolmen.course.utilities.persistence.PersistenceTest.DatabaseEngine#current()} choose.
+     * Default lets {@link com.realdolmen.redoair.utilities.persistence.PersistenceTest.DatabaseEngine#current()} choose.
      * Subclasses may override this, if they know what they're doing :)
      * @return The selected database engine.
      */
@@ -37,8 +37,8 @@ public abstract class PersistenceTest extends Assert {
      * that sometimes a drop-create fails to delete old references. For example, when a previous entity is renamed,
      * the drop-create feature would not "see" that the table that corresponded with the old entity name still exists.
      * This thus creates "lingering" tables which sporadically causes trouble due to foreign key violations.
-     * This step may not _always_ be necessary, but it _is_ necessary _sometimes_. As this course is not about dealing
-     * with SQL foreign key side-effects, we take this measure to guarantee that problem never happens in the course.
+     * This step may not _always_ be necessary, but it _is_ necessary _sometimes_. As this redoair is not about dealing
+     * with SQL foreign key side-effects, we take this measure to guarantee that problem never happens in the redoair.
      */
     @Before
     public void recreateSchemaIfRequired() throws SQLException {
@@ -54,7 +54,7 @@ public abstract class PersistenceTest extends Assert {
 
     /**
      * Obtains a <strong>new</strong> JDBC connection using connection settings defined in {@link #databaseEngine}.
-     * Note this connection does not participate in the same transaction as the {@link com.realdolmen.course.utilities.persistence.JpaPersistenceTest#entityManager()}, so be careful
+     * Note this connection does not participate in the same transaction as the {@link com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest#entityManager()}, so be careful
      * when asserting against both.
      * @return A new JDBC connection. Callsite is responsible for closing.
      * @throws java.sql.SQLException When the shit hits the fan.

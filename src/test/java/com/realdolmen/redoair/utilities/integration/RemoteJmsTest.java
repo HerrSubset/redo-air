@@ -1,4 +1,4 @@
-package com.realdolmen.course.utilities.integration;
+package com.realdolmen.redoair.utilities.integration;
 
 import org.junit.After;
 import org.junit.Before;

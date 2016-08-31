@@ -1,4 +1,4 @@
-package com.realdolmen.course.utilities.persistence;
+package com.realdolmen.redoair.utilities.persistence;
 
 
 import javax.persistence.EntityManager;

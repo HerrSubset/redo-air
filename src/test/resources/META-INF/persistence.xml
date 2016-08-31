@@ -54,7 +54,16 @@
             from src/main/java because they are in another source root.
             Currently haven't found an elegant way around this.
          -->
-        <class>com.realdolmen.course.domain.Person</class>
+        <class>com.realdolmen.redoair.domain.Category</class>
+        <class>com.realdolmen.redoair.domain.Customer</class>
+        <class>com.realdolmen.redoair.domain.DiscountStrategy</class>
+        <class>com.realdolmen.redoair.domain.Flight</class>
+        <class>com.realdolmen.redoair.domain.Partner</class>
+        <class>com.realdolmen.redoair.domain.PriceOverride</class>
+        <class>com.realdolmen.redoair.domain.Region</class>
+        <class>com.realdolmen.redoair.domain.Ticket</class>
+        <class>com.realdolmen.redoair.domain.Airport</class>
+        <class>com.realdolmen.redoair.domain.Booking</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
