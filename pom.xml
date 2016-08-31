@@ -21,9 +21,23 @@
 			<name>JBoss Repository</name>
 			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
+
+		<!--START QrcodeGenerator repo-->
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<!--END QrcodeGenerator repo-->
 	</repositories>
 
 	<dependencies>
+		<!--START QrcodeGenerator dependency-->
+		<dependency>
+			<groupId>com.github.kenglxn.qrgen</groupId>
+			<artifactId>javase</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<!--END QrcodeGenerator dependency-->
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
 			<artifactId>jboss-javaee-7.0</artifactId>
