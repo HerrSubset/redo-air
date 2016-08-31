@@ -1,8 +1,6 @@
 package com.realdolmen.redoair.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -15,9 +13,14 @@ import java.util.Date;
 public class Flight {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "departure_airport_fk")
     private Airport departureAirport;
+
+    @ManyToOne
+    @JoinColumn(name = "arrival_airport_fk")
     private Airport arrivalAirport;
 
     private Date departureTime;
@@ -44,11 +47,11 @@ public class Flight {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

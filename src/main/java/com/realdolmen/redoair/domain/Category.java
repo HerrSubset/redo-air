@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Category {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     private int maxNumberOfSeats;
     private double basePrice;
@@ -39,11 +39,11 @@ public class Category {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

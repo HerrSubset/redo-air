@@ -1,8 +1,6 @@
 package com.realdolmen.redoair.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Ticket class
@@ -16,9 +14,12 @@ import javax.persistence.Id;
 public class Ticket {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String passengerFirstName;
     private String passengerLastName;
+
+    @ManyToOne
+    @JoinColumn(name = "category_fk")
     private Category seatCategory;
 
 
@@ -59,11 +60,11 @@ public class Ticket {
         this.passengerLastName = passengerLastName;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

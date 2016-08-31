@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Booking {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     /***********************************************************
      * Constructors
@@ -28,11 +28,11 @@ public class Booking {
      * Getters / Setters
      ***********************************************************/
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

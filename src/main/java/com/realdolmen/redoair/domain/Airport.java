@@ -1,8 +1,6 @@
 package com.realdolmen.redoair.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Airport class
@@ -13,8 +11,10 @@ import javax.persistence.Id;
 public class Airport {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "region_fk")
     private Region region;
     private String code;
 
@@ -37,11 +37,11 @@ public class Airport {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
