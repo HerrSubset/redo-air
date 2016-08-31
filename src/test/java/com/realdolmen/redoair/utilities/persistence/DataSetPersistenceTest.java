@@ -1,4 +1,4 @@
-package com.realdolmen.course.utilities.persistence;
+package com.realdolmen.redoair.utilities.persistence;
 
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;

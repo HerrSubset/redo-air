@@ -1,4 +1,46 @@
 <dataset>
-    <person id="1000" firstName="John" lastName="Doe"/>
-    <person id="2000" firstName="Jane" lastName="Doe"/>
+    <customer id="5000" firstName="Benjamin" lastName="Graham"/>
+    <customer id="5001" firstName="John" lastName="Tolkien"/>
+    <customer id="5002" firstName="Oscar" lastName="Wilde"/>
+    <customer id="5003" firstName="Edgar" lastName="Poe"/>
+
+    <booking id="5000"/>
+    <booking id="5001"/>
+    <booking id="5002"/>
+    <booking id="5003"/>
+
+    <region id="5000" name="Western Europe"/>
+    <region id="5001" name="Americas"/>
+    <region id="5002" name="Asia"/>
+    <region id="5003" name="Oceania"/>
+
+    <airport id="5000" code="BRU" region_fk="5000"/>
+    <airport id="5001" code="VIE" region_fk="5000"/>
+    <airport id="5002" code="NYC" region_fk="5001"/>
+    <airport id="5003" code="LAX" region_fk="5001"/>
+
+    <partner id="5000" name="Brussels Airlnes"/>
+    <partner id="5001" name="KLM"/>
+    <partner id="5002" name="Swissair"/>
+    <partner id="5003" name="Lufthansa"/>
+
+    <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002"/>
+    <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000"/>
+    <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003"/>
+    <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
+
+    <category id="5000" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10"/>
+    <category id="5001" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11"/>
+    <category id="5002" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22"/>
+    <category id="5003" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
+
+    <priceoverride id="5000"/>
+    <priceoverride id="5001"/>
+    <priceoverride id="5002"/>
+    <priceoverride id="5003"/>
+
+    <discountstrategy id="5000"/>
+    <discountstrategy id="5001"/>
+    <discountstrategy id="5002"/>
+    <discountstrategy id="5003"/>
 </dataset>
