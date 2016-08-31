@@ -6,6 +6,8 @@ import com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class PartnerRepositoryTest extends JpaPersistenceTest {
     private PartnerRepository repo;
     private static final Long TEST_PARTNER_ID = 5004L;
@@ -55,5 +57,11 @@ public class PartnerRepositoryTest extends JpaPersistenceTest {
     @Test
     public void invalidIdReturnsNull() {
         assertNull(repo.findById(9000L));
+    }
+
+    @Test
+    public void findAllShouldReturnAllPartners() {
+        List<Partner> all = repo.findAll();
+        assertEquals(all.size(), 5);
     }
 }

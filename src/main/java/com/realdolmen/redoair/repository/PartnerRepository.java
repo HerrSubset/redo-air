@@ -5,6 +5,8 @@ import com.realdolmen.redoair.domain.Partner;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Stateless
 public class PartnerRepository {
@@ -33,5 +35,15 @@ public class PartnerRepository {
 
     public Partner findById(Long id) {
         return em.find(Partner.class, id);
+    }
+
+
+
+    /***********************************************************
+     * Queries
+     ***********************************************************/
+    public List<Partner> findAll() {
+        TypedQuery<Partner> q = em.createQuery("SELECT p FROM Partner p", Partner.class);
+        return q.getResultList();
     }
 }
