@@ -13,16 +13,19 @@
     <region id="5001" name="Americas"/>
     <region id="5002" name="Asia"/>
     <region id="5003" name="Oceania"/>
+    <region id="5004" name="Eastern Europe"/>
 
     <airport id="5000" code="BRU" region_fk="5000"/>
     <airport id="5001" code="VIE" region_fk="5000"/>
     <airport id="5002" code="NYC" region_fk="5001"/>
     <airport id="5003" code="LAX" region_fk="5001"/>
+    <airport id="5004" code="MUN" region_fk="5000"/>
 
     <partner id="5000" name="Brussels Airlnes"/>
     <partner id="5001" name="KLM"/>
     <partner id="5002" name="Swissair"/>
     <partner id="5003" name="Lufthansa"/>
+    <partner id="5004" name="EasyJet"/>
 
     <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002"/>
     <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000"/>
