@@ -46,4 +46,12 @@
     <discountstrategy id="5001"/>
     <discountstrategy id="5002"/>
     <discountstrategy id="5003"/>
+
+    <ticket id="5000" passengerFirstName="Luke" passengerLastName="Skywalker" category_fk="5000"/>
+    <ticket id="5001" passengerFirstName="Anakin" passengerLastName="Skywalker" category_fk="5000"/>
+    <ticket id="5002" passengerFirstName="Leia" passengerLastName="Skywalker" category_fk="5000"/>
+    <ticket id="5003" passengerFirstName="Obi-Wan" passengerLastName="Kenobi" category_fk="5000"/>
+    <ticket id="5004" passengerFirstName="Sheev" passengerLastName="Palpatine" category_fk="5001"/>
+
+
 </dataset>
