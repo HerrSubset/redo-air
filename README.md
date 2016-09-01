@@ -1,5 +1,4 @@
 # ReDo Air
-==========
 
 [![Build Status](https://travis-ci.org/HerrSubset/redo-air.svg?branch=master)](https://travis-ci.org/HerrSubset/redo-air)
 
