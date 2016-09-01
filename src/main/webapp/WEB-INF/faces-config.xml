@@ -24,6 +24,23 @@
             <from-outcome>error</from-outcome>
             <to-view-id>../login.xhtml</to-view-id>
         </navigation-case>
+        
+        <navigation-case>
+            <to-view-id>..flights/list.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>../index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>succes</from-outcome>
+            <to-view-id>../payment.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>../login.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <application>

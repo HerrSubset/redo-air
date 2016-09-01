@@ -63,6 +63,6 @@ public class Airport {
 
     @Override
     public String toString() {
-        return code;
+        return code + " - " + region;
     }
 }

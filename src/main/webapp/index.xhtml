@@ -13,13 +13,13 @@
     <ui:define name="pageContent">
 <f:view>
     <h:form id="flights">
-        <h:panelGrid columns="2">
-            <h:commandButton value="#{msg.index_form_one_way}" rendered="true"/>
-            <h:commandButton value="#{msg.index_form_roundtrip}" rendered="true"/>
+        <h:commandButton value="#{msg.index_form_one_way}" rendered="#{indexController.oneWay}" action="#{indexController.setOneWay(false)}"/>
+        <h:commandButton value="#{msg.index_form_roundtrip}" rendered="#{not indexController.oneWay}" action="#{indexController.setOneWay(true)}"/>
 
+        <h:panelGrid columns="2">
             <h:outputText value="#{msg.index_form_from_location}"/>
             <h:panelGroup>
-                <h:selectOneMenu id="index_form_from_location_input" style="width:100%">
+                <h:selectOneMenu value="#{indexController.departureAirport}" id="index_form_from_location_input" style="width:100%">
                     <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
                     <f:selectItems value="#{indexController.airportService.allAirports}" />
                 </h:selectOneMenu>
@@ -27,7 +27,7 @@
 
             <h:outputText value="#{msg.index_form_to_location}"/>
             <h:panelGroup>
-                <h:selectOneMenu id="index_form_to_location_input" style="width:100%">
+                <h:selectOneMenu value="#{indexController.destinationAirport}" id="index_form_to_location_input" style="width:100%">
                     <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
                     <f:selectItems value="#{indexController.airportService.allAirports}" />
                 </h:selectOneMenu>
@@ -35,17 +35,15 @@
 
             <h:outputText value="#{msg.index_form_from_date}"/>
             <h:panelGroup>
-                <h:inputText id="index_form_from_input" value="" required="true" rendered="true"/>
+                <h:inputText value="#{indexController.departureDay}" id="index_form_from_input" rendered="true"/>
             </h:panelGroup>
 
-            <h:outputText value="#{msg.index_form_to_date}"/>
-            <h:panelGroup>
-                <h:inputText id="index_form_to_date_input" value="" required="true" rendered="true"/>
-            </h:panelGroup>
+            <h:outputText value="#{msg.index_form_to_date}" rendered="#{indexController.oneWay}"/>
+            <h:inputText id="index_form_to_date_input" value="#{indexController.returnDay}" rendered="#{indexController.oneWay}"/>
 
             <h:outputText value="#{msg.index_form_category}"/>
             <h:panelGroup>
-                <h:selectOneMenu id="index_form_category_input" style="width:100%">
+                <h:selectOneMenu value="#{indexController.category}" id="index_form_category_input" style="width:100%">
                     <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
                     <f:selectItems value="#{indexController.categoryService.allCategoryNames}" />
                 </h:selectOneMenu>
@@ -53,20 +51,31 @@
 
             <h:outputText value="#{msg.index_form_person}"/>
             <h:panelGroup>
-                <h:inputText id="index_form_person_input" value="" required="true" rendered="true"/>
+                <h:inputText id="index_form_person_input" value="#{indexController.numberOfPersons}" rendered="true"/>
                 <!--todo check value = valid-->
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_airline}"/>
             <h:panelGroup>
-                <h:selectOneMenu id="index_form_airline_input" style="width:100%">
+                <h:selectOneMenu id="index_form_airline_input" value="#{indexController.airline}" style="width:100%">
                     <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
                     <f:selectItems value="#{indexController.partnerService.allPartners}" />
                 </h:selectOneMenu>
             </h:panelGroup>
         </h:panelGrid>
 
-        <h:commandButton value="#{msg.index_button_search}" action="search"/>
+
+
+        <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction}"/>
+            <h:link value="#{msg.index_button_search}" outcome="/flights/search.jsf">
+                <f:param name="departureDay" value="#{indexController.departureDay}"/>
+                <f:param name="destinationAirport" value="#{indexController.destinationAirport}"/>
+                <f:param name="departureAirport" value="#{indexController.departureAirport}"/>
+                <f:param name="numberOfPersons" value="#{indexController.numberOfPersons}"/>
+                <f:param name="category" value="#{indexController.category}"/>
+                <f:param name="returnDay" value="#{indexController.returnDay}"/>
+                <f:param name="airline" value="#{indexController.airline}"/>
+            </h:link>
 
 
 
