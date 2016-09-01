@@ -1,4 +1,4 @@
-package com.realdolmen.controller;
+package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Category;
 import com.realdolmen.redoair.service.CategoryService;
