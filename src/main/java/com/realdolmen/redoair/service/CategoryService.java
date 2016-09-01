@@ -1,5 +1,6 @@
 package com.realdolmen.redoair.service;
 
+import com.realdolmen.redoair.domain.Category;
 import com.realdolmen.redoair.repository.CategoryRepository;
 
 import javax.ejb.LocalBean;
@@ -15,5 +16,9 @@ public class CategoryService {
 
     public List<String> getAllCategoryNames() {
         return repo.findAllNames();
+    }
+
+    public List<Category> getAllFlights() {
+        return repo.findAll();
     }
 }

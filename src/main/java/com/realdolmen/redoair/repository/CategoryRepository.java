@@ -38,8 +38,19 @@ public class CategoryRepository {
         return em.find(Category.class, id);
     }
 
+
+
+    /***********************************************************
+     * Queries
+     ***********************************************************/
+
     public List<String> findAllNames() {
         TypedQuery<String> q = em.createQuery("SELECT DISTINCT c.name FROM Category c", String.class);
+        return q.getResultList();
+    }
+
+    public List<Category> findAll() {
+        TypedQuery<Category> q = em.createQuery("SELECT c FROM Category c", Category.class);
         return q.getResultList();
     }
 }

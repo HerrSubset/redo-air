@@ -83,6 +83,14 @@ public class Category {
         this.name = name;
     }
 
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
     public Double getPrice() {
         return basePrice + (basePrice * baseMarkupPercentage);
     }
