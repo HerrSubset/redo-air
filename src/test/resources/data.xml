@@ -31,6 +31,7 @@
     <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000"/>
     <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003"/>
     <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
+    <flight id="5004" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
 
     <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10"/>
     <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11"/>
