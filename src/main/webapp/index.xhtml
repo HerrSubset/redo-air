@@ -19,12 +19,18 @@
 
             <h:outputText value="#{msg.index_form_from_location}"/>
             <h:panelGroup>
-                <h:inputText id="index_form_from_location_input" value="" required="true" rendered="true"/>
+                <h:selectOneMenu id="index_form_from_location_input" style="width:100%">
+                    <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
+                    <f:selectItems value="#{indexController.airportService.allAirports}" />
+                </h:selectOneMenu>
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_to_location}"/>
             <h:panelGroup>
-                <h:inputText id="index_form_to_location_input" value="" required="true" rendered="true"/>
+                <h:selectOneMenu id="index_form_to_location_input" style="width:100%">
+                    <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
+                    <f:selectItems value="#{indexController.airportService.allAirports}" />
+                </h:selectOneMenu>
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_from_date}"/>
@@ -39,20 +45,24 @@
 
             <h:outputText value="#{msg.index_form_category}"/>
             <h:panelGroup>
-                <h:selectOneMenu id="index_form_to_category_input" value="#{selectOneMenuView.car}" style="width:100%">
+                <h:selectOneMenu id="index_form_category_input" style="width:100%">
                     <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
-                    <f:selectItems value="#{selectOneMenueView.cars}" />
+                    <f:selectItems value="#{indexController.categoryService.allCategoryNames}" />
                 </h:selectOneMenu>
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_person}"/>
             <h:panelGroup>
-                <h:inputText id="index_form_to_person_input" value="" required="true" rendered="true"/>
+                <h:inputText id="index_form_person_input" value="" required="true" rendered="true"/>
+                <!--todo check value = valid-->
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_airline}"/>
             <h:panelGroup>
-                <h:inputText id="index_form_to_airline_input" value="" required="true" rendered="true"/>
+                <h:selectOneMenu id="index_form_airline_input" style="width:100%">
+                    <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />
+                    <f:selectItems value="#{indexController.partnerService.allPartners}" />
+                </h:selectOneMenu>
             </h:panelGroup>
         </h:panelGrid>
 

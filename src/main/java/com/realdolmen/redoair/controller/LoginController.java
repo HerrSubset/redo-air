@@ -1,4 +1,4 @@
-package Web;
+package com.realdolmen.redoair.controller;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -15,7 +15,7 @@ import java.io.Serializable;
 
 @RequestScoped
 @ManagedBean
-public class Login implements Serializable {
+public class LoginController implements Serializable {
 
     @NotNull
     private String email;

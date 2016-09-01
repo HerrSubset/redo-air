@@ -5,6 +5,7 @@ import com.realdolmen.redoair.repository.PartnerRepository;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import java.util.List;
 
