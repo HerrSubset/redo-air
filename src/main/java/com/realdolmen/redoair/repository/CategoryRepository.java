@@ -70,6 +70,9 @@ public class CategoryRepository {
         if (className != null) {
             queryString += " c.name LIKE :className AND ";
         }
+        if (airline != null) {
+            queryString += " c.flight.airline.name LIKE :airline AND ";
+        }
 
 
         //clean up query string
@@ -90,6 +93,9 @@ public class CategoryRepository {
         }
         if (className != null) {
             q.setParameter("className", className);
+        }
+        if (airline != null) {
+            q.setParameter("airline", airline);
         }
 
 
