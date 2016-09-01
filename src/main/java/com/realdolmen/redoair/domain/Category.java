@@ -1,8 +1,6 @@
 package com.realdolmen.redoair.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Category class.
@@ -18,6 +16,10 @@ public class Category {
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "flight_fk")
+    private Flight flight;
 
     private String name;
 
@@ -79,5 +81,9 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Double getPrice() {
+        return basePrice + (basePrice * baseMarkupPercentage);
     }
 }

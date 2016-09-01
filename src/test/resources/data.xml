@@ -1,4 +1,8 @@
 <dataset>
+    <!--
+        Never refer to items with id = 5004. These are used to test deletions, so make sure no
+        other entities are depending on their existence.
+    -->
     <customer id="5000" firstName="Benjamin" lastName="Graham"/>
     <customer id="5001" firstName="John" lastName="Tolkien"/>
     <customer id="5002" firstName="Oscar" lastName="Wilde"/>
@@ -33,11 +37,11 @@
     <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
     <flight id="5004" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
 
-    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10"/>
-    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11"/>
-    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22"/>
-    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
-    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
+    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10" flight_fk="5000"/>
+    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11" flight_fk="5000"/>
+    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22" flight_fk="5001"/>
+    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5001"/>
+    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5002"/>
 
     <priceoverride id="5000"/>
     <priceoverride id="5001"/>
