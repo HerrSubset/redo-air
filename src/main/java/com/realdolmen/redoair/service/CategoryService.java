@@ -21,4 +21,12 @@ public class CategoryService {
     public List<Category> getAllFlights() {
         return repo.findAll();
     }
+
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, String departureDate,
+                                             String arrivalDate, String className, Integer numberOfPeople,
+                                             String airline) {
+        return repo.getFilteredFlights(departureAirport, arrivalAirport, departureDate, arrivalDate, className,
+                                        numberOfPeople, airline);
+
+    }
 }

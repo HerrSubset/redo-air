@@ -9,7 +9,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
       xmlns:p="http://primefaces.org/ui"  >
 <f:view locale="#{languageSwitcher.locale}">
 <h:head>
-    <title><ui:insert name="pageTitle">#{msg.template_title}</ui:insert></title>
+        <title><ui:insert name="pageTitle">#{msg.template_title}</ui:insert></title>
+        <ui:insert name="metaData"/>
 </h:head>
 <h:body>
         <h:form id="langauge_form">

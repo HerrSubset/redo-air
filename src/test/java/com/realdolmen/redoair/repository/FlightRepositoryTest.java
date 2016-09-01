@@ -68,6 +68,6 @@ public class FlightRepositoryTest extends JpaPersistenceTest {
 
     @Test
     public void findAllReturnsAllFlights() {
-        assertEquals(5, repo.findAll().size());
+        assertEquals(6, repo.findAll().size());
     }
 }
