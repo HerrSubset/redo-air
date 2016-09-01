@@ -13,26 +13,30 @@
     <region id="5001" name="Americas"/>
     <region id="5002" name="Asia"/>
     <region id="5003" name="Oceania"/>
+    <region id="5004" name="Eastern Europe"/>
 
     <airport id="5000" code="BRU" region_fk="5000"/>
     <airport id="5001" code="VIE" region_fk="5000"/>
     <airport id="5002" code="NYC" region_fk="5001"/>
     <airport id="5003" code="LAX" region_fk="5001"/>
+    <airport id="5004" code="MUN" region_fk="5000"/>
 
     <partner id="5000" name="Brussels Airlnes"/>
     <partner id="5001" name="KLM"/>
     <partner id="5002" name="Swissair"/>
     <partner id="5003" name="Lufthansa"/>
+    <partner id="5004" name="EasyJet"/>
 
     <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002"/>
     <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000"/>
     <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003"/>
     <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
 
-    <category id="5000" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10"/>
-    <category id="5001" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11"/>
-    <category id="5002" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22"/>
-    <category id="5003" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
+    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10"/>
+    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11"/>
+    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22"/>
+    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
+    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
 
     <priceoverride id="5000"/>
     <priceoverride id="5001"/>
@@ -43,4 +47,12 @@
     <discountstrategy id="5001"/>
     <discountstrategy id="5002"/>
     <discountstrategy id="5003"/>
+
+    <ticket id="5000" passengerFirstName="Luke" passengerLastName="Skywalker" category_fk="5000"/>
+    <ticket id="5001" passengerFirstName="Anakin" passengerLastName="Skywalker" category_fk="5000"/>
+    <ticket id="5002" passengerFirstName="Leia" passengerLastName="Skywalker" category_fk="5000"/>
+    <ticket id="5003" passengerFirstName="Obi-Wan" passengerLastName="Kenobi" category_fk="5000"/>
+    <ticket id="5004" passengerFirstName="Sheev" passengerLastName="Palpatine" category_fk="5001"/>
+
+
 </dataset>
