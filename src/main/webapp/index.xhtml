@@ -56,10 +56,7 @@
             </h:panelGroup>
         </h:panelGrid>
 
-        <h:inputHidden id="hidden" value="#{passengerBean.editable}"/>
-        <h:commandButton value="Register" action="#{passengerBean.doAction}" rendered="#{passengerBean.editable}"/>
-        <h:commandButton value="main" action="main" rendered="#{not passengerBean.editable}"/>
-        <h:commandButton value="back" action="#{passengerBean.toggleEditable}" rendered="#{not passengerBean.editable}"/>
+        <h:commandButton value="#{msg.index_button_search}" action="search"/>
 
 
 
