@@ -10,7 +10,7 @@ public class CategoryTest extends JpaPersistenceTest {
 
     @Before
     public void setUp() {
-        c = new Category(20, 14.23, 0.05);
+        c = new Category(20, 90.22, 0.05);
     }
 
     @Test
@@ -18,5 +18,10 @@ public class CategoryTest extends JpaPersistenceTest {
         assertNull(c.getId());
         entityManager().persist(c);
         assertNotNull(c.getId());
+    }
+
+    @Test
+    public void testCalculatePrice() {
+        assertEquals(94.731, c.getPrice(), 0);
     }
 }

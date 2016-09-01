@@ -38,8 +38,67 @@ public class CategoryRepository {
         return em.find(Category.class, id);
     }
 
+
+
+    /***********************************************************
+     * Queries
+     ***********************************************************/
+
     public List<String> findAllNames() {
         TypedQuery<String> q = em.createQuery("SELECT DISTINCT c.name FROM Category c", String.class);
+        return q.getResultList();
+    }
+
+    public List<Category> findAll() {
+        TypedQuery<Category> q = em.createQuery("SELECT c FROM Category c", Category.class);
+        return q.getResultList();
+    }
+
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, String departureDate,
+                                             String returnDate, String className, Integer numberOfPeople,
+                                             String airline) {
+
+        String queryString = "SELECT c FROM Category c WHERE ";
+
+        //append where clauses for given params
+        if (departureAirport != null) {
+            queryString += " c.flight.departureAirport.code LIKE :departureAirport AND ";
+        }
+        if (arrivalAirport != null) {
+            queryString += " c.flight.arrivalAirport.code LIKE :arrivalAirport AND ";
+        }
+        if (className != null) {
+            queryString += " c.name LIKE :className AND ";
+        }
+        if (airline != null) {
+            queryString += " c.flight.airline.name LIKE :airline AND ";
+        }
+
+
+        //clean up query string
+        queryString = queryString.trim();
+        if (queryString.endsWith("WHERE")) {
+            queryString = queryString.substring(0, queryString.length() - 5).trim();
+        } else if (queryString.endsWith("AND")) {
+            queryString = queryString.substring(0, queryString.length() - 3).trim();
+        }
+
+        //fill in params
+        TypedQuery<Category> q = em.createQuery(queryString, Category.class);
+        if (departureAirport != null) {
+            q.setParameter("departureAirport", departureAirport);
+        }
+        if (arrivalAirport != null) {
+            q.setParameter("arrivalAirport", arrivalAirport);
+        }
+        if (className != null) {
+            q.setParameter("className", className);
+        }
+        if (airline != null) {
+            q.setParameter("airline", airline);
+        }
+
+
         return q.getResultList();
     }
 }

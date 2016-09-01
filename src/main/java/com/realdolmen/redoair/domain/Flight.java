@@ -23,6 +23,10 @@ public class Flight {
     @JoinColumn(name = "arrival_airport_fk")
     private Airport arrivalAirport;
 
+    @ManyToOne
+    @JoinColumn(name = "partner_fk")
+    private Partner airline;
+
     private Date departureTime;
     private Date arrivalTime;
 
@@ -85,5 +89,13 @@ public class Flight {
 
     public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+    public Partner getAirline() {
+        return airline;
+    }
+
+    public void setAirline(Partner airline) {
+        this.airline = airline;
     }
 }
