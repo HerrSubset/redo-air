@@ -7,6 +7,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -54,8 +57,8 @@ public class CategoryRepository {
         return q.getResultList();
     }
 
-    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, String departureDate,
-                                             String returnDate, String className, Integer numberOfPeople,
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, Date departureDate,
+                                             Date returnDate, String className, Integer numberOfPeople,
                                              String airline) {
 
         String queryString = "SELECT c FROM Category c WHERE ";
@@ -98,7 +101,33 @@ public class CategoryRepository {
             q.setParameter("airline", airline);
         }
 
+        List<Category> categories = q.getResultList();
 
-        return q.getResultList();
+        if (departureDate != null) {
+            categories = clearFlightsWithInvalidDate(categories, departureDate);
+        }
+
+        return categories;
+    }
+
+    private List<Category> clearFlightsWithInvalidDate(List<Category> categories, Date d) {
+        List<Category> res = new ArrayList<>();
+
+        for (Category c: categories) {
+            if (sameDate(c.getFlight().getDepartureTime(), d)) {
+                res.add(c);
+            }
+        }
+
+        return res;
+    }
+
+    private boolean sameDate(Date d1, Date d2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(d1);
+        cal2.setTime(d2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 }

@@ -10,8 +10,12 @@
         <f:metadata>
             <f:viewParam name="departureAirport" value="#{flightSearchController.departureAirport}"/>
             <f:viewParam name="arrivalAirport" value="#{flightSearchController.arrivalAirport}"/>
-            <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}"/>
-            <f:viewParam name="arrivaldate" value="#{flightSearchController.arrivalDate}"/>
+            <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+            </f:viewParam>
+            <f:viewParam name="returndate" value="#{flightSearchController.returnDate}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </f:viewParam>
             <f:viewParam name="class" value="#{flightSearchController.className}"/>
             <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
             <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
@@ -24,8 +28,8 @@
         <ul>
             <li>#{flightSearchController.departureAirport}</li>
             <li>#{flightSearchController.arrivalAirport}</li>
-            <li>#{flightSearchController.departureDate}</li>
-            <li>#{flightSearchController.arrivalDate}</li>
+            <li>#{flightSearchController.departureDate.toString()}</li>
+            <li>#{flightSearchController.returnDate.toString()}</li>
             <li>#{flightSearchController.className}</li>
             <li>#{flightSearchController.numberOfPeople}</li>
             <li>#{flightSearchController.airline}</li>

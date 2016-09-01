@@ -6,6 +6,7 @@ import com.realdolmen.redoair.repository.CategoryRepository;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -22,10 +23,10 @@ public class CategoryService {
         return repo.findAll();
     }
 
-    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, String departureDate,
-                                             String arrivalDate, String className, Integer numberOfPeople,
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, Date departureDate,
+                                             Date returnDate, String className, Integer numberOfPeople,
                                              String airline) {
-        return repo.getFilteredFlights(departureAirport, arrivalAirport, departureDate, arrivalDate, className,
+        return repo.getFilteredFlights(departureAirport, arrivalAirport, departureDate, returnDate, className,
                                         numberOfPeople, airline);
 
     }

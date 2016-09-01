@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -17,8 +18,8 @@ public class FlightSearchController implements Serializable {
 
     private String departureAirport;
     private String arrivalAirport;
-    private String departureDate;
-    private String arrivalDate;
+    private Date departureDate;
+    private Date returnDate;
     private String className;
     private Integer numberOfPeople;
     private String airline;
@@ -28,7 +29,7 @@ public class FlightSearchController implements Serializable {
      * the parameters given to the controller.
      */
     public List<Category> getFlights() {
-        return cs.getFilteredFlights(departureAirport, arrivalAirport, departureDate, arrivalDate, className, numberOfPeople, airline);
+        return cs.getFilteredFlights(departureAirport, arrivalAirport, departureDate, returnDate, className, numberOfPeople, airline);
     }
 
 
@@ -52,24 +53,20 @@ public class FlightSearchController implements Serializable {
         }
     }
 
-    public String getDepartureDate() {
+    public Date getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate) {
-        if (!departureDate.equals("")) {
-            this.departureDate = departureDate;
-        }
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
     }
 
-    public String getArrivalDate() {
-        return arrivalDate;
+    public Date getReturnDate() {
+        return returnDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
-        if (!arrivalDate.equals("")) {
-            this.arrivalDate = arrivalDate;
-        }
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
     public String getClassName() {
