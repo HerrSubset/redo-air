@@ -3,6 +3,7 @@ package com.realdolmen.redoair.service;
 import com.realdolmen.redoair.domain.Partner;
 import com.realdolmen.redoair.repository.PartnerRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,11 +21,16 @@ public class PartnerServiceTest {
 
     @Mock
     private PartnerRepository repository;
+    private List<Partner> partners;
+
+    @Before
+    public void setUp() {
+        partners = new ArrayList<>();
+    }
 
 
     @Test
     public void getAllPartnersReturnsTheFullListFromDB() {
-        List<Partner> partners = new ArrayList<Partner>();
         Mockito.when(repository.findAll()).thenReturn(partners);
 
         Assert.assertSame(service.getAllPartners(), partners);
