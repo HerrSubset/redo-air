@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition template="/WEB-INF/template.xhtml">
+    <ui:define name="metaData">
+        <f:metadata>
+            <f:viewParam name="departureAirport" value="#{flightSearchController.departureAirport}"/>
+            <f:viewParam name="arrivalAirport" value="#{flightSearchController.arrivalAirport}"/>
+            <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}"/>
+            <f:viewParam name="arrivaldate" value="#{flightSearchController.arrivalDate}"/>
+            <f:viewParam name="class" value="#{flightSearchController.className}"/>
+            <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
+            <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="pageTitle">#{msg.search_title}</ui:define>
+    <ui:define name="pageContent">
+        <h1>#{msg.search_title}</h1>
+
+        <ul>
+            <li>#{flightSearchController.departureAirport}</li>
+            <li>#{flightSearchController.arrivalAirport}</li>
+            <li>#{flightSearchController.departureDate}</li>
+            <li>#{flightSearchController.arrivalDate}</li>
+            <li>#{flightSearchController.className}</li>
+            <li>#{flightSearchController.numberOfPeople}</li>
+            <li>#{flightSearchController.airline}</li>
+        </ul>
+
+        <h:dataTable id="flightsTable" value="#{flightSearchController.flights}" var="category">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Price"/>
+                </f:facet>
+                <h:outputText value="#{category.price}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Category"/>
+                </f:facet>
+                <h:outputText value="#{category.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Departure Time"/>
+                </f:facet>
+                <h:outputText value="#{category.flight.departureTime}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Arrival Time"/>
+                </f:facet>
+                <h:outputText value="#{category.flight.arrivalTime}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="From"/>
+                </f:facet>
+                <h:outputText value="#{category.flight.departureAirport.code}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="To"/>
+                </f:facet>
+                <h:outputText value="#{category.flight.arrivalAirport.code}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Airline"/>
+                </f:facet>
+                <h:outputText value="#{category.flight.airline.name}"/>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>
+
+</html>

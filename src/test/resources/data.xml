@@ -1,4 +1,8 @@
 <dataset>
+    <!--
+        Never refer to items with id = 5004. These are used to test deletions, so make sure no
+        other entities are depending on their existence.
+    -->
     <customer id="5000" firstName="Benjamin" lastName="Graham"/>
     <customer id="5001" firstName="John" lastName="Tolkien"/>
     <customer id="5002" firstName="Oscar" lastName="Wilde"/>
@@ -27,16 +31,21 @@
     <partner id="5003" name="Lufthansa"/>
     <partner id="5004" name="EasyJet"/>
 
-    <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002"/>
-    <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000"/>
-    <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003"/>
-    <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002"/>
+    <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002" partner_fk="5000"/>
+    <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000" partner_fk="5000"/>
+    <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003" partner_fk="5001"/>
+    <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002" partner_fk="5001"/>
+    <flight id="5004" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002" partner_fk="5002"/>
+    <flight id="5005" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5002" departure_airport_fk="5001" partner_fk="5002"/>
 
-    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10"/>
-    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11"/>
-    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22"/>
-    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
-    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7"/>
+    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10" flight_fk="5000"/>
+    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11" flight_fk="5000"/>
+    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22" flight_fk="5001"/>
+    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5001"/>
+    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5002"/>
+    <category id="5005" name="business" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5005"/>
+    <category id="5006" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5005"/>
+
 
     <priceoverride id="5000"/>
     <priceoverride id="5001"/>
