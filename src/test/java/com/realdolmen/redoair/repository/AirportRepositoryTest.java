@@ -58,4 +58,9 @@ public class AirportRepositoryTest extends JpaPersistenceTest {
     public void invalidIdReturnsNull() {
         assertNull(repo.findById(9000L));
     }
+
+    @Test
+    public void findAllReturnsCorrectNumberOfAirports() {
+        assertEquals(5, repo.findAll().size());
+    }
 }

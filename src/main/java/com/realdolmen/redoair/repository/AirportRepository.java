@@ -5,6 +5,8 @@ import com.realdolmen.redoair.domain.Airport;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Stateless
 public class AirportRepository {
@@ -36,7 +38,12 @@ public class AirportRepository {
     }
 
 
+
     /***********************************************************
      * Queries
      ***********************************************************/
+    public List<Airport> findAll() {
+        TypedQuery<Airport> q = em.createQuery("SELECT a FROM Airport a", Airport.class);
+        return q.getResultList();
+    }
 }

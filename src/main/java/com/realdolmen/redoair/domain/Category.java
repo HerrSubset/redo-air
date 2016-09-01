@@ -19,6 +19,8 @@ public class Category {
     @GeneratedValue
     private Long id;
 
+    private String name;
+
     private int maxNumberOfSeats;
     private double basePrice;
     private double baseMarkupPercentage;
@@ -69,5 +71,13 @@ public class Category {
 
     public void setBaseMarkupPercentage(double baseMarkupPercentage) {
         this.baseMarkupPercentage = baseMarkupPercentage;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

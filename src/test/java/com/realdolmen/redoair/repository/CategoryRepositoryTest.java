@@ -5,6 +5,8 @@ import com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 
 public class CategoryRepositoryTest extends JpaPersistenceTest {
     private CategoryRepository repo;
@@ -56,5 +58,13 @@ public class CategoryRepositoryTest extends JpaPersistenceTest {
     @Test
     public void invalidIdReturnsNull() {
         assertNull(repo.findById(9000L));
+    }
+
+    @Test
+    public void findAllNamesReturnsAllNames() {
+        List<String> names = repo.findAllNames();
+        assertEquals(2, names.size());
+        assertTrue(names.contains("business"));
+        assertTrue(names.contains("economy"));
     }
 }

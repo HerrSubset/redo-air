@@ -12,7 +12,7 @@ import java.util.List;
 @LocalBean
 public class PartnerService {
     @Inject
-    PartnerRepository repo;
+    PartnerRepository repo; // package scope so Mockito can inject it
 
 
     public List<Partner> getAllPartners() {

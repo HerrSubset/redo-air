@@ -6,6 +6,8 @@ import com.realdolmen.redoair.domain.Category;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Stateless
 public class CategoryRepository {
@@ -34,5 +36,10 @@ public class CategoryRepository {
 
     public Category findById(Long id) {
         return em.find(Category.class, id);
+    }
+
+    public List<String> findAllNames() {
+        TypedQuery<String> q = em.createQuery("SELECT DISTINCT c.name FROM Category c", String.class);
+        return q.getResultList();
     }
 }
