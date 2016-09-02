@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
 
 <head></head>
 <body>
@@ -41,14 +42,11 @@
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_from_date}"/>
-            <h:panelGroup>
-                <h:inputText value="#{indexController.departureDay}" id="index_form_from_input" rendered="true">
-                    <f:ajax event="blur" render="first3 firstMessageError"></f:ajax>
-                </h:inputText>
-            </h:panelGroup>
+            <p:calendar value="#{indexController.departuredate}" mindate="#{indexController.currentDate}" />
 
-            <h:outputText value="#{msg.index_form_to_date}" rendered="#{indexController.oneWay}"/>
-            <h:inputText id="index_form_to_date_input" value="#{indexController.returnDay}" rendered="#{indexController.oneWay}"/>
+            <h:outputText value="#{msg.index_form_to_date}" rendered="#{not indexController.oneWay}"/>
+            <p:calendar value="#{indexController.returndate}" mindate="#{indexController.currentDate}" rendered="#{not indexController.oneWay}" />
+
 
 
             <h:outputText value="#{msg.index_form_category}"/>

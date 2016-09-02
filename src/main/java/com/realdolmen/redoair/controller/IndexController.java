@@ -4,15 +4,21 @@ import com.realdolmen.redoair.domain.Airport;
 import com.realdolmen.redoair.service.AirportService;
 import com.realdolmen.redoair.service.CategoryService;
 import com.realdolmen.redoair.service.PartnerService;
+import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.DateTimeConverter;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by NHOBB65 on 1/09/2016.
@@ -41,6 +47,10 @@ public class IndexController {
     private String airline;
     private boolean oneWay;
 
+    private Date returnDate;
+    private Date currentDate;
+    private Date departureDate;
+
     @PostConstruct
     public void setUp() {
         numberOfPersons=1;
@@ -50,6 +60,10 @@ public class IndexController {
         returnDay="";
         category="";
         airline="";
+        currentDate = new Date();
+        returnDate = null;
+        departureDate = null;
+        oneWay=false;
     }
 
     public AirportService getAirportService() {
@@ -97,24 +111,6 @@ public class IndexController {
         this.destinationAirport = destinationAirport;
     }
 
-    public String getDepartureDay() {
-        return departureDay;
-    }
-
-    public void setDepartureDay(String departureDay) {
-        System.out.println(departureDay);
-        this.departureDay = departureDay;
-    }
-
-    public String getReturnDay() {
-        return returnDay;
-    }
-
-    public void setReturnDay(String returnDay) {
-        System.out.println(returnDay);
-        this.returnDay = returnDay;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -142,7 +138,7 @@ public class IndexController {
         this.airline = airline;
     }
 
-    public boolean isOneWay() {
+    public boolean getOneWay() {
         return oneWay;
     }
 
@@ -157,6 +153,8 @@ public class IndexController {
         s = s +"?numberofpeople=" + numberOfPersons;
 
         try {
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            departureDay = df.format(departureDate);
             if(!departureDay.isEmpty()) {
                 s = s +"&departuredate=" + departureDay;
             }
@@ -195,6 +193,8 @@ public class IndexController {
         }
 
         try {
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            returnDay = df.format(returnDate);
             if(!returnDay.isEmpty()) {
                 s = s +"&returndate=" + returnDay;
             }
@@ -218,4 +218,26 @@ public class IndexController {
 
         return s+"faces-redirect=true";
     }
+
+    public Date getReturndate() {
+        return returnDate;
+    }
+
+    public void setReturndate(Date returndate) {
+        this.returnDate = returndate;
+    }
+
+    public Date getDeparturedate() {
+        return departureDate;
+    }
+
+    public void setDeparturedate(Date departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+
 }

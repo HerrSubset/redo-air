@@ -39,13 +39,21 @@
 		</dependency>
 		<!--END QrcodeGenerator dependency-->
 
-		<!--END Bcrypt dependency-->
+		<!--START Bcrypt dependency-->
 		<dependency>
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>
 			<version>0.3m</version>
 		</dependency>
 		<!--END Bcrypt dependency-->
+
+		<!--START Primefaces dependency-->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>6.0</version>
+		</dependency>
+		<!--END Primefaces dependency-->
 
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
