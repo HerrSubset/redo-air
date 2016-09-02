@@ -46,8 +46,10 @@ public class CategoryService {
 
         List<Category> returnFlights = null;
         if (returnDate != null){
+            System.out.println("Searching flights for " + returnDate.toString());
             returnFlights = this.getFilteredFlights(arrivalAirport, departureAirport, returnDate, className,
                                                         numberOfPeople, airline);
+            System.out.println("Found " + returnFlights.size() + " items");
         }
 
         // Create result list. If arrivalFlights are present, create FlightCombos with both types of flights.
