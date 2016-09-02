@@ -66,6 +66,8 @@
 
 
 
+        <h:commandButton value="#{msg.index_button_search}" action="search"/>
+        
         <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction}"/>
             <h:link value="#{msg.index_button_search}" outcome="/flights/search.jsf">
                 <f:param name="departureDay" value="#{indexController.departureDay}"/>
