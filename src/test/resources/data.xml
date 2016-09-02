@@ -3,10 +3,10 @@
         Never refer to items with id = 5004. These are used to test deletions, so make sure no
         other entities are depending on their existence.
     -->
-    <customer id="5000" firstName="Benjamin" lastName="Graham"/>
-    <customer id="5001" firstName="John" lastName="Tolkien"/>
-    <customer id="5002" firstName="Oscar" lastName="Wilde"/>
-    <customer id="5003" firstName="Edgar" lastName="Poe"/>
+    <customer id="5000" firstName="Benjamin" lastName="Graham" email="benjamingraham@example.com"/>
+    <customer id="5001" firstName="John" lastName="Tolkien" email="johnTolkien@example.com"/>
+    <customer id="5002" firstName="Oscar" lastName="Wilde" email="oscarWidle@example.com"/>
+    <customer id="5003" firstName="Edgar" lastName="Poe" email="edgarPoe@example.com"/>
 
     <booking id="5000"/>
     <booking id="5001"/>

@@ -16,6 +16,7 @@ public class Customer {
     @GeneratedValue
     private Long id;
 
+    private String email;
     private String firstName;
     private String lastName;
     private String digest;      //used to store password hash
@@ -30,9 +31,10 @@ public class Customer {
 
     }
 
-    public Customer(String firstName, String lastName) {
+    public Customer(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email=email;
     }
 
 
@@ -71,5 +73,13 @@ public class Customer {
 
     public void setDigest(String digest) {
         this.digest = digest;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

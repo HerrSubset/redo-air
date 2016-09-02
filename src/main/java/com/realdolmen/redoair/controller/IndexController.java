@@ -216,6 +216,6 @@ public class IndexController {
         System.out.println(s);
 
 
-        return s;
+        return s+"faces-redirect=true";
     }
 }

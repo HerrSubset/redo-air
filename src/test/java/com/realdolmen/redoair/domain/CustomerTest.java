@@ -14,7 +14,7 @@ public class CustomerTest extends JpaPersistenceTest{
 
     @Before
     public void setUp() {
-        c = new Customer("Benjamin", "Graham");
+        c = new Customer("Benjamin", "Graham", "benjaminGraham@gmail.com");
     }
 
     @Test

@@ -1,10 +1,12 @@
 package com.realdolmen.redoair.controller;
 
+import com.realdolmen.redoair.service.CustomerService;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -16,6 +18,9 @@ import java.io.Serializable;
 @RequestScoped
 @ManagedBean
 public class LoginController implements Serializable {
+
+    @Inject
+    CustomerService customerService;
 
     @NotNull
     private String email;
@@ -58,6 +63,7 @@ public class LoginController implements Serializable {
 
     public String register(){
         // TODO: 1/09/2016 do register
+//        customerService.
         if(true) {
             return "error";
         } else {
@@ -93,15 +99,16 @@ public class LoginController implements Serializable {
         // the work factor is 2**log_rounds, and the default is 10
         String hashed = BCrypt.hashpw(passwordToHash, BCrypt.gensalt(12));
 
-        // Check that an unencrypted password matches one that has
-        // previously been hashed
-        if (BCrypt.checkpw(passwordToHash, hashed)) {
-            System.out.println("It matches");
-            return hashed;
-        }
-        else {
-            System.out.println("It does not match");
-            return null;
-        }
+//        // Check that an unencrypted password matches one that has
+//        // previously been hashed
+//        if (BCrypt.checkpw(passwordToHash, hashed)) {
+//            System.out.println("It matches");
+//            return hashed;
+//        }
+//        else {
+//            System.out.println("It does not match");
+//            return null;
+//        }
+        return hashed;
     }
 }
