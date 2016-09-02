@@ -7,6 +7,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -54,11 +57,14 @@ public class CategoryRepository {
         return q.getResultList();
     }
 
-    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, String departureDate,
-                                             String returnDate, String className, Integer numberOfPeople,
-                                             String airline) {
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, Date date,
+                                             String className, Integer numberOfPeople, String airline) {
 
-        String queryString = "SELECT c FROM Category c WHERE ";
+        if (numberOfPeople == null || numberOfPeople < 1) {
+            numberOfPeople = 1;
+        }
+
+        String queryString = "SELECT c FROM Category c WHERE c.maxNumberOfSeats >= :numberOfPeople + SIZE(c.tickets) AND ";
 
         //append where clauses for given params
         if (departureAirport != null) {
@@ -77,14 +83,13 @@ public class CategoryRepository {
 
         //clean up query string
         queryString = queryString.trim();
-        if (queryString.endsWith("WHERE")) {
-            queryString = queryString.substring(0, queryString.length() - 5).trim();
-        } else if (queryString.endsWith("AND")) {
+        if (queryString.endsWith("AND")) {
             queryString = queryString.substring(0, queryString.length() - 3).trim();
         }
 
         //fill in params
         TypedQuery<Category> q = em.createQuery(queryString, Category.class);
+        q.setParameter("numberOfPeople", numberOfPeople);
         if (departureAirport != null) {
             q.setParameter("departureAirport", departureAirport);
         }
@@ -98,7 +103,33 @@ public class CategoryRepository {
             q.setParameter("airline", airline);
         }
 
+        List<Category> categories = q.getResultList();
 
-        return q.getResultList();
+        if (date != null) {
+            categories = clearFlightsWithInvalidDate(categories, date);
+        }
+
+        return categories;
+    }
+
+    private List<Category> clearFlightsWithInvalidDate(List<Category> categories, Date d) {
+        List<Category> res = new ArrayList<>();
+
+        for (Category c: categories) {
+            if (sameDate(c.getFlight().getDepartureTime(), d)) {
+                res.add(c);
+            }
+        }
+
+        return res;
+    }
+
+    private boolean sameDate(Date d1, Date d2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(d1);
+        cal2.setTime(d2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 }

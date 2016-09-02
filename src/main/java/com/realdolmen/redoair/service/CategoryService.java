@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -23,10 +24,9 @@ public class CategoryService {
         return repo.findAll();
     }
 
-    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, String departureDate,
-                                             String arrivalDate, String className, Integer numberOfPeople,
-                                             String airline) {
-        return repo.getFilteredFlights(departureAirport, arrivalAirport, departureDate, arrivalDate, className,
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, Date date,
+                                             String className, Integer numberOfPeople, String airline) {
+        return repo.getFilteredFlights(departureAirport, arrivalAirport, date, className,
                                         numberOfPeople, airline);
 
     }

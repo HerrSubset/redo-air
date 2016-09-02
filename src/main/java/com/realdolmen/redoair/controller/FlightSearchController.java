@@ -1,4 +1,4 @@
-package com.realdolmen.controller;
+package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Category;
 import com.realdolmen.redoair.service.CategoryService;
@@ -7,6 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -17,8 +19,8 @@ public class FlightSearchController implements Serializable {
 
     private String departureAirport;
     private String arrivalAirport;
-    private String departureDate;
-    private String arrivalDate;
+    private Date departureDate;
+    private Date returnDate;
     private String className;
     private Integer numberOfPeople;
     private String airline;
@@ -27,8 +29,16 @@ public class FlightSearchController implements Serializable {
      * returns the flights from the database, filtered with
      * the parameters given to the controller.
      */
-    public List<Category> getFlights() {
-        return cs.getFilteredFlights(departureAirport, arrivalAirport, departureDate, arrivalDate, className, numberOfPeople, airline);
+    public List<Category> getDepartureFlights() {
+        return cs.getFilteredFlights(departureAirport, arrivalAirport, departureDate, className, numberOfPeople, airline);
+    }
+
+    public List<Category> getReturnFlights() {
+        return cs.getFilteredFlights(arrivalAirport, departureAirport, returnDate, className, numberOfPeople, airline);
+    }
+
+    public boolean shouldShowReturnFlights() {
+        return returnDate != null;
     }
 
 
@@ -52,24 +62,20 @@ public class FlightSearchController implements Serializable {
         }
     }
 
-    public String getDepartureDate() {
+    public Date getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate) {
-        if (!departureDate.equals("")) {
-            this.departureDate = departureDate;
-        }
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
     }
 
-    public String getArrivalDate() {
-        return arrivalDate;
+    public Date getReturnDate() {
+        return returnDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
-        if (!arrivalDate.equals("")) {
-            this.arrivalDate = arrivalDate;
-        }
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
     public String getClassName() {
