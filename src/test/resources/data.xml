@@ -25,7 +25,7 @@
     <airport id="5003" code="LAX" region_fk="5001"/>
     <airport id="5004" code="MUN" region_fk="5000"/>
 
-    <partner id="5000" name="Brussels Airlnes"/>
+    <partner id="5000" name="Brussels Airlines"/>
     <partner id="5001" name="KLM"/>
     <partner id="5002" name="Swissair"/>
     <partner id="5003" name="Lufthansa"/>

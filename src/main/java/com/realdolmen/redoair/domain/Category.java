@@ -22,7 +22,7 @@ public class Category {
     @JoinColumn(name = "flight_fk")
     private Flight flight;
 
-    @OneToMany(mappedBy = "seatCategory")
+    @OneToMany(mappedBy = "seatCategory", fetch = FetchType.EAGER)
     private List<Ticket> tickets;
 
     private String name;

@@ -25,69 +25,22 @@
     <ui:define name="pageContent">
         <h1>#{msg.search_title}</h1>
 
-        <ul>
-            <li>#{flightSearchController.departureAirport}</li>
-            <li>#{flightSearchController.arrivalAirport}</li>
-            <li>#{flightSearchController.departureDate.toString()}</li>
-            <li>#{flightSearchController.returnDate.toString()}</li>
-            <li>#{flightSearchController.className}</li>
-            <li>#{flightSearchController.numberOfPeople}</li>
-            <li>#{flightSearchController.airline}</li>
-        </ul>
-
-
 
         <h2>#{msg.search_departure_title}</h2>
-        <h:dataTable id="departuresTable" value="#{flightSearchController.departureFlights}" var="category">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Price"/>
-                </f:facet>
-                <h:outputText value="#{category.price}"/>
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Category"/>
-                </f:facet>
-                <h:outputText value="#{category.name}"/>
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Departure Time"/>
-                </f:facet>
-                <h:outputText value="#{category.flight.departureTime}"/>
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Arrival Time"/>
-                </f:facet>
-                <h:outputText value="#{category.flight.arrivalTime}"/>
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="From"/>
-                </f:facet>
-                <h:outputText value="#{category.flight.departureAirport.code}"/>
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="To"/>
-                </f:facet>
-                <h:outputText value="#{category.flight.arrivalAirport.code}"/>
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Airline"/>
-                </f:facet>
-                <h:outputText value="#{category.flight.airline.name}"/>
-            </h:column>
-        </h:dataTable>
+        <c:forEach items="#{flightSearchController.departureFlights}" var="flight">
+            <div>
+                <h:outputText value="#{flight.flight.airline.name}"/>
+                <br/>
+                <h:outputText value="EUR #{flight.price}"/>
+                <br/>
+                <h:outputText value="#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}"/>
+                <br/>
+                <h:outputText value="#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}"/>
+                <br/>
+                <h:outputText value="#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}"/>
+                <br/>
+            </div>
+        </c:forEach>
 
 
         <h:panelGroup rendered="#{flightSearchController.shouldShowReturnFlights()}">

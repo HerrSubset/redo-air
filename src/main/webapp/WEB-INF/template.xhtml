@@ -8,8 +8,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <f:view locale="#{languageSwitcherController.locale}">
 <h:head>
-    <title><ui:insert name="pageTitle">#{msg.template_title_addon}</ui:insert></title>
-    <ui:insert name="metaData"/>
+        <title><ui:insert name="pageTitle">#{msg.template_title_addon}</ui:insert></title>
+        <h:outputStylesheet library="css" name="main.css"/>
+        <ui:insert name="metaData"/>
 </h:head>
 <h:body>
         <h:form id="langauge_form">
