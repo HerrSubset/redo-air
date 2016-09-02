@@ -1,12 +1,13 @@
 package com.realdolmen.redoair.service;
 
 import com.realdolmen.redoair.domain.Category;
+import com.realdolmen.redoair.domain.FlightCombo;
 import com.realdolmen.redoair.repository.CategoryRepository;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,5 +30,38 @@ public class CategoryService {
         return repo.getFilteredFlights(departureAirport, arrivalAirport, date, className,
                                         numberOfPeople, airline);
 
+    }
+
+    /**
+     * This method returns a list of FlightCombos containing departure flights and return flights,
+     * if a return date was specified.
+     */
+    public List<FlightCombo> getFlightCombos(String departureAirport, String arrivalAirport, Date departureDate,
+                                             Date returnDate, String className, Integer numberOfPeople,
+                                             String airline) {
+        ArrayList<FlightCombo> res = new ArrayList<>();
+
+        List<Category> departureFlights = this.getFilteredFlights(departureAirport, arrivalAirport, departureDate,
+                                                                className, numberOfPeople, airline);
+
+        List<Category> returnFlights = null;
+        if (returnDate != null){
+            returnFlights = this.getFilteredFlights(arrivalAirport, departureAirport, returnDate, className,
+                                                        numberOfPeople, airline);
+        }
+
+        // Create result list. If arrivalFlights are present, create FlightCombos with both types of flights.
+        // Otherwise create FlightCombos with only departure flights.
+        for (Category departureFlight: departureFlights) {
+            if (returnFlights != null) {
+                for (Category returnFlight: returnFlights) {
+                    res.add(new FlightCombo(departureFlight, returnFlight));
+                }
+            } else {
+                res.add(new FlightCombo(departureFlight, null));
+            }
+        }
+
+        return res;
     }
 }

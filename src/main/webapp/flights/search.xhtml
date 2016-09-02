@@ -25,41 +25,41 @@
     <ui:define name="pageContent">
         <h1>#{msg.search_title}</h1>
 
-
-        <h2>#{msg.search_departure_title}</h2>
-        <c:forEach items="#{flightSearchController.departureFlights}" var="flight">
+        <c:forEach items="#{flightSearchController.flightCombos}" var="combo">
             <div class="flightInfo">
-                <div>
-                    <span class="airLine">#{flight.flight.airline.name}</span>
-                    <span class="price">EUR #{flight.price}</span>
+                <div class="departureFlight">
+                    <h2>#{msg.search_departure_title}</h2>
+                    <div>
+                        <span class="airLine">#{combo.departureFlight.flight.airline.name}</span>
+                        <span class="price">EUR #{combo.departureFlight.price}</span>
+                    </div>
+                    <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
+
+                    <div class="departureInfo">
+                        <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} #{combo.departureFlight.flight.departureTime}</span>
+                        <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} #{combo.departureFlight.flight.arrivalTime}</span>
+                    </div>
                 </div>
-                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}</p>
 
+                <div class="returnFlight">
+                    <h2>#{msg.search_return_title}</h2>
+                    <div>
+                        <span class="airLine">#{combo.returnFlight.flight.airline.name}</span>
+                        <span class="price">EUR #{combo.returnFlight.price}</span>
+                    </div>
+                    <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
 
-                <div class="departureInfo">
-                    <span>#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}</span>
-                    <span>#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}</span>
+                    <div class="departureInfo">
+                        <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} #{combo.departureFlight.flight.departureTime}</span>
+                        <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} #{combo.departureFlight.flight.arrivalTime}</span>
+                    </div>
+                </div>
+
+                <div class="priceInfo">
+                    <p>Total price: <span>EUR #{combo.totalPrice}</span></p>
                 </div>
             </div>
         </c:forEach>
-
-        <h2>#{msg.search_return_title}</h2>
-        <c:forEach items="#{flightSearchController.returnFlights}" var="flight">
-            <div class="flightInfo">
-                <div>
-                    <span class="airLine">#{flight.flight.airline.name}</span>
-                    <span class="price">EUR #{flight.price}</span>
-                </div>
-                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}</p>
-
-
-                <div class="departureInfo">
-                    <span>#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}</span>
-                    <span>#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}</span>
-                </div>
-            </div>
-        </c:forEach>
-
 
     </ui:define>
 </ui:composition>
