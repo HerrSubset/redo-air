@@ -28,74 +28,37 @@
 
         <h2>#{msg.search_departure_title}</h2>
         <c:forEach items="#{flightSearchController.departureFlights}" var="flight">
-            <div>
-                <h:outputText value="#{flight.flight.airline.name}"/>
-                <br/>
-                <h:outputText value="EUR #{flight.price}"/>
-                <br/>
-                <h:outputText value="#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}"/>
-                <br/>
-                <h:outputText value="#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}"/>
-                <br/>
-                <h:outputText value="#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}"/>
-                <br/>
+            <div class="flightInfo">
+                <div>
+                    <span class="airLine">#{flight.flight.airline.name}</span>
+                    <span class="price">EUR #{flight.price}</span>
+                </div>
+                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}</p>
+
+
+                <div class="departureInfo">
+                    <span>#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}</span>
+                    <span>#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}</span>
+                </div>
             </div>
         </c:forEach>
 
+        <h2>#{msg.search_return_title}</h2>
+        <c:forEach items="#{flightSearchController.returnFlights}" var="flight">
+            <div class="flightInfo">
+                <div>
+                    <span class="airLine">#{flight.flight.airline.name}</span>
+                    <span class="price">EUR #{flight.price}</span>
+                </div>
+                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}</p>
 
-        <h:panelGroup rendered="#{flightSearchController.shouldShowReturnFlights()}">
-            <h2>#{msg.search_return_title}</h2>
-            <h:dataTable id="returnTable" value="#{flightSearchController.returnFlights}" var="category" >
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Price"/>
-                    </f:facet>
-                    <h:outputText value="#{category.price}"/>
-                </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Category"/>
-                    </f:facet>
-                    <h:outputText value="#{category.name}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Departure Time"/>
-                    </f:facet>
-                    <h:outputText value="#{category.flight.departureTime}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Arrival Time"/>
-                    </f:facet>
-                    <h:outputText value="#{category.flight.arrivalTime}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="From"/>
-                    </f:facet>
-                    <h:outputText value="#{category.flight.departureAirport.code}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="To"/>
-                    </f:facet>
-                    <h:outputText value="#{category.flight.arrivalAirport.code}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Airline"/>
-                    </f:facet>
-                    <h:outputText value="#{category.flight.airline.name}"/>
-                </h:column>
-            </h:dataTable>
-        </h:panelGroup>
+                <div class="departureInfo">
+                    <span>#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}</span>
+                    <span>#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}</span>
+                </div>
+            </div>
+        </c:forEach>
 
 
     </ui:define>

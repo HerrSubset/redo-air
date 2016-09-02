@@ -3,3 +3,30 @@ body {
     margin: auto;
     padding: 3px;
 }
+
+.flightInfo {
+    border-top: 1px solid #aaa;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+.flightInfo .airLine {
+    float: left;
+}
+
+.flightInfo .price {
+    float: right;
+}
+
+.flightinfo div.departureInfo {
+    margin-top: 10px;
+}
+
+.flightInfo .departureInfo span {
+    display: block;
+}
+
+.clear {
+    clear: both;
+}
