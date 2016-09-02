@@ -8,6 +8,8 @@ import com.realdolmen.redoair.service.PartnerService;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -15,8 +17,8 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by NHOBB65 on 1/09/2016.
  */
-@ManagedBean
 @RequestScoped
+@ManagedBean
 public class IndexController {
     @Inject
     AirportService airportService;
@@ -55,6 +57,7 @@ public class IndexController {
     }
 
     public void setAirportService(AirportService airportService) {
+        System.out.println(airportService);
         this.airportService = airportService;
     }
 
@@ -63,6 +66,7 @@ public class IndexController {
     }
 
     public void setCategoryService(CategoryService categoryService) {
+        System.out.println(categoryService);
         this.categoryService = categoryService;
     }
 
@@ -71,6 +75,7 @@ public class IndexController {
     }
 
     public void setPartnerService(PartnerService partnerService) {
+        System.out.println(partnerService);
         this.partnerService = partnerService;
     }
 
@@ -79,6 +84,7 @@ public class IndexController {
     }
 
     public void setDepartureAirport(String departureAirport) {
+        System.out.println(departureAirport);
         this.departureAirport = departureAirport;
     }
 
@@ -87,6 +93,7 @@ public class IndexController {
     }
 
     public void setDestinationAirport(String destinationAirport) {
+        System.out.println(destinationAirport);
         this.destinationAirport = destinationAirport;
     }
 
@@ -95,6 +102,7 @@ public class IndexController {
     }
 
     public void setDepartureDay(String departureDay) {
+        System.out.println(departureDay);
         this.departureDay = departureDay;
     }
 
@@ -103,6 +111,7 @@ public class IndexController {
     }
 
     public void setReturnDay(String returnDay) {
+        System.out.println(returnDay);
         this.returnDay = returnDay;
     }
 
@@ -111,6 +120,7 @@ public class IndexController {
     }
 
     public void setCategory(String category) {
+        System.out.println(category);
         this.category = category;
     }
 
@@ -119,6 +129,7 @@ public class IndexController {
     }
 
     public void setNumberOfPersons(int numberOfPersons) {
+        System.out.println(numberOfPersons);
         this.numberOfPersons = numberOfPersons;
     }
 
@@ -127,6 +138,7 @@ public class IndexController {
     }
 
     public void setAirline(String airline) {
+        System.out.println(airline);
         this.airline = airline;
     }
 
@@ -135,48 +147,60 @@ public class IndexController {
     }
 
     public void setOneWay(boolean oneWay) {
+        System.out.println(oneWay);
         this.oneWay = oneWay;
     }
 
     public String doAction() {
-        String s = "flights/list.jsf";
+        String s = "/flights/search.jsf";
 
-        s = s +"?numberOfPersons=" + numberOfPersons;
+        s = s +"?numberofpeople=" + numberOfPersons;
 
-        if(!departureDay.isEmpty()) {
-            s = s +"&departureday=" + departureDay;
+        try {
+            if(!departureDay.isEmpty()) {
+                s = s +"&departuredate=" + departureDay;
+            }
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+            // TODO: 1/09/2016
         }
-        
+
         try {
             if (!destinationAirport.isEmpty()) {
-                s = s + "&destinationAirport=" + destinationAirport.substring(0,3);
+                String ss = destinationAirport.substring(0,3);
+                s = s + "&arrivalAirport=" + ss;
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
+            e.printStackTrace();
         }
 
         try {
             if(!departureAirport.isEmpty()) {
-            s = s +"&departureAirport=" + departureAirport.substring(0,3);
+                String ss = departureAirport.substring(0,3);
+            s = s +"&departureAirport=" + ss;
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
+            e.printStackTrace();
         }
 
         try {
             if(!category.isEmpty()) {
-                s = s +"&category=" + category;
+                s = s +"&class=" + category;
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
+            e.printStackTrace();
         }
 
         try {
             if(!returnDay.isEmpty()) {
-                s = s +"&returnDay=" + returnDay;
+                s = s +"&returndate=" + returnDay;
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
+            e.printStackTrace();
         }
 
         try {
@@ -185,10 +209,12 @@ public class IndexController {
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
+            e.printStackTrace();
         }
 
         System.out.println("*******************");
         System.out.println(s);
+
 
         return s;
     }

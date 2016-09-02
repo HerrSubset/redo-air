@@ -13,8 +13,15 @@
     <ui:define name="pageContent">
 <f:view>
     <h:form id="flights">
-        <h:commandButton value="#{msg.index_form_one_way}" rendered="#{indexController.oneWay}" action="#{indexController.setOneWay(false)}"/>
-        <h:commandButton value="#{msg.index_form_roundtrip}" rendered="#{not indexController.oneWay}" action="#{indexController.setOneWay(true)}"/>
+        <h:panelGroup>
+            <h:commandButton value="#{msg.index_form_one_way}" rendered="#{indexController.oneWay}" action="#{indexController.setOneWay(false)}"/>
+            <h:outputText value="#{msg.index_form_roundtrip}" rendered="#{indexController.oneWay}"/>
+        </h:panelGroup>
+
+        <h:panelGroup>
+            <h:outputText value="#{msg.index_form_one_way}" rendered="#{not indexController.oneWay}"/>
+            <h:commandButton value="#{msg.index_form_roundtrip}" rendered="#{not indexController.oneWay}" action="#{indexController.setOneWay(true)}"/>
+        </h:panelGroup>
 
         <h:panelGrid columns="2">
             <h:outputText value="#{msg.index_form_from_location}"/>
@@ -35,11 +42,14 @@
 
             <h:outputText value="#{msg.index_form_from_date}"/>
             <h:panelGroup>
-                <h:inputText value="#{indexController.departureDay}" id="index_form_from_input" rendered="true"/>
+                <h:inputText value="#{indexController.departureDay}" id="index_form_from_input" rendered="true">
+                    <f:ajax event="blur" render="first3 firstMessageError"></f:ajax>
+                </h:inputText>
             </h:panelGroup>
 
             <h:outputText value="#{msg.index_form_to_date}" rendered="#{indexController.oneWay}"/>
             <h:inputText id="index_form_to_date_input" value="#{indexController.returnDay}" rendered="#{indexController.oneWay}"/>
+
 
             <h:outputText value="#{msg.index_form_category}"/>
             <h:panelGroup>
@@ -66,16 +76,13 @@
 
 
 
-        <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction}"/>
-            <h:link value="#{msg.index_button_search}" outcome="/flights/search.jsf">
-                <f:param name="departureDay" value="#{indexController.departureDay}"/>
-                <f:param name="destinationAirport" value="#{indexController.destinationAirport}"/>
-                <f:param name="departureAirport" value="#{indexController.departureAirport}"/>
-                <f:param name="numberOfPersons" value="#{indexController.numberOfPersons}"/>
-                <f:param name="category" value="#{indexController.category}"/>
-                <f:param name="returnDay" value="#{indexController.returnDay}"/>
-                <f:param name="airline" value="#{indexController.airline}"/>
-            </h:link>
+
+        <h:commandButton value="#{msg.index_button_search}" outcome="#{indexController.doAction()}"/>
+        <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction()}"/>
+
+
+
+
 
 
 
