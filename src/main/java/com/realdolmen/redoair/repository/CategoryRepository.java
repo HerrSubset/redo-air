@@ -57,9 +57,8 @@ public class CategoryRepository {
         return q.getResultList();
     }
 
-    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, Date departureDate,
-                                             Date returnDate, String className, Integer numberOfPeople,
-                                             String airline) {
+    public List<Category> getFilteredFlights(String departureAirport, String arrivalAirport, Date date,
+                                             String className, Integer numberOfPeople, String airline) {
 
         if (numberOfPeople == null || numberOfPeople < 1) {
             numberOfPeople = 1;
@@ -106,8 +105,8 @@ public class CategoryRepository {
 
         List<Category> categories = q.getResultList();
 
-        if (departureDate != null) {
-            categories = clearFlightsWithInvalidDate(categories, departureDate);
+        if (date != null) {
+            categories = clearFlightsWithInvalidDate(categories, date);
         }
 
         return categories;

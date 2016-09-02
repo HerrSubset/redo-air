@@ -8,18 +8,18 @@
 <ui:composition template="/WEB-INF/template.xhtml">
     <ui:define name="metaData">
         <f:metadata>
-            <f:viewParam name="departureAirport" value="#{flightSearchController.departureAirport}"/>
-            <f:viewParam name="arrivalAirport" value="#{flightSearchController.arrivalAirport}"/>
-            <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-            </f:viewParam>
-            <f:viewParam name="returndate" value="#{flightSearchController.returnDate}">
-                <f:convertDateTime pattern="dd/MM/yyyy"/>
-            </f:viewParam>
-            <f:viewParam name="class" value="#{flightSearchController.className}"/>
-            <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
-            <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
-        </f:metadata>
+        <f:viewParam name="departureAirport" value="#{flightSearchController.departureAirport}"/>
+        <f:viewParam name="arrivalAirport" value="#{flightSearchController.arrivalAirport}"/>
+        <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}">
+            <f:convertDateTime pattern="dd-MM-yyyy"/>
+        </f:viewParam>
+        <f:viewParam name="returndate" value="#{flightSearchController.returnDate}">
+            <f:convertDateTime pattern="dd-MM-yyyy"/>
+        </f:viewParam>
+        <f:viewParam name="class" value="#{flightSearchController.className}"/>
+        <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
+        <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
+    </f:metadata>
     </ui:define>
     <ui:define name="pageTitle">#{msg.search_title}</ui:define>
     <ui:define name="pageContent">
@@ -35,8 +35,10 @@
             <li>#{flightSearchController.airline}</li>
         </ul>
 
+
+
         <h2>#{msg.search_departure_title}</h2>
-        <h:dataTable id="flightsTable" value="#{flightSearchController.flights}" var="category">
+        <h:dataTable id="departuresTable" value="#{flightSearchController.departureFlights}" var="category">
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Price"/>
@@ -87,7 +89,62 @@
             </h:column>
         </h:dataTable>
 
-        <h2>#{msg.search_return_title}</h2>
+
+        <h:panelGroup rendered="#{flightSearchController.shouldShowReturnFlights()}">
+            <h2>#{msg.search_return_title}</h2>
+            <h:dataTable id="returnTable" value="#{flightSearchController.returnFlights}" var="category" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet>
+                    <h:outputText value="#{category.price}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category"/>
+                    </f:facet>
+                    <h:outputText value="#{category.name}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Departure Time"/>
+                    </f:facet>
+                    <h:outputText value="#{category.flight.departureTime}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Arrival Time"/>
+                    </f:facet>
+                    <h:outputText value="#{category.flight.arrivalTime}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="From"/>
+                    </f:facet>
+                    <h:outputText value="#{category.flight.departureAirport.code}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="To"/>
+                    </f:facet>
+                    <h:outputText value="#{category.flight.arrivalAirport.code}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Airline"/>
+                    </f:facet>
+                    <h:outputText value="#{category.flight.airline.name}"/>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
+
+
     </ui:define>
 </ui:composition>
 

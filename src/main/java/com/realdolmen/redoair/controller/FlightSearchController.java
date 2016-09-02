@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +29,16 @@ public class FlightSearchController implements Serializable {
      * returns the flights from the database, filtered with
      * the parameters given to the controller.
      */
-    public List<Category> getFlights() {
-        return cs.getFilteredFlights(departureAirport, arrivalAirport, departureDate, returnDate, className, numberOfPeople, airline);
+    public List<Category> getDepartureFlights() {
+        return cs.getFilteredFlights(departureAirport, arrivalAirport, departureDate, className, numberOfPeople, airline);
+    }
+
+    public List<Category> getReturnFlights() {
+        return cs.getFilteredFlights(arrivalAirport, departureAirport, returnDate, className, numberOfPeople, airline);
+    }
+
+    public boolean shouldShowReturnFlights() {
+        return returnDate != null;
     }
 
 
