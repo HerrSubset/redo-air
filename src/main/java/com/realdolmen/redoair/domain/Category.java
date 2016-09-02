@@ -1,6 +1,7 @@
 package com.realdolmen.redoair.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Category class.
@@ -20,6 +21,9 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "flight_fk")
     private Flight flight;
+
+    @OneToMany(mappedBy = "seatCategory")
+    private List<Ticket> tickets;
 
     private String name;
 
@@ -93,5 +97,17 @@ public class Category {
 
     public Double getPrice() {
         return basePrice + (basePrice * baseMarkupPercentage);
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public int getFreeSeats() {
+        return maxNumberOfSeats - tickets.size();
     }
 }

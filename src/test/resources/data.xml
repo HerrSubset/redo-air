@@ -44,7 +44,7 @@
     <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5001"/>
     <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5002"/>
     <category id="5005" name="business" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5005"/>
-    <category id="5006" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5005"/>
+    <category id="5006" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="9" flight_fk="5005"/>
 
 
     <priceoverride id="5000"/>
