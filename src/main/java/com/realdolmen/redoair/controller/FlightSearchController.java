@@ -1,6 +1,7 @@
 package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Category;
+import com.realdolmen.redoair.domain.FlightCombo;
 import com.realdolmen.redoair.service.CategoryService;
 
 import javax.enterprise.context.RequestScoped;
@@ -35,6 +36,10 @@ public class FlightSearchController implements Serializable {
 
     public List<Category> getReturnFlights() {
         return cs.getFilteredFlights(arrivalAirport, departureAirport, returnDate, className, numberOfPeople, airline);
+    }
+
+    public List<FlightCombo> getFlightCombos() {
+        return cs.getFlightCombos(departureAirport, arrivalAirport, departureDate, returnDate, className, numberOfPeople, airline);
     }
 
     public boolean shouldShowReturnFlights() {

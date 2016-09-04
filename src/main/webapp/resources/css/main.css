@@ -10,6 +10,15 @@ body {
     padding-bottom: 15px;
 }
 
+.flightInfo a {
+    text-decoration: none;
+    color: black;
+}
+
+.flightInfo a:visited {
+    color: black;
+}
+
 
 .flightInfo .airLine {
     float: left;
@@ -25,6 +34,10 @@ body {
 
 .flightInfo .departureInfo span {
     display: block;
+}
+
+.priceInfo span {
+    float: right;
 }
 
 .clear {
