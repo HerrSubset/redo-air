@@ -15,11 +15,11 @@
     <h:form id="flights">
         <h:panelGroup>
             <h:commandButton value="#{msg.index_form_one_way}" rendered="#{indexController.oneWay}" action="#{indexController.setOneWay(false)}"/>
-            <h:outputText value="#{msg.index_form_roundtrip}" rendered="#{indexController.oneWay}"/>
+            <h:commandButton value="#{msg.index_form_roundtrip}" rendered="#{indexController.oneWay}" action="#{indexController.setOneWay(true)}" styleClass="button-primary"/>
         </h:panelGroup>
 
         <h:panelGroup>
-            <h:outputText value="#{msg.index_form_one_way}" rendered="#{not indexController.oneWay}"/>
+            <h:commandButton value="#{msg.index_form_one_way}" rendered="#{not indexController.oneWay}" action="#{indexController.setOneWay(false)}" styleClass="button-primary"/>
             <h:commandButton value="#{msg.index_form_roundtrip}" rendered="#{not indexController.oneWay}" action="#{indexController.setOneWay(true)}"/>
         </h:panelGroup>
 
