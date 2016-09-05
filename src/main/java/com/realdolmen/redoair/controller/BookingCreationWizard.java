@@ -82,6 +82,6 @@ public class BookingCreationWizard implements Serializable {
 
     public String proceedToPayment() {
         System.out.print("Proceeding");
-        return "pay";
+        return "payment";
     }
 }
