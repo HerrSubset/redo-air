@@ -2,11 +2,104 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <h1>It works!</h1>
-</body>
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xml:lang="en" lang="en">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+    <ui:define name="metaData">
+        <f:metadata>
+            <f:viewParam name="departureId" value="#{bookingCreationWizard.departureId}"/>
+            <f:viewParam name="returnId" value="#{bookingCreationWizard.returnId}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="pageTitle">#{msg.flights_details_page_title}</ui:define>
+    <ui:define name="pageContent">
+        <h1>#{msg.flights_details_page_title}</h1>
+        <h:panelGroup layout="block">
+            <h2>#{msg.flight_details_h2_departure}</h2>
+            <table>
+                <tr>
+                    <th>Airline</th>
+                    <th>Class</th>
+                    <th>Seats Remaining</th>
+                    <th>Departure Time</th>
+                    <th>Flight Duration</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Airport</th>
+                    <th>Arrival Airport</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>#{bookingCreationWizard.departureFlight.flight.airline.name}</td>
+                    <td>#{bookingCreationWizard.departureFlight.name}</td>
+                    <td>#{bookingCreationWizard.departureFlight.freeSeats}</td>
+                    <td>#{bookingCreationWizard.departureFlight.flight.departureTime}</td>
+                    <td>TODO</td>
+                    <td>#{bookingCreationWizard.departureFlight.flight.arrivalTime}</td>
+                    <td>#{bookingCreationWizard.departureFlight.flight.departureAirport.code}</td>
+                    <td>#{bookingCreationWizard.departureFlight.flight.arrivalAirport.code}</td>
+                    <td>#{bookingCreationWizard.departureFlight.price}</td>
+                </tr>
+            </table>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" rendered="#{bookingCreationWizard.hasReturnFlight()}">
+            <h2>#{msg.flight_details_h2_return_flight}</h2>
+            <table>
+                <tr>
+                    <th>Airline</th>
+                    <th>Class</th>
+                    <th>Seats Remaining</th>
+                    <th>Departure Time</th>
+                    <th>Flight Duration</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Airport</th>
+                    <th>Arrival Airport</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>#{bookingCreationWizard.returnFlight.flight.airline.name}</td>
+                    <td>#{bookingCreationWizard.returnFlight.name}</td>
+                    <td>#{bookingCreationWizard.returnFlight.freeSeats}</td>
+                    <td>#{bookingCreationWizard.returnFlight.flight.departureTime}</td>
+                    <td>TODO</td>
+                    <td>#{bookingCreationWizard.returnFlight.flight.arrivalTime}</td>
+                    <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code}</td>
+                    <td>#{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
+                    <td>#{bookingCreationWizard.returnFlight.price}</td>
+                </tr>
+            </table>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block">
+            <h2>#{msg.flight_details_h2_price}</h2>
+            <table>
+                <tr>
+                    <th>#{msg.flight_details_price_table_flight}</th>
+                    <th>#{msg.flight_details_price_table_amount}</th>
+                    <th>#{msg.flight_details_price_table_total_price}</th>
+                </tr>
+                <tr>
+                    <td>#{bookingCreationWizard.departureFlight.flight.departureAirport.code} - #{bookingCreationWizard.departureFlight.flight.arrivalAirport.code}</td>
+                    <td>#{bookingCreationWizard.numberOfPeople}</td>
+                    <td>#{bookingCreationWizard.departureFlight.finalPrice}</td>
+                </tr>
+
+                <h:panelGroup rendered="#{bookingCreationWizard.hasReturnFlight()}">
+                    <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code} - #{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
+                    <td>#{bookingCreationWizard.numberOfPeople}</td>
+                    <td>#{bookingCreationWizard.returnFlight.finalPrice}</td>
+                </h:panelGroup>
+            </table>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block">
+            <h:outputLink value="book.jsf" styleClass="button button-primary">
+                #{msg.flight_details_booking_button}
+            </h:outputLink>
+        </h:panelGroup>
+
+    </ui:define>
+
+</ui:composition>
 </html>

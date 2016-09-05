@@ -110,4 +110,8 @@ public class Category {
     public int getFreeSeats() {
         return maxNumberOfSeats - tickets.size();
     }
+
+    public Double getFinalPrice() {
+        return basePrice + (basePrice * baseMarkupPercentage);
+    }
 }
