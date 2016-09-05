@@ -51,42 +51,16 @@ public class RegisterController implements Serializable {
     }
 
     public String register(){
-        System.out.println("Register");
         //todo check passwordlength etc...
-        String hashed = encryptPassword(password);
-        if(!hashed.isEmpty() && !password.isEmpty()) {
-            System.out.println("pw could be hashed");
-            //password could be hashed
 
-            Customer c = findCustomer(email);
-            if(c.getId()==null) {
-                System.out.println("new cust returned");
-                //database returned a new customer
-                c = new Customer(firstName, lastName, email);
-                c.setDigest(hashed);
-                Customer cc = customerService.create(c);
-                //todo do login;
+        Customer c = customerService.getCustomerByEmail(password);
+        if (c==null) {
+            // geen waarde in de database
+            if(customerService.saveCustomer(firstName, lastName, password, email)) {
                 return "payment.xhtml" + "faces-redirect=true";
-            } else {
-                System.out.println("valid cust returned");
-                //database returned a valid customer
-                if (c.getDigest().equals(hashed)) {
-                    System.out.println("pw correct");
-                    // password is correct
-                    //todo do login
-                    return "payment.xhtml" + "faces-redirect=true";
-                } else {
-                    System.out.println("pw incorrect");
-                    //password is incorrect
-                    //todo give error messages
-                    return "register.xhtml" + "faces-redirect=true";
-                }
-
             }
-        } else {
-            System.out.println("REGISTER FAILED");
-            return "register.xhtml"+"faces-redirect=true";
         }
+        return "register.xhtml" + "faces-redirect=true";
     }
 
     public String encryptPassword(String passwordToHash) {

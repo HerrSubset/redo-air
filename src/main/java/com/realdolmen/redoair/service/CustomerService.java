@@ -42,6 +42,13 @@ public class CustomerService {
         return false;
     }
 
+    public boolean saveCustomer(String fname, String lname, String pw, String email) {
+        Customer c = new Customer(fname, lname, email);
+        c.setDigest(hashPassword(pw));
+        repo.create(c);
+
+    }
+
 
     public boolean checkPassword(String passwordToHash, String hashedPassword) {
         //https://github.com/jeremyh/jBCrypt
