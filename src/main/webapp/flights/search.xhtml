@@ -17,6 +17,7 @@
                 <f:convertDateTime pattern="dd-MM-yyyy"/>
             </f:viewParam>
             <f:viewParam name="class" value="#{flightSearchController.className}"/>
+            <f:viewParam name="numberofpeople" value="#{bookingCreationWizard.numberOfPeople}"/>
             <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
             <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
         </f:metadata>
@@ -29,9 +30,13 @@
 
 
             <div class="flightInfo">
-                <h:outputLink value="details.jsf">
-                    <f:param name="departureId" value="#{combo.departureFlight.id}"/>
-                    <f:param name="returnId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>
+                <h:form>
+                <h:commandLink action="#{bookingCreationWizard.chooseFlight()}">
+                    <!--<f:param name="departureId" value="#{combo.departureFlight.id}"/>-->
+                    <!--<f:param name="returnId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>-->
+                    <f:setPropertyActionListener target="#{bookingCreationWizard.departureId}" value="#{combo.departureFlight.id}" />
+                    <f:setPropertyActionListener target="#{bookingCreationWizard.returnId}" value="#{combo.returnFlight.id}" />
+
 
 
                     <div class="departureFlight">
@@ -68,8 +73,8 @@
                     <div class="priceInfo">
                         <p>Total price: <span>EUR #{combo.totalPrice}</span></p>
                     </div>
-                </h:outputLink>
-
+                </h:commandLink>
+                </h:form>
             </div>
         </c:forEach>
 
