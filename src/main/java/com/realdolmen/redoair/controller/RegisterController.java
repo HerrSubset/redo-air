@@ -11,10 +11,9 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-
 @RequestScoped
 @ManagedBean
-public class LoginController implements Serializable {
+public class RegisterController implements Serializable {
 
     @Inject
     CustomerService customerService;
@@ -26,12 +25,10 @@ public class LoginController implements Serializable {
     private String hashedPassword;
     private String salt;
 
-    private boolean isLogin;
+    private String firstName;
+    private String lastName;
 
-    @PostConstruct
-    public void setUp() {
-        isLogin=false;
-    }
+    private boolean isLogin;
 
     public String getEmail() {
         return email;
@@ -50,11 +47,13 @@ public class LoginController implements Serializable {
     }
 
     public String login(){
-        // TODO: 1/09/2016 do login
+        return "login.xhtml"+"faces-redirect=true";
+    }
 
-        System.out.println("Login");
+    public String register(){
+        System.out.println("Register");
         //todo check passwordlength etc...
-        String hashed = checkPassword(password);
+        String hashed = encryptPassword(password);
         if(!hashed.isEmpty()) {
             System.out.println("pw could be hashed");
             //password could be hashed
@@ -63,11 +62,15 @@ public class LoginController implements Serializable {
             if(c.getId()==null) {
                 System.out.println("new cust returned");
                 //database returned a new customer
-                return "login.xhtml" + "faces-redirect=true";
+                c = new Customer(firstName, lastName, email);
+                c.setDigest(hashed);
+                Customer cc = customerService.create(c);
+                //todo do login;
+                return "payment.xhtml" + "faces-redirect=true";
             } else {
                 System.out.println("valid cust returned");
                 //database returned a valid customer
-                if (checkPassword(password, c.getDigest())) {
+                if (c.getDigest().equals(hashed)) {
                     System.out.println("pw correct");
                     // password is correct
                     //todo do login
@@ -76,36 +79,38 @@ public class LoginController implements Serializable {
                     System.out.println("pw incorrect");
                     //password is incorrect
                     //todo give error messages
-                    return "login.xhtml" + "faces-redirect=true";
+                    return "register.xhtml" + "faces-redirect=true";
                 }
 
             }
         } else {
             System.out.println("REGISTER FAILED");
-            return "login.xhtml" + "faces-redirect=true";
+            return "register.xhtml"+"faces-redirect=true";
         }
     }
 
-    public String register(){
-        return "register.xhtml"+"faces-redirect=true";
-    }
-
-    public boolean checkPassword(String passwordToHash, String hashedPassword) {
+    public String encryptPassword(String passwordToHash) {
         //https://github.com/jeremyh/jBCrypt
-        return BCrypt.checkpw(passwordToHash, hashedPassword);
-    }
-
-    public String checkPassword(String passwordToHash) {
-        //https://github.com/jeremyh/jBCrypt
+        //https://mvnrepository.com/artifact/org.mindrot/jbcrypt
+        // gensalt's log_rounds parameter determines the complexity
+        // the work factor is 2**log_rounds, and the default is 10
         return BCrypt.hashpw(passwordToHash, BCrypt.gensalt(12));
     }
 
-    public String getButtonString(String login, String register) {
-        if(!isLogin) {
-            return login;
-        } else {
-            return register;
-        }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     private Customer findCustomer(String email) {

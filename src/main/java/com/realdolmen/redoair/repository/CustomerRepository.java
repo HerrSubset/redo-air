@@ -46,4 +46,17 @@ public class CustomerRepository {
         TypedQuery<Customer> q = em.createQuery("SELECT c FROM Customer c", Customer.class);
         return q.getResultList();
     }
+
+    public Customer findCustomerByEmail(String email) {
+        Customer c = new Customer();
+        try {
+            c = (Customer) em.createQuery(
+                    "SELECT c FROM Customer c WHERE c.email = ?1")
+                    .setParameter(1, email)
+                    .getResultList()
+                    .get(0);
+        } catch (Exception e) {};
+
+        return c;
+    }
 }

@@ -20,9 +20,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by NHOBB65 on 1/09/2016.
- */
 @RequestScoped
 @ManagedBean
 public class IndexController {
@@ -238,6 +235,8 @@ public class IndexController {
     public Date getCurrentDate() {
         return currentDate;
     }
+
+
 
 
 }
