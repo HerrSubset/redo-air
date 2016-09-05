@@ -2,11 +2,77 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <h1>It works!</h1>
-</body>
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xml:lang="en" lang="en">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+    <ui:define name="metaData">
+        <f:metadata>
+            <f:viewParam name="departureId" value="#{flightDetailsController.departureId}"/>
+            <f:viewParam name="returnId" value="#{flightDetailsController.returnId}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="pageTitle">#{msg.flights_details_page_title}</ui:define>
+    <ui:define name="pageContent">
+        <h1>#{msg.flights_details_page_title}</h1>
+        <h:panelGroup layout="block">
+            <h2>#{msg.flight_details_h2_departure}</h2>
+            <table>
+                <tr>
+                    <th>Airline</th>
+                    <th>Class</th>
+                    <th>Seats Remaining</th>
+                    <th>Departure Time</th>
+                    <th>Flight Duration</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Airport</th>
+                    <th>Arrival Airport</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>#{flightDetailsController.departureFlight.flight.airline.name}</td>
+                    <td>#{flightDetailsController.departureFlight.name}</td>
+                    <td>#{flightDetailsController.departureFlight.freeSeats}</td>
+                    <td>#{flightDetailsController.departureFlight.flight.departureTime}</td>
+                    <td>TODO</td>
+                    <td>#{flightDetailsController.departureFlight.flight.arrivalTime}</td>
+                    <td>#{flightDetailsController.departureFlight.flight.departureAirport.code}</td>
+                    <td>#{flightDetailsController.departureFlight.flight.arrivalAirport.code}</td>
+                    <td>#{flightDetailsController.departureFlight.price}</td>
+                </tr>
+            </table>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" rendered="#{flightDetailsController.hasReturnFlight()}">
+            <h2>#{msg.flight_details_h2_return_flight}</h2>
+            <table>
+                <tr>
+                    <th>Airline</th>
+                    <th>Class</th>
+                    <th>Seats Remaining</th>
+                    <th>Departure Time</th>
+                    <th>Flight Duration</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Airport</th>
+                    <th>Arrival Airport</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>#{flightDetailsController.returnFlight.flight.airline.name}</td>
+                    <td>#{flightDetailsController.returnFlight.name}</td>
+                    <td>#{flightDetailsController.returnFlight.freeSeats}</td>
+                    <td>#{flightDetailsController.returnFlight.flight.departureTime}</td>
+                    <td>TODO</td>
+                    <td>#{flightDetailsController.returnFlight.flight.arrivalTime}</td>
+                    <td>#{flightDetailsController.returnFlight.flight.departureAirport.code}</td>
+                    <td>#{flightDetailsController.returnFlight.flight.arrivalAirport.code}</td>
+                    <td>#{flightDetailsController.returnFlight.price}</td>
+                </tr>
+            </table>
+        </h:panelGroup>
+
+
+    </ui:define>
+
+</ui:composition>
 </html>

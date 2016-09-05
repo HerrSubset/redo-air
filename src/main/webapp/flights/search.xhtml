@@ -29,9 +29,9 @@
 
 
             <div class="flightInfo">
-                <h:outputLink value="flights/details">
+                <h:outputLink value="details.jsf">
                     <f:param name="departureId" value="#{combo.departureFlight.id}"/>
-                    <f:param name="arrivalId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>
+                    <f:param name="returnId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>
 
 
                     <div class="departureFlight">

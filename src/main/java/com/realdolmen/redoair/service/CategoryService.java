@@ -66,4 +66,8 @@ public class CategoryService {
 
         return res;
     }
+
+    public Category getFlightById(Long id) {
+        return repo.findById(id);
+    }
 }
