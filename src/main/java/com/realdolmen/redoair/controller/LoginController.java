@@ -5,9 +5,15 @@ import com.realdolmen.redoair.service.CustomerService;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -19,9 +25,7 @@ public class LoginController implements Serializable {
     @Inject
     CustomerService customerService;
 
-    @NotNull
     private String email;
-    @NotNull
     private String password;
     private String hashedPassword;
     private String salt;
@@ -49,72 +53,48 @@ public class LoginController implements Serializable {
         this.password = password;
     }
 
-    public String login(){
-        // TODO: 1/09/2016 do login
-
-        System.out.println("Login");
-        //todo check passwordlength etc...
-        String hashed = checkPassword(password);
-        if(!hashed.isEmpty()) {
-            System.out.println("pw could be hashed");
-            //password could be hashed
-
-            Customer c = findCustomer(email);
-            if(c.getId()==null) {
-                System.out.println("new cust returned");
-                //database returned a new customer
-                return "login.xhtml" + "faces-redirect=true";
-            } else {
-                System.out.println("valid cust returned");
-                //database returned a valid customer
-                if (checkPassword(password, c.getDigest())) {
-                    System.out.println("pw correct");
-                    // password is correct
-                    //todo do login
-                    return "payment.xhtml" + "faces-redirect=true";
-                } else {
-                    System.out.println("pw incorrect");
-                    //password is incorrect
-                    //todo give error messages
-                    return "login.xhtml" + "faces-redirect=true";
-                }
-
-            }
-        } else {
-            System.out.println("REGISTER FAILED");
-            return "login.xhtml" + "faces-redirect=true";
-        }
-    }
-
     public String register(){
         return "register.xhtml"+"faces-redirect=true";
-    }
-
-    public boolean checkPassword(String passwordToHash, String hashedPassword) {
-        //https://github.com/jeremyh/jBCrypt
-
-        try {
-            return BCrypt.checkpw(passwordToHash, hashedPassword);
-        } catch (NullPointerException e) {
-            return false;
-        }
-    }
-
-    public String checkPassword(String passwordToHash) {
-        //https://github.com/jeremyh/jBCrypt
-        return BCrypt.hashpw(passwordToHash, BCrypt.gensalt(12));
-    }
-
-    public String getButtonString(String login, String register) {
-        if(!isLogin) {
-            return login;
-        } else {
-            return register;
-        }
     }
 
     private Customer findCustomer(String email) {
         return customerService.getCustomerByEmail(email);
 
+    }
+
+
+
+    //validate login
+    public String validateUsernamePassword() {
+        boolean valid = customerService.validate(email, password);
+        if (valid) {
+            HttpSession session = SessionController.getSession();
+            session.setAttribute("email", email);
+            return "payment";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect Username and Passowrd",
+                            "Please enter correct username and Password"));
+            return "login";
+        }
+    }
+
+    //logout event, invalidate session
+    public String logout() {
+        HttpSession session = SessionController.getSession();
+        session.invalidate();
+        return "index";
+    }
+
+    public String logInOut () {
+        HttpSession session = SessionController.getSession();
+        if(session.getAttribute("email")!=null) {
+            logout();
+            return "index.xhtml";
+        } else {
+            return "login.xhtmlfaces-redirect=true";
+        }
     }
 }

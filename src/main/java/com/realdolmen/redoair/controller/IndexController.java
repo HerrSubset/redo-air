@@ -139,10 +139,7 @@ public class IndexController {
 
     public String doAction() {
         String s = "/flights/search.jsf";
-
         s = s +"?numberofpeople=" + numberOfPersons;
-
-        System.out.println("######################################" + returnDate);
 
 
         try {
@@ -204,10 +201,6 @@ public class IndexController {
             // TODO: 1/09/2016
 //            e.printStackTrace();
         }
-
-        System.out.println("*******************");
-        System.out.println(s);
-
 
         return s+"faces-redirect=true";
     }

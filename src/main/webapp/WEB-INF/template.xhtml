@@ -17,8 +17,9 @@
     </h:head>
     <h:body>
         <h:form id="langauge_form">
-            <h:commandLink action="#{languageSwitcherController.changeLanguage('nl_BE')}" value="Nederlands"/> |
-            <h:commandLink action="#{languageSwitcherController.changeLanguage('en')}" value="English"/>
+            <h:commandLink action="#{languageSwitcherController.changeLanguage('nl_BE')}" value="#{msg.language}"/> |
+            <h:commandLink action="#{languageSwitcherController.changeLanguage('en')}" value="#{msg.language}"/>
+            <h:commandLink action="#{loginController.logInOut}" value="login/out"/>
         </h:form>
 
         <!--<h:graphicImage name="01.jpg" library="images" width="500" height="100"/>-->
