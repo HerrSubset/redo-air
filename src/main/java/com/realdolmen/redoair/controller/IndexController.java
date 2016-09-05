@@ -60,7 +60,7 @@ public class IndexController {
         currentDate = new Date();
         returnDate = null;
         departureDate = null;
-        oneWay=false;
+        oneWay=true;
     }
 
     public AirportService getAirportService() {
@@ -235,8 +235,5 @@ public class IndexController {
     public Date getCurrentDate() {
         return currentDate;
     }
-
-
-
 
 }

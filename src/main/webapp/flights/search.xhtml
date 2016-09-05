@@ -8,58 +8,70 @@
 <ui:composition template="/WEB-INF/template.xhtml">
     <ui:define name="metaData">
         <f:metadata>
-        <f:viewParam name="departureAirport" value="#{flightSearchController.departureAirport}"/>
-        <f:viewParam name="arrivalAirport" value="#{flightSearchController.arrivalAirport}"/>
-        <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}">
-            <f:convertDateTime pattern="dd-MM-yyyy"/>
-        </f:viewParam>
-        <f:viewParam name="returndate" value="#{flightSearchController.returnDate}">
-            <f:convertDateTime pattern="dd-MM-yyyy"/>
-        </f:viewParam>
-        <f:viewParam name="class" value="#{flightSearchController.className}"/>
-        <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
-        <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
-    </f:metadata>
+            <f:viewParam name="departureAirport" value="#{flightSearchController.departureAirport}"/>
+            <f:viewParam name="arrivalAirport" value="#{flightSearchController.arrivalAirport}"/>
+            <f:viewParam name="departuredate" value="#{flightSearchController.departureDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+            </f:viewParam>
+            <f:viewParam name="returndate" value="#{flightSearchController.returnDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+            </f:viewParam>
+            <f:viewParam name="class" value="#{flightSearchController.className}"/>
+            <f:viewParam name="numberofpeople" value="#{flightSearchController.numberOfPeople}"/>
+            <f:viewParam name="airline" value="#{flightSearchController.airline}"/>
+        </f:metadata>
     </ui:define>
     <ui:define name="pageTitle">#{msg.search_title}</ui:define>
     <ui:define name="pageContent">
         <h1>#{msg.search_title}</h1>
 
+        <c:forEach items="#{flightSearchController.flightCombos}" var="combo">
 
-        <h2>#{msg.search_departure_title}</h2>
-        <c:forEach items="#{flightSearchController.departureFlights}" var="flight">
+
             <div class="flightInfo">
-                <div>
-                    <span class="airLine">#{flight.flight.airline.name}</span>
-                    <span class="price">EUR #{flight.price}</span>
-                </div>
-                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}</p>
+                <h:outputLink value="flights/details">
+                    <f:param name="departureId" value="#{combo.departureFlight.id}"/>
+                    <f:param name="arrivalId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>
 
 
-                <div class="departureInfo">
-                    <span>#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}</span>
-                    <span>#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}</span>
-                </div>
+                    <div class="departureFlight">
+                        <h2>#{msg.search_departure_title}</h2>
+                        <div>
+                            <span class="airLine">#{combo.departureFlight.flight.airline.name}</span>
+                            <span class="price">EUR #{combo.departureFlight.price}</span>
+                        </div>
+                        <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
+
+                        <div class="departureInfo">
+                            <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} #{combo.departureFlight.flight.departureTime}</span>
+                            <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} #{combo.departureFlight.flight.arrivalTime}</span>
+                        </div>
+                    </div>
+
+                    <h:panelGroup rendered="#{combo.hasReturnFlight()}">
+                        <div class="returnFlight">
+                            <h2>#{msg.search_return_title}</h2>
+                            <div>
+                                <span class="airLine">#{combo.returnFlight.flight.airline.name}</span>
+                                <span class="price">EUR #{combo.returnFlight.price}</span>
+                            </div>
+                            <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
+
+                            <div class="departureInfo">
+                                <span>#{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code} #{combo.returnFlight.flight.departureTime}</span>
+                                <span>#{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} #{combo.returnFlight.flight.arrivalTime}</span>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+
+                    <div class="priceInfo">
+                        <p>Total price: <span>EUR #{combo.totalPrice}</span></p>
+                    </div>
+                </h:outputLink>
+
             </div>
         </c:forEach>
-
-        <h2>#{msg.search_return_title}</h2>
-        <c:forEach items="#{flightSearchController.returnFlights}" var="flight">
-            <div class="flightInfo">
-                <div>
-                    <span class="airLine">#{flight.flight.airline.name}</span>
-                    <span class="price">EUR #{flight.price}</span>
-                </div>
-                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{flight.freeSeats}</p>
-
-
-                <div class="departureInfo">
-                    <span>#{msg.search_flightdiv_departure}: #{flight.flight.departureAirport.code} #{flight.flight.departureTime}</span>
-                    <span>#{msg.search_flightdiv_arrival}: #{flight.flight.arrivalAirport.code} #{flight.flight.arrivalTime}</span>
-                </div>
-            </div>
-        </c:forEach>
-
 
     </ui:define>
 </ui:composition>
