@@ -12,14 +12,15 @@
     <ui:define name="pageContent">
         <f:view>
             <h:form id="login">
-                <h:commandButton value="#{msg.login_button_login}" action="#{login.toggleIsLogin}" rendered="#{login.isLogin}"/>
-                <h:commandButton value="#{msg.login_button_register}" action="#{login.toggleIsLogin}" rendered="#{not login.isLogin}"/>
+                <h:commandButton value="#{msg.login_button_login}" action="login.xhtml faces-redirect=true"
+                                 styleClass="button-primary"/>
+                <h:commandButton value="#{msg.login_button_register}" action="register.xhtml faces-redirect=true"/>
 
                 <h:panelGrid columns="2">
 
                     <h:outputText value="#{msg.login_form_email}"/>
                     <h:panelGroup>
-                        <h:inputText id="login_form_email_input" value="#{login.email}" required="true" rendered="true">
+                        <h:inputText id="login_form_email_input" value="#{loginController.email}">
                             <f:ajax event="blur" render="login_form_email_input login_form_email_input_error_empty"></f:ajax>
                         </h:inputText>
                         <h:message id="login_form_email_input_error_empty" for="login_form_email_input"/>
@@ -27,16 +28,14 @@
 
                     <h:outputText value="#{msg.login_form_password}"/>
                     <h:panelGroup>
-                        <h:inputSecret id="login_form_password_input" value="#{login.password}" rendered="true"/>
+                        <h:inputSecret id="login_form_password_input" value="#{loginController.password}"/>
                     </h:panelGroup>
                 </h:panelGrid>
-                <!--<h:inputHidden id="hidden" value="#{login.isLogin}"/>-->
-                <h:commandButton value="#{msg.login_button_login_send}" action="#{login.doAction}" rendered="#{not login.isLogin}"/>
-                <h:commandButton value="#{msg.login_button_register_send}" action="#{login.doAction}" rendered="#{login.isLogin}"/>
+                <h:commandButton value="#{msg.login_button_login_send}" action="#{loginController.login}"/>
 
             </h:form>
         </f:view>
-    </ui:define>g
+    </ui:define>
 </ui:composition>
 
 </body>

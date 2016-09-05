@@ -19,4 +19,12 @@ public class CustomerService {
     public Customer getCustomerById(Long id) {
         return repo.findById(id);
     }
+    public Customer create (Customer c) {
+        repo.create(c);
+        return repo.findById(c.getId());
+    }
+
+    public Customer getCustomerByEmail(String email) {
+        return repo.findCustomerByEmail(email);
+    }
 }

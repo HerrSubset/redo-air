@@ -57,11 +57,9 @@
                     <p:calendar value="#{indexController.returndate}" mindate="#{indexController.currentDate}"
                                 rendered="#{not indexController.oneWay}" id="return_picker"/>
 
-
                     <h:panelGroup layout="block">
                         <h:outputLabel for="index_form_category_input" value="#{msg.index_form_category}"/>
-                        <h:selectOneMenu value="#{indexController.category}" id="index_form_category_input"
-                                         style="width:100%">
+                        <h:selectOneMenu value="#{indexController.category}" id="index_form_category_input">
                             <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
                             <f:selectItems value="#{indexController.categoryService.allCategoryNames}"/>
                         </h:selectOneMenu>
@@ -78,8 +76,7 @@
 
                     <h:panelGroup layout="block">
                         <h:outputLabel for="index_form_airline_input" value="#{msg.index_form_airline}"/>
-                        <h:selectOneMenu id="index_form_airline_input" value="#{indexController.airline}"
-                                         style="width:100%">
+                        <h:selectOneMenu id="index_form_airline_input" value="#{indexController.airline}">
                             <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
                             <f:selectItems value="#{indexController.partnerService.allPartners}"/>
                         </h:selectOneMenu>
@@ -90,7 +87,125 @@
                 <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction()}"/>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--<f:view>-->
+            <!--<h:form id="flights">-->
+
+                <!--<h:commandButton value="#{msg.index_form_one_way}" rendered="#{indexController.oneWay}" action="#{indexController.setOneWay(false)}"/>-->
+
+
+                <!--<h:outputText value="#{msg.index_form_roundtrip}" rendered="#{indexController.oneWay}"/>-->
+
+                <!--<h:outputText value="#{msg.index_form_one_way}" rendered="#{not indexController.oneWay}"/>-->
+                <!--<h:commandButton value="#{msg.index_form_roundtrip}" rendered="#{not indexController.oneWay}" action="#{indexController.setOneWay(true)}"/>-->
+
+                <!--<h:panelGrid columns="2">-->
+                    <!--<h:outputText value="#{msg.index_form_from_location}"/>-->
+                    <!--<h:panelGroup>-->
+                        <!--<h:selectOneMenu value="#{indexController.departureAirport}" id="index_form_from_location_input" style="width:100%">-->
+                            <!--<f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />-->
+                            <!--<f:selectItems value="#{indexController.airportService.allAirports}" />-->
+                        <!--</h:selectOneMenu>-->
+                    <!--</h:panelGroup>-->
+
+                    <!--<h:outputText value="#{msg.index_form_to_location}"/>-->
+                    <!--<h:panelGroup>-->
+                        <!--<h:selectOneMenu value="#{indexController.destinationAirport}" id="index_form_to_location_input" style="width:100%">-->
+                            <!--<f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />-->
+                            <!--<f:selectItems value="#{indexController.airportService.allAirports}" />-->
+                        <!--</h:selectOneMenu>-->
+                    <!--</h:panelGroup>-->
+
+                    <!--<h:outputText value="#{msg.index_form_from_date}"/>-->
+                    <!--<p:calendar value="#{indexController.departuredate}" mindate="#{indexController.currentDate}" />-->
+
+                    <!--<h:outputText value="#{msg.index_form_to_date}" rendered="#{not indexController.oneWay}"/>-->
+                    <!--<p:calendar value="#{indexController.returndate}" mindate="#{indexController.currentDate}" rendered="#{not indexController.oneWay}" />-->
+
+
+
+                    <!--<h:outputText value="#{msg.index_form_category}"/>-->
+                    <!--<h:panelGroup>-->
+                        <!--<h:selectOneMenu value="#{indexController.category}" id="index_form_category_input" style="width:100%">-->
+                            <!--<f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />-->
+                            <!--<f:selectItems value="#{indexController.categoryService.allCategoryNames}" />-->
+                        <!--</h:selectOneMenu>-->
+                    <!--</h:panelGroup>-->
+
+                    <!--<h:outputText value="#{msg.index_form_person}"/>-->
+                    <!--<h:panelGroup>-->
+                        <!--<h:inputText id="index_form_person_input" value="#{indexController.numberOfPersons}" rendered="true" style="width:98%"/>-->
+                        <!--&lt;!&ndash;todo check value = valid&ndash;&gt;-->
+                    <!--</h:panelGroup>-->
+
+                    <!--<h:outputText value="#{msg.index_form_airline}"/>-->
+                    <!--<h:panelGroup>-->
+                        <!--<h:selectOneMenu id="index_form_airline_input" value="#{indexController.airline}" style="width:100%">-->
+                            <!--<f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue="" />-->
+                            <!--<f:selectItems value="#{indexController.partnerService.allPartners}" />-->
+                        <!--</h:selectOneMenu>-->
+                    <!--</h:panelGroup>-->
+                <!--</h:panelGrid>-->
+
+
+
+                <!--<h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction()}"/>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!--<h:panelGroup>-->
+
                 <!--<h:inputText id="first" value="#{passengerBean.passenger.firstName}" required="true" rendered="#{passengerBean.editable}">-->
                 <!--<f:ajax event="blur" render="first3 firstMessageError"></f:ajax>-->
                 <!--</h:inputText>-->
