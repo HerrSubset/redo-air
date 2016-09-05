@@ -46,6 +46,7 @@ public class CustomerService {
         Customer c = new Customer(fname, lname, email);
         c.setDigest(hashPassword(pw));
         repo.create(c);
+        return true;
 
     }
 

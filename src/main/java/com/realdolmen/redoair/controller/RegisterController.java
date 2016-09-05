@@ -52,9 +52,10 @@ public class RegisterController implements Serializable {
 
     public String register(){
         //todo check passwordlength etc...
+        System.out.println("Register");
 
         Customer c = customerService.getCustomerByEmail(password);
-        if (c==null) {
+        if (c.getId()==null) {
             // geen waarde in de database
             if(customerService.saveCustomer(firstName, lastName, password, email)) {
                 return "payment.xhtml" + "faces-redirect=true";

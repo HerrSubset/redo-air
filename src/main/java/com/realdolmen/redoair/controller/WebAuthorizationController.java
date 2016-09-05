@@ -58,6 +58,7 @@ public class WebAuthorizationController implements Filter {
                     || reqURI.contains("javax.faces.resource")
                     || reqURI.equals("/redo-air/")
                     || reqURI.contains("index.jsf")
+                    || reqURI.contains("register")
                     || reqURI.contains("flights/search.jsf")
                     || reqURI.contains("flights/details")) {
                 chain.doFilter(request, response);
