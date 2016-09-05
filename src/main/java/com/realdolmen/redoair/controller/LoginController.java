@@ -92,7 +92,12 @@ public class LoginController implements Serializable {
 
     public boolean checkPassword(String passwordToHash, String hashedPassword) {
         //https://github.com/jeremyh/jBCrypt
-        return BCrypt.checkpw(passwordToHash, hashedPassword);
+
+        try {
+            return BCrypt.checkpw(passwordToHash, hashedPassword);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     public String checkPassword(String passwordToHash) {

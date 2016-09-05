@@ -54,7 +54,7 @@ public class RegisterController implements Serializable {
         System.out.println("Register");
         //todo check passwordlength etc...
         String hashed = encryptPassword(password);
-        if(!hashed.isEmpty()) {
+        if(!hashed.isEmpty() && !password.isEmpty()) {
             System.out.println("pw could be hashed");
             //password could be hashed
 

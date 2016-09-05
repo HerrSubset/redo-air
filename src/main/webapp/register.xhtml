@@ -12,8 +12,11 @@
     <ui:define name="pageContent">
         <f:view>
             <h:form id="register">
-                <h:commandButton value="#{msg.login_button_login}" action="login.xhtml faces-redirect=true"/>
-                <h:outputText value="#{msg.register_button_register}"/>
+
+
+                <h:commandButton value="#{msg.register_button_login}" action="login.xhtml faces-redirect=true"/>
+                <h:commandButton value="#{msg.register_button_register}" action="register.xhtml faces-redirect=true"
+                                 styleClass="button-primary"/>
 
 
 
