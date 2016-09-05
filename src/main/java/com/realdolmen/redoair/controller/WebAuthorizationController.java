@@ -45,12 +45,8 @@ public class WebAuthorizationController implements Filter {
             HttpServletResponse resp = (HttpServletResponse) response;
             HttpSession ses = reqt.getSession(false);
 
-            System.out.println("Inside filter.");
-            System.out.println("request: " + request);
             try {
-                System.out.println("ses: " + ses.getAttribute("email"));
             } catch (Exception e) {
-                System.out.println("Inside catch.");
             };
 
 
@@ -69,7 +65,7 @@ public class WebAuthorizationController implements Filter {
                 resp.sendRedirect(reqt.getContextPath() + "/login.jsf");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println( "Exception" + e.getMessage());
         }
     }
 

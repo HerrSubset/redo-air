@@ -53,44 +53,6 @@ public class LoginController implements Serializable {
         this.password = password;
     }
 
-//    public String login(){
-//        // TODO: 1/09/2016 do login
-//
-//        System.out.println("Login");
-//        //todo check passwordlength etc...
-//        String hashed = checkPassword(password);
-//        if(!hashed.isEmpty()) {
-//            System.out.println("pw could be hashed");
-//            //password could be hashed
-//
-//            Customer c = findCustomer(email);
-//            if(c.getId()==null) {
-//                System.out.println("new cust returned" + c.getId() + " email =" + email);
-//                //database returned a new customer
-//                return "login.xhtml" + "faces-redirect=true";
-//            } else {
-//                System.out.println("valid cust returned");
-//                //database returned a valid customer
-//                if (checkPassword(password, c.getDigest())) {
-//                    System.out.println("pw correct");
-//                    // password is correct
-//                    //todo do login
-//                    return logUserIn();
-//
-//                } else {
-//                    System.out.println("pw incorrect");
-//                    //password is incorrect
-//                    //todo give error messages
-//                    return "login.xhtml" + "faces-redirect=true";
-//                }
-//
-//            }
-//        } else {
-//            System.out.println("REGISTER FAILED");
-//            return "login.xhtml" + "faces-redirect=true";
-//        }
-//    }
-
     public String register(){
         return "register.xhtml"+"faces-redirect=true";
     }
@@ -98,24 +60,6 @@ public class LoginController implements Serializable {
     private Customer findCustomer(String email) {
         return customerService.getCustomerByEmail(email);
 
-    }
-
-    public String logUserIn () {
-        System.out.println("user inloggen");
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest)
-                context.getExternalContext().getRequest();
-        try {
-            request.login(this.email, this.password);
-        } catch (ServletException e) {
-            e.printStackTrace();
-            context.addMessage(null, new FacesMessage("Login failed."));
-            System.out.println("user inloggen failed");
-            return "error";
-        }
-        context.addMessage(null, new FacesMessage("Login succes"));
-        System.out.println("user inloggen done");
-        return "payment.xhtml" + "faces-redirect=true";
     }
 
 
@@ -141,8 +85,16 @@ public class LoginController implements Serializable {
     public String logout() {
         HttpSession session = SessionController.getSession();
         session.invalidate();
-        return "login";
+        return "index";
     }
 
-
+    public String logInOut () {
+        HttpSession session = SessionController.getSession();
+        if(session.getAttribute("email")!=null) {
+            logout();
+            return "index.xhtml";
+        } else {
+            return "login.xhtmlfaces-redirect=true";
+        }
+    }
 }
