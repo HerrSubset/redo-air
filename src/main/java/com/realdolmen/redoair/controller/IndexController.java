@@ -1,18 +1,12 @@
 package com.realdolmen.redoair.controller;
 
-import com.realdolmen.redoair.domain.Airport;
 import com.realdolmen.redoair.service.AirportService;
 import com.realdolmen.redoair.service.CategoryService;
 import com.realdolmen.redoair.service.PartnerService;
-import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.DateTimeConverter;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -58,9 +52,8 @@ public class IndexController {
         category="";
         airline="";
         currentDate = new Date();
-        returnDate = null;
         departureDate = null;
-        oneWay=true;
+        oneWay=false;
     }
 
     public AirportService getAirportService() {
@@ -149,6 +142,9 @@ public class IndexController {
 
         s = s +"?numberofpeople=" + numberOfPersons;
 
+        System.out.println("######################################" + returnDate);
+
+
         try {
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             departureDay = df.format(departureDate);
@@ -156,7 +152,7 @@ public class IndexController {
                 s = s +"&departuredate=" + departureDay;
             }
         } catch(NullPointerException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             // TODO: 1/09/2016
         }
 
@@ -167,7 +163,7 @@ public class IndexController {
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         try {
@@ -177,7 +173,7 @@ public class IndexController {
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         try {
@@ -186,7 +182,7 @@ public class IndexController {
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         try {
@@ -197,7 +193,7 @@ public class IndexController {
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         try {
@@ -206,7 +202,7 @@ public class IndexController {
             }
         } catch(NullPointerException e) {
             // TODO: 1/09/2016
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         System.out.println("*******************");
