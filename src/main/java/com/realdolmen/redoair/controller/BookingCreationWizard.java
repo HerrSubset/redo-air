@@ -32,17 +32,14 @@ public class BookingCreationWizard implements Serializable {
     }
 
     public int getNumberOfPeople() {
-        System.out.println("Entered bookingCreationWizard's constructor");
         return this.numberOfPeople;
     }
 
     public void setNumberOfPeople(int numberOfPeople) {
         if (conversation.isTransient()){
             conversation.begin();
-            System.out.println("Conversation started");
         }
         this.numberOfPeople = numberOfPeople;
-        System.out.println("Changed number of people to " + this.numberOfPeople);
     }
 
     public Long getDepartureId() {
@@ -81,5 +78,10 @@ public class BookingCreationWizard implements Serializable {
 
     public String chooseFlight() {
         return "details.jsf?faces-redirect=true";
+    }
+
+    public String proceedToPayment() {
+        System.out.print("Proceeding");
+        return "pay";
     }
 }
