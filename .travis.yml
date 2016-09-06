@@ -5,4 +5,4 @@ jdk:
 
 script: "mvn test -DdatabaseEngine=h2"
 after_success:
-  "mvn clean test  saga:coverage cobertura:cobertura coveralls:report"-DdatabaseEngine=h2
+  "mvn clean test saga:coverage cobertura:cobertura coveralls:report -DdatabaseEngine=h2"
