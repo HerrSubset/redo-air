@@ -1,6 +1,7 @@
 # ReDo Air
 
 [![Build Status](https://travis-ci.org/HerrSubset/redo-air.svg?branch=master)](https://travis-ci.org/HerrSubset/redo-air)
+[![Coverage Status](https://coveralls.io/repos/github/HerrSubset/redo-air/badge.svg?branch=master)](https://coveralls.io/github/HerrSubset/redo-air?branch=master)
 
 Repostitory of team Nick & PJ for the first project of the acaddemict track at Realdolmen. Based on [jee7-starter](https://github.com/kvanrobbroeck/jee7-starter).
 
