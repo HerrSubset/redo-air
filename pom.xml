@@ -245,7 +245,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<baseDir>http://localhost:8080/redo-air</baseDir>
+					<baseDir>jdbc:mysql://localhost:3306/realdolmen</baseDir>
 					<outputDir>${project.build.directory}/coverage</outputDir>
 				</configuration>
 			</plugin>
