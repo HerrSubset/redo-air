@@ -4,13 +4,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <head></head>
 <body>
 <ui:composition template="WEB-INF/template.xhtml">
-    <ui:define name="pageTitle">#{msg.login_title}</ui:define>
+    <ui:define name="pageTitle">#{msg.payment_page_title}</ui:define>
     <ui:define name="pageContent">
-        <h1>Payment</h1>
+        <h1>#{msg.payment_page_title}</h1>
+        <p>TODO: display summary info on what you want to pay for</p>
+        <h:form>
+            <h2>#{msg.payment_title_payment_method}</h2>
+            <p:selectOneRadio layout="grid" columns="1">
+                <f:selectItem itemLabel="#{msg.payment_option_creditcard}" itemValue="creditcard" />
+                <h:outputLabel>Label</h:outputLabel>
+                <f:selectItem itemLabel="#{msg.payment_option_endorsement}" itemValue="endorsement" />
+            </p:selectOneRadio>
+
+            <h2>#{msg.payment_title_payment_details}</h2>
+            <h:outputLabel for="card_number" value="#{msg.payment_credit_card_number}"/>
+            <h:inputText id="card_number" rendered="true"/>
+
+            <h:panelGroup layout="block" styleClass="row">
+                <h:commandButton value="#{msg.payment_button_confirm}" styleClass="button-primary"/>
+            </h:panelGroup>
+
+        </h:form>
+
+
+
     </ui:define>
 </ui:composition>
 
