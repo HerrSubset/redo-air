@@ -201,6 +201,54 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.2.0</version>
+				<configuration>
+					<repoToken>OMPYDpvUeZiiswDh8FUq1Ao0nqaVPKx1N</repoToken>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<sourceEncoding>UTF8</sourceEncoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<check>true</check>
+					<format>xml</format>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.timurstrekalov</groupId>
+				<artifactId>saga-maven-plugin</artifactId>
+				<version>1.5.5</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>coverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<baseDir>http://localhost:8080/redo-air</baseDir>
+					<outputDir>${project.build.directory}/coverage</outputDir>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

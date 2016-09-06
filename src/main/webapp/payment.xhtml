@@ -11,6 +11,21 @@
     <ui:define name="pageTitle">#{msg.login_title}</ui:define>
     <ui:define name="pageContent">
         <f:view>
+            <h:form>
+                <h:selectOneRadio id="gender" label="Gender: " value="#{passengerBean.gender}">
+                <f:selectItem itemLabel="#{msg.payment_endorsement}" itemValue="endorsement"></f:selectItem>
+                <f:selectItem itemLabel="#{msg.payment_creditcard}" itemValue="CC"></f:selectItem>
+                </h:selectOneRadio>
+
+                <h:panelGroup layout="block">
+                    <h:outputLabel for="payment_form_cardnumber_input" value="#{msg.payment_form_cardnumber}"/>
+                    <h:selectOneMenu value="#{indexController.category}" id="index_form_category_input">
+                        <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
+                        <f:selectItems value="#{indexController.categoryService.allCategoryNames}"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
+            </h:form>
+
 
         </f:view>
     </ui:define>
