@@ -27,64 +27,73 @@
 
                 <h:panelGroup layout="block">
                     <h:panelGroup layout="block" styleClass="row">
-                        <h:panelGroup layout="block" styleClass="four columns">
+                        <h:panelGroup layout="block" styleClass="six columns">
                             <h:outputLabel for="index_form_from_location_input"
                                            value="#{msg.index_form_from_location}"/>
                             <h:selectOneMenu value="#{indexController.departureAirport}"
-                                             id="index_form_from_location_input">
+                                             id="index_form_from_location_input" styleClass="u-full-width">
                                 <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
                                 <f:selectItems value="#{indexController.airportService.allAirports}"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+
+
+                        <h:panelGroup layout="block" styleClass="six columns">
+                            <h:outputLabel for="index_form_to_location_input" value="#{msg.index_form_to_location}"/>
+                            <h:selectOneMenu value="#{indexController.destinationAirport}"
+                                             id="index_form_to_location_input" styleClass="u-full-width">
+                                <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
+                                <f:selectItems value="#{indexController.airportService.allAirports}"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup styleClass="row">
+                        <h:panelGroup styleClass="six columns">
+                            <h:outputLabel for="departure_picker" value="#{msg.index_form_from_date}"/>
+                            <p:calendar value="#{indexController.departuredate}" mindate="#{indexController.currentDate}"
+                                        id="departure_picker"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="six columns">
+                            <h:outputLabel for="return_picker" value="#{msg.index_form_to_date}"
+                                           rendered="#{not indexController.oneWay}"/>
+                            <p:calendar value="#{indexController.returndate}" mindate="#{indexController.currentDate}"
+                                        rendered="#{not indexController.oneWay}" id="return_picker"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup styleClass="row">
+
+                        <h:panelGroup layout="block" styleClass="four columns">
+                            <h:outputLabel for="index_form_category_input" value="#{msg.index_form_category}"/>
+                            <h:selectOneMenu value="#{indexController.category}" id="index_form_category_input" styleClass="u-full-width">
+                                <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
+                                <f:selectItems value="#{indexController.categoryService.allCategoryNames}"/>
                             </h:selectOneMenu>
                         </h:panelGroup>
 
 
                         <h:panelGroup layout="block" styleClass="four columns">
-                            <h:outputLabel for="index_form_to_location_input" value="#{msg.index_form_to_location}"/>
-                            <h:selectOneMenu value="#{indexController.destinationAirport}"
-                                             id="index_form_to_location_input">
+                            <h:outputLabel for="index_form_person_input" value="#{msg.index_form_person}"/>
+                            <h:inputText id="index_form_person_input" value="#{indexController.numberOfPersons}"
+                                         rendered="true" styleClass="u-full-width"/>
+                            <!--todo check value = valid-->
+                        </h:panelGroup>
+
+
+                        <h:panelGroup layout="block" styleClass="four columns">
+                            <h:outputLabel for="index_form_airline_input" value="#{msg.index_form_airline}"/>
+                            <h:selectOneMenu id="index_form_airline_input" value="#{indexController.airline}" styleClass="u-full-width">
                                 <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
-                                <f:selectItems value="#{indexController.airportService.allAirports}"/>
+                                <f:selectItems value="#{indexController.partnerService.allPartners}"/>
                             </h:selectOneMenu>
                         </h:panelGroup>
-                    </h:panelGroup>
-
-                    <h:outputLabel for="departure_picker" value="#{msg.index_form_from_date}"/>
-                    <p:calendar value="#{indexController.departuredate}" mindate="#{indexController.currentDate}"
-                                id="departure_picker"/>
-
-                    <h:outputLabel for="return_picker" value="#{msg.index_form_to_date}"
-                                   rendered="#{not indexController.oneWay}"/>
-                    <p:calendar value="#{indexController.returndate}" mindate="#{indexController.currentDate}"
-                                rendered="#{not indexController.oneWay}" id="return_picker"/>
-
-                    <h:panelGroup layout="block">
-                        <h:outputLabel for="index_form_category_input" value="#{msg.index_form_category}"/>
-                        <h:selectOneMenu value="#{indexController.category}" id="index_form_category_input">
-                            <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
-                            <f:selectItems value="#{indexController.categoryService.allCategoryNames}"/>
-                        </h:selectOneMenu>
-                    </h:panelGroup>
-
-
-                    <h:panelGroup layout="block">
-                        <h:outputLabel for="index_form_person_input" value="#{msg.index_form_person}"/>
-                        <h:inputText id="index_form_person_input" value="#{indexController.numberOfPersons}"
-                                     rendered="true"/>
-                        <!--todo check value = valid-->
-                    </h:panelGroup>
-
-
-                    <h:panelGroup layout="block">
-                        <h:outputLabel for="index_form_airline_input" value="#{msg.index_form_airline}"/>
-                        <h:selectOneMenu id="index_form_airline_input" value="#{indexController.airline}">
-                            <f:selectItem itemLabel="#{msg.index_form_category_label}" itemValue=""/>
-                            <f:selectItems value="#{indexController.partnerService.allPartners}"/>
-                        </h:selectOneMenu>
                     </h:panelGroup>
                 </h:panelGroup>
 
 
-                <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction()}"/>
+                <h:commandButton value="#{msg.index_button_search}" action="#{indexController.doAction()}" styleClass="button-primary"/>
 
 
 
