@@ -9,6 +9,8 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @ConversationScoped
 @Named
@@ -25,10 +27,20 @@ public class BookingCreationWizard implements Serializable {
     private Category departureFlight;
     private Category returnFlight;
     private int numberOfPeople;
+    private List<String> passengerlist;
 
     @PostConstruct
     public void init() {
         this.numberOfPeople = 1;
+        this.fillPassengerList();
+    }
+
+    private void fillPassengerList() {
+        this.passengerlist = new ArrayList<>();
+
+        for (int i = 0; i < numberOfPeople; i ++ ) {
+            passengerlist.add("");
+        }
     }
 
     public int getNumberOfPeople() {
@@ -76,6 +88,17 @@ public class BookingCreationWizard implements Serializable {
         return this.returnId != null;
     }
 
+    public List<String> getPassengerlist() {
+        if (passengerlist.size() != this.numberOfPeople) {
+            this.fillPassengerList();
+        }
+        return passengerlist;
+    }
+
+    public void setPassengerlist(List<String> passengerlist) {
+        this.passengerlist = passengerlist;
+    }
+
     public String chooseFlight() {
         return "details.jsf?faces-redirect=true";
     }
@@ -83,5 +106,12 @@ public class BookingCreationWizard implements Serializable {
     public String proceedToPayment() {
         System.out.print("Proceeding");
         return "payment";
+    }
+
+    public void test() {
+        System.out.println("testing test method");
+        for (String s: this.passengerlist) {
+            System.out.println("Name: " + s);
+        }
     }
 }
