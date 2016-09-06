@@ -54,7 +54,7 @@ public class LoginController implements Serializable {
     }
 
     public String register(){
-        return "register.xhtml"+"faces-redirect=true";
+        return "register.xhtml?faces-redirect=true";
     }
 
     private Customer findCustomer(String email) {
@@ -94,7 +94,7 @@ public class LoginController implements Serializable {
             logout();
             return "index.xhtml";
         } else {
-            return "login.xhtmlfaces-redirect=true";
+            return "login.xhtml?faces-redirect=true";
         }
     }
 }
