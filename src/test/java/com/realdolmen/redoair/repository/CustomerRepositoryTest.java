@@ -58,4 +58,12 @@ public class CustomerRepositoryTest extends JpaPersistenceTest {
     public void findAllReturnsCorrectNumberOfCustomer() {
         assertEquals(4, repo.findAll().size());
     }
+
+    @Test
+    public void shouldGiveSameCustomerFoundByEmail() {
+        Customer c = new Customer("Tom", "Boonen", "tommekebonen@example.com");
+        repo.create(c);
+        repo.findCustomerByEmail("tommekebonen@example.com");
+        assertSame(c, repo.findCustomerByEmail("tommekebonen@example.com"));
+    }
 }

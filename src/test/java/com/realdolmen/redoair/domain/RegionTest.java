@@ -19,4 +19,9 @@ public class RegionTest extends JpaPersistenceTest {
         entityManager().persist(r);
         assertNotNull(r.getId());
     }
+
+    @Test
+    public void shouldReturnRegionName() {
+        assertTrue(r.toString().equals("Western Europe"));
+    }
 }
