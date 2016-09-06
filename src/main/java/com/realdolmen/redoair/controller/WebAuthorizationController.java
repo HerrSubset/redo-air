@@ -27,20 +27,6 @@ public class WebAuthorizationController implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
         try {
-
-//            HttpServletRequest reqt = (HttpServletRequest) request;
-//            HttpServletResponse resp = (HttpServletResponse) response;
-//            HttpSession ses = reqt.getSession(false);
-//
-//            String reqURI = reqt.getRequestURI();
-//
-//            if (reqURI.indexOf("/login.xhtml") >= 0) {
-//
-//                chain.doFilter(request, response);
-//            } else {
-//                resp.sendRedirect(reqt.getContextPath() + "/login.jsf");
-//            }
-
             HttpServletRequest reqt = (HttpServletRequest) request;
             HttpServletResponse resp = (HttpServletResponse) response;
             HttpSession ses = reqt.getSession(false);
