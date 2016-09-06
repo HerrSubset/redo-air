@@ -12,7 +12,8 @@ public class SessionController {
 
     public HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance()
-                .getExternalContext().getSession(false);
+                .getExternalContext()
+                .getSession(false);
     }
 
     public HttpServletRequest getRequest() {
@@ -37,6 +38,23 @@ public class SessionController {
         else
             return null;
     }
+//
+//    public void setURL(String url) {
+//        HttpSession session = getSession();
+//
+////        if (session != null)
+//            session.setAttribute("url", url);
+//        System.out.println(session.getAttribute("url"));
+//    }
+//
+//    public String getURL() {
+//        HttpSession session = getSession();
+//
+//        if (session != null)
+//            return (String) session.getAttribute("url");
+//        else
+//            return null;
+//    }
 
     public boolean userIsLoggedIn() {
         return getEmail() != null;

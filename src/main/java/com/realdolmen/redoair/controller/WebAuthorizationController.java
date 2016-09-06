@@ -1,7 +1,9 @@
 package com.realdolmen.redoair.controller;
 
 import java.io.IOException;
-        import javax.servlet.Filter;
+import java.net.URLEncoder;
+import javax.inject.Inject;
+import javax.servlet.Filter;
         import javax.servlet.FilterChain;
         import javax.servlet.FilterConfig;
         import javax.servlet.ServletException;
@@ -14,6 +16,8 @@ import java.io.IOException;
 
 @WebFilter(filterName = "AuthFilter")
 public class WebAuthorizationController implements Filter {
+    @Inject
+    SessionController sessionController;
 
     public WebAuthorizationController() {
     }
@@ -31,14 +35,8 @@ public class WebAuthorizationController implements Filter {
             HttpServletResponse resp = (HttpServletResponse) response;
             HttpSession ses = reqt.getSession(false);
 
-            try {
-            } catch (Exception e) {
-            };
-
-
             // do next filer OR send to login page
             String reqURI = reqt.getRequestURI();
-//            boolean resourceRequest = reqURI.startsWith(reqt.getContextPath() + "/faces" + ResourceHandler.RESOURCE_IDENTIFIER);
             if ( (reqURI.contains("login.jsf"))
                     || (ses != null && ses.getAttribute("email") != null)
                     || reqURI.contains("javax.faces.resource")
@@ -49,10 +47,11 @@ public class WebAuthorizationController implements Filter {
                     || reqURI.contains("flights/details")) {
                 chain.doFilter(request, response);
             } else {
-                resp.sendRedirect(reqt.getContextPath() + "/login.jsf");
+                resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8"));
             }
         } catch (Exception e) {
-            System.out.println( "Exception" + e.getMessage());
+            System.out.println( "Exception");
+            e.printStackTrace();
         }
     }
 

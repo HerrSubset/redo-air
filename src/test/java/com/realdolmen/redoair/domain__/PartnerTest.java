@@ -1,4 +1,5 @@
-package com.realdolmen.redoair.domain;
+package com.realdolmen.redoair.domain__;
+import com.realdolmen.redoair.domain.*;
 
 
 import com.mysql.jdbc.AssertionFailedException;
