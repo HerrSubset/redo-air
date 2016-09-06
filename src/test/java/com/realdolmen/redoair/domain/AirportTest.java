@@ -24,4 +24,23 @@ public class AirportTest extends JpaPersistenceTest {
         entityManager().persist(a);
         assertNotNull(a.getId());
     }
+
+    @Test
+    public void shouldGiveName() {
+        entityManager().persist(a);
+        System.out.println(a.toString());
+        assertTrue(a.toString().equals("AMS - Western Europe"));
+    }
+
+    @Test
+    public void shouldSetandGiveNewRegionName() {
+        entityManager().persist(a);
+        Region r = new Region("North Europe");
+        a.setCode("ANT");
+        entityManager().persist(r);
+        a.setRegion(r);
+        System.out.println(a.toString());
+        assertTrue(a.toString().equals("ANT - North Europe"));
+        assertSame(r, a.getRegion());
+    }
 }
