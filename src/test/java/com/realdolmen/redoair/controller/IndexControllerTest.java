@@ -1,5 +1,10 @@
 package com.realdolmen.redoair.controller;
 
+import com.realdolmen.redoair.domain.Airport;
+import com.realdolmen.redoair.domain.Category;
+import com.realdolmen.redoair.service.AirportService;
+import com.realdolmen.redoair.service.CategoryService;
+import com.realdolmen.redoair.service.PartnerService;
 import com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,6 +63,39 @@ public class IndexControllerTest extends JpaPersistenceTest {
     public void shouldSetOneWayToTrue() {
         controller.setOneWay(true);
         assertTrue(controller.getOneWay());
+    }
+
+    @Test
+    public void shouldSetAndGetAirportService() {
+        AirportService airportService = new AirportService();
+        controller.setAirportService(airportService);
+        assertSame(controller.getAirportService(), airportService);
+    }
+
+    @Test
+    public void shouldSetAndGetPartnerService() {
+        PartnerService partnerService = new PartnerService();
+        controller.setPartnerService(partnerService);
+        assertSame(controller.getPartnerService(), partnerService);
+    }
+
+    @Test
+    public void shouldSetAndGetCategory() {
+        Category category =  new Category();
+        controller.setCategory("FIRSTCLASSS");
+        assertSame(controller.getCategory(), "FIRSTCLASSS");
+    }
+
+    @Test
+    public void shouldSetAndGetDestinationAirport() {
+        controller.setDestinationAirport("NORTH EUROPE");
+        assertSame(controller.getDestinationAirport(), "NORTH EUROPE");
+    }
+
+    @Test
+    public void shouldSetAndGetDepartureAirport() {
+        controller.setDepartureAirport("NORTH EUROPE");
+        assertSame(controller.getDepartureAirport(), "NORTH EUROPE");
     }
 
 }
