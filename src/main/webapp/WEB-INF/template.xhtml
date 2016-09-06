@@ -19,7 +19,16 @@
         <h:form id="langauge_form">
             <h:commandLink action="#{languageSwitcherController.changeLanguage('nl_BE')}" value="#{msg.language_dutch}"/> |
             <h:commandLink action="#{languageSwitcherController.changeLanguage('en')}" value="#{msg.language_english}"/> |
-            <h:commandLink action="#{loginController.logInOut}" value="login/out"/>
+
+            <h:panelGroup rendered="#{not sessionController.userIsLoggedIn()}">
+                <h:commandLink action="#{loginController.logIn()}" value="log in"/> |
+                <h:commandLink action="#{loginController.register()}" value="register"/>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{sessionController.userIsLoggedIn()}">
+                <h:commandLink action="#{loginController.logout()}" value="log out"/> |
+                <h:outputText value="Hello #{loginController.email}"/>
+            </h:panelGroup>
         </h:form>
 
         <!--<h:graphicImage name="01.jpg" library="images" width="500" height="100"/>-->

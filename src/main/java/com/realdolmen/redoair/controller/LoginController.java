@@ -10,11 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -24,6 +20,9 @@ public class LoginController implements Serializable {
 
     @Inject
     CustomerService customerService;
+
+    @Inject
+    private SessionController sessionController;
 
     private String email;
     private String password;
@@ -68,14 +67,14 @@ public class LoginController implements Serializable {
     public String validateUsernamePassword() {
         boolean valid = customerService.validate(email, password);
         if (valid) {
-            HttpSession session = SessionController.getSession();
+            HttpSession session = sessionController.getSession();
             session.setAttribute("email", email);
             return "payment";
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect Username and Passowrd",
+                            "Incorrect Username and Password",
                             "Please enter correct username and Password"));
             return "login";
         }
@@ -83,13 +82,17 @@ public class LoginController implements Serializable {
 
     //logout event, invalidate session
     public String logout() {
-        HttpSession session = SessionController.getSession();
+        HttpSession session = sessionController.getSession();
         session.invalidate();
         return "index";
     }
 
+    public String logIn() {
+        return "login.xhtml?faces-redirect=true";
+    }
+
     public String logInOut () {
-        HttpSession session = SessionController.getSession();
+        HttpSession session = sessionController.getSession();
         if(session.getAttribute("email")!=null) {
             logout();
             return "index.xhtml";
