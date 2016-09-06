@@ -94,9 +94,11 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block">
-            <h:outputLink value="book.jsf" styleClass="button button-primary">
-                #{msg.flight_details_booking_button}
-            </h:outputLink>
+
+            <h:form>
+                <h:messages style="color:red;margin:8px;"/>
+                <h:commandLink action="#{bookingCreationWizard.proceedToPayment()}" value="#{msg.flight_details_booking_button}" />
+            </h:form>
         </h:panelGroup>
 
     </ui:define>
