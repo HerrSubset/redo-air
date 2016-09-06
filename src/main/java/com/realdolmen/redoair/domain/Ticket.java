@@ -75,4 +75,6 @@ public class Ticket {
     public void setSeatCategory(Category seatCategory) {
         this.seatCategory = seatCategory;
     }
+
+
 }

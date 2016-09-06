@@ -8,6 +8,11 @@
 <head></head>
 <body>
 <ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="metaData">
+        <f:metadata>
+            <f:viewParam name="url" value="#{loginController.url}"/>
+        </f:metadata>
+    </ui:define>
     <ui:define name="pageTitle">#{msg.login_title}</ui:define>
     <ui:define name="pageContent">
         <f:view>
@@ -37,10 +42,6 @@
         </f:view>
     </ui:define>
 </ui:composition>
-
-
-
-
 
 </body>
 

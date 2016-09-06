@@ -7,12 +7,15 @@ import com.realdolmen.redoair.service.PartnerService;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 
 @RequestScoped
 @ManagedBean
@@ -140,7 +143,6 @@ public class IndexController {
     public String doAction() {
         String s = "/flights/search.jsf";
         s = s +"?numberofpeople=" + numberOfPersons;
-
 
         try {
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");

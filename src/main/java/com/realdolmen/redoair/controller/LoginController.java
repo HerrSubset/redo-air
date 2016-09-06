@@ -8,13 +8,15 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.Serializable;
 
 
-@RequestScoped
+@SessionScoped
 @ManagedBean
 public class LoginController implements Serializable {
 
@@ -26,10 +28,10 @@ public class LoginController implements Serializable {
 
     private String email;
     private String password;
-    private String hashedPassword;
-    private String salt;
 
     private boolean isLogin;
+
+    private String url;
 
     @PostConstruct
     public void setUp() {
@@ -58,18 +60,21 @@ public class LoginController implements Serializable {
 
     private Customer findCustomer(String email) {
         return customerService.getCustomerByEmail(email);
-
     }
-
-
 
     //validate login
     public String validateUsernamePassword() {
         boolean valid = customerService.validate(email, password);
         if (valid) {
-            HttpSession session = sessionController.getSession();
-            session.setAttribute("email", email);
-            return "payment";
+//            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+            System.out.println("redirect...");
+            url=url.substring(9);
+            System.out.println("url..." + url);
+            return url + "?faces-redirect=true";
+
+//            return "payment";
+
+
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -91,13 +96,12 @@ public class LoginController implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
 
-    public String logInOut () {
-        HttpSession session = sessionController.getSession();
-        if(session.getAttribute("email")!=null) {
-            logout();
-            return "index.xhtml";
-        } else {
-            return "login.xhtml?faces-redirect=true";
-        }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        System.out.println("URL: " + url);
+        this.url = url;
     }
 }
