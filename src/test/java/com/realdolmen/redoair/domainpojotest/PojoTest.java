@@ -21,9 +21,9 @@ package com.realdolmen.redoair.domainpojotest;
 public class PojoTest {
 
     // Configured for expectation, so we know when a class gets added or removed.
-    private static final int EXPECTED_CLASS_COUNT = 12;
+    private static final int EXPECTED_CLASS_COUNT = 15;
 
-    // The package to test
+    // The package to createBooking
     private static final String POJO_PACKAGE = "com.realdolmen.redoair.domain";
 
     @Test
@@ -41,7 +41,7 @@ public class PojoTest {
                 .with(new GetterMustExistRule())
                 .with(new SetterMustExistRule())
                 // Add Testers to validate behaviour for POJO_PACKAGE
-                // See com.openpojo.validation.test.impl for more ...
+                // See com.openpojo.validation.createBooking.impl for more ...
                 .with(new SetterTester())
                 .with(new GetterTester())
                 .build();

@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * Loads a DBUnit test set before every unit test.
+ * Loads a DBUnit createBooking set before every unit createBooking.
  */
 public abstract class DataSetPersistenceTest extends PersistenceTest {
     @Before

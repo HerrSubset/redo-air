@@ -9,12 +9,15 @@ import org.junit.Test;
 public class TicketTest extends JpaPersistenceTest{
     private Ticket t;
     private static final Long TEST_CATEGORY_ID = 5000L;
+    private static final Long TEST_BOOKING_ID = 5000L;
     private Category c;
+    private Booking b;
 
     @Before
     public void setUp() {
         c = entityManager().find(Category.class, TEST_CATEGORY_ID);
-        t = new Ticket("George", "Orwell", c);
+        b = entityManager().find(Booking.class, TEST_BOOKING_ID);
+        t = new Ticket("George", "Orwell", c, b);
     }
 
     @Test
