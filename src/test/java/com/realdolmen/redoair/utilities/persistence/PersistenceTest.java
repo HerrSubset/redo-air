@@ -22,7 +22,7 @@ public abstract class PersistenceTest extends Assert {
     protected final DatabaseEngine databaseEngine = selectDatabaseEngine();
 
     /**
-     * Chooses the database engine to run this unit test.
+     * Chooses the database engine to run this unit createBooking.
      * Default lets {@link com.realdolmen.redoair.utilities.persistence.PersistenceTest.DatabaseEngine#current()} choose.
      * Subclasses may override this, if they know what they're doing :)
      * @return The selected database engine.

@@ -1,8 +1,7 @@
 package com.realdolmen.redoair.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Booking class
@@ -16,11 +15,26 @@ public class Booking {
     @GeneratedValue
     private Long id;
 
+    @Embedded
+    private Payment payment;
+
+    @OneToMany(mappedBy = "booking", fetch = FetchType.EAGER)
+    private List<Ticket> tickets;
+
     /***********************************************************
      * Constructors
      ***********************************************************/
     public Booking() {
 
+    }
+
+    public Booking(Payment p) {
+        this.payment = p;
+    }
+
+    public Booking(Payment p, List<Ticket> tickets) {
+        this.payment = p;
+        this.tickets = tickets;
     }
 
 
@@ -34,5 +48,21 @@ public class Booking {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

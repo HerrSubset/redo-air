@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    This configuration file for Logback is _only_ used by the unit tests, where logback is used as a test-scope
+    This configuration file for Logback is _only_ used by the unit tests, where logback is used as a createBooking-scope
     dependency.
     Application logic should use the slf4j API to log against (using Logger and LoggerFactory), which is included as
     an compile-scope dependency. SLF4J is supported by logback as well as Wildfly.

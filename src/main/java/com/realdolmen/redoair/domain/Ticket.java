@@ -22,6 +22,10 @@ public class Ticket {
     @JoinColumn(name = "category_fk")
     private Category seatCategory;
 
+    @ManyToOne
+    @JoinColumn(name = "booking_fk")
+    private Booking booking;
+
 
 
     /***********************************************************
@@ -32,10 +36,11 @@ public class Ticket {
 
     }
 
-    public Ticket(String passengerFirstName, String passengerLastName, Category seatCategory) {
+    public Ticket(String passengerFirstName, String passengerLastName, Category seatCategory, Booking b) {
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
         this.seatCategory = seatCategory;
+        this.booking = b;
     }
 
 
@@ -50,6 +55,10 @@ public class Ticket {
 
     public void setPassengerFirstName(String passengerFirstName) {
         this.passengerFirstName = passengerFirstName;
+    }
+
+    public String getFullName() {
+        return this.passengerFirstName + " " + this.passengerLastName;
     }
 
     public String getPassengerLastName() {
@@ -76,5 +85,11 @@ public class Ticket {
         this.seatCategory = seatCategory;
     }
 
+    public Booking getBooking() {
+        return booking;
+    }
 
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
 }

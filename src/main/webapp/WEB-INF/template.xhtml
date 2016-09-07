@@ -17,6 +17,7 @@
     </h:head>
     <h:body>
         <h:form id="langauge_form">
+            <h:link value="Home" outcome="index"/> |
             <h:commandLink action="#{languageSwitcherController.changeLanguage('nl_BE')}" value="#{msg.language_dutch}"/> |
             <h:commandLink action="#{languageSwitcherController.changeLanguage('en')}" value="#{msg.language_english}"/> |
 
@@ -29,10 +30,12 @@
                 <h:commandLink action="#{loginController.logout()}" value="log out"/> |
                 <h:outputText value="Hello #{loginController.email}"/>
             </h:panelGroup>
+
         </h:form>
 
         <!--<h:graphicImage name="01.jpg" library="images" width="500" height="100"/>-->
         <h1>#{msg.template_header}</h1>
+
         <div>
             <ui:insert name="pageContent">
             </ui:insert>
