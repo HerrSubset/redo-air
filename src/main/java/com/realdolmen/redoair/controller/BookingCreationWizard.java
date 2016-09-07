@@ -1,6 +1,7 @@
 package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Category;
+import com.realdolmen.redoair.domain.NameContainer;
 import com.realdolmen.redoair.service.CategoryService;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,8 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @ConversationScoped
 @Named
@@ -25,10 +28,19 @@ public class BookingCreationWizard implements Serializable {
     private Category departureFlight;
     private Category returnFlight;
     private int numberOfPeople;
+    private List<NameContainer> passengerlist;
 
     @PostConstruct
     public void init() {
-        this.numberOfPeople = 1;
+        this.fillPassengerList();
+    }
+
+    private void fillPassengerList() {
+        this.passengerlist = new ArrayList<>();
+
+        for (int i = 0; i < numberOfPeople; i ++ ) {
+            passengerlist.add(new NameContainer());
+        }
     }
 
     public int getNumberOfPeople() {
@@ -39,6 +51,7 @@ public class BookingCreationWizard implements Serializable {
         if (conversation.isTransient()){
             conversation.begin();
         }
+        fillPassengerList();    // initialize list with the correct number of empty strings
         this.numberOfPeople = numberOfPeople;
     }
 
@@ -76,12 +89,25 @@ public class BookingCreationWizard implements Serializable {
         return this.returnId != null;
     }
 
+    public List<NameContainer> getPassengerlist() {
+        return passengerlist;
+    }
+
+    public void setPassengerlist(List<NameContainer> passengerlist) {
+        this.passengerlist = passengerlist;
+    }
+
     public String chooseFlight() {
         return "details.jsf?faces-redirect=true";
     }
 
     public String proceedToPayment() {
-        System.out.print("Proceeding");
         return "payment";
+    }
+
+    public void test() {
+        for (NameContainer n: this.passengerlist) {
+            System.out.println("Name: " + n.getFullName());
+        }
     }
 }

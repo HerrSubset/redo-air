@@ -21,7 +21,7 @@ package com.realdolmen.redoair.domainpojotest;
 public class PojoTest {
 
     // Configured for expectation, so we know when a class gets added or removed.
-    private static final int EXPECTED_CLASS_COUNT = 11;
+    private static final int EXPECTED_CLASS_COUNT = 12;
 
     // The package to test
     private static final String POJO_PACKAGE = "com.realdolmen.redoair.domain";
