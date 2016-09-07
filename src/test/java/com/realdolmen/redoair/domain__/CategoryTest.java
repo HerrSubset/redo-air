@@ -32,7 +32,7 @@ public class CategoryTest extends JpaPersistenceTest {
     @Test
     public void shouldDecreaseFreeSeatsBy5() {
         List<Ticket> tickets = new ArrayList<>();
-        Ticket t = new Ticket("Nick", "Hanot",new Category());
+        Ticket t = new Ticket("Nick", "Hanot",new Category(), new Booking());
         tickets.add(t);
         c.setTickets(tickets);
         assertEquals(c.getFreeSeats(), 19);
@@ -48,7 +48,7 @@ public class CategoryTest extends JpaPersistenceTest {
     @Test
     public void shouldGetFinalPrice() {
         List<Ticket> tickets = new ArrayList<>();
-        Ticket t = new Ticket("Nick", "Hanot",new Category());
+        Ticket t = new Ticket("Nick", "Hanot",new Category(), new Booking());
         tickets.add(t);
         c.setTickets(tickets);
         assertEquals(c.getFreeSeats(), 19);
