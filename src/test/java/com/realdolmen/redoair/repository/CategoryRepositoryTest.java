@@ -5,6 +5,8 @@ import com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -66,5 +68,56 @@ public class CategoryRepositoryTest extends JpaPersistenceTest {
         assertEquals(2, names.size());
         assertTrue(names.contains("business"));
         assertTrue(names.contains("economy"));
+    }
+
+    @Test
+    public void findAllReturnsCorrectNumberOfCategories() {
+        List<Category> all = repo.findAll();
+        assertEquals(all.size(), 9);
+    }
+
+    @Test
+    public void getFilteredFlightsWithoutFiltersReturnsAllCategories(){
+        List<Category> all = repo.getFilteredFlights(null, null, null, null, null, null);
+        assertEquals(all.size(), 9);
+    }
+
+    @Test
+    public void getFilteredFlightsWithDepartureAirportFilterReturnsCorrectNumberOfCategories() {
+        List<Category> all = repo.getFilteredFlights("BRU", null, null, null, null, null);
+        assertEquals(all.size(), 2);
+    }
+
+    @Test
+    public void getFilteredFlightsWithArrivalAirportReturnsCorrectNumberOfCategories() {
+        List<Category> all = repo.getFilteredFlights(null, "BRU", null, null, null, null);
+        assertEquals(all.size(), 0);
+    }
+
+    @Test
+    public void getFilteredFlightsWithDepartureDateReturnsCorrectNumberOfCategories() {
+        Calendar c = Calendar.getInstance();
+        c.set(2016, Calendar.OCTOBER, 10);
+
+        List<Category> all = repo.getFilteredFlights(null, null, c.getTime(), null, null, null);
+        assertEquals(all.size(), 7);
+    }
+
+    @Test
+    public void getFilteredFlightsWithClassNameReturnsCorrectNumberOfCategories() {
+        List<Category> all = repo.getFilteredFlights(null, null, null, "business", null, null);
+        assertEquals(all.size(), 4);
+    }
+
+    @Test
+    public void getFilteredFlightsWithNumberOfPeopleReturnsCorrectNumberOfCategories() {
+        List<Category> all = repo.getFilteredFlights(null, null, null, null, 8, null);
+        assertEquals(all.size(), 4);
+    }
+
+    @Test
+    public void getFilteredFlightsWithAirlineReturnsCorrectNumberOfCategories() {
+        List<Category> all = repo.getFilteredFlights(null, null, null, null, null, "Brussels Airlines");
+        assertEquals(all.size(), 4);
     }
 }
