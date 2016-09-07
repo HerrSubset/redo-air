@@ -57,6 +57,10 @@ public class Ticket {
         this.passengerFirstName = passengerFirstName;
     }
 
+    public String getFullName() {
+        return this.passengerFirstName + " " + this.passengerLastName;
+    }
+
     public String getPassengerLastName() {
         return passengerLastName;
     }
