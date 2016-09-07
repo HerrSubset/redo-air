@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 
 
 @SessionScoped
@@ -63,25 +64,40 @@ public class LoginController implements Serializable {
     }
 
     //validate login
-    public String validateUsernamePassword() {
+    public void validateUsernamePassword() {
         boolean valid = customerService.validate(email, password);
         if (valid) {
-//            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-            System.out.println("redirect...");
-            url=url.substring(9);
-            System.out.println("url..." + url);
-            return url + "?faces-redirect=true";
+            HttpSession session = sessionController.getSession();
+            session.setAttribute("email", email);
+//            System.out.println("redirect...");
+            if(url!=null) {
+                url=url.substring(9);
+//                url=url.replace("jsf", "xhtml");
+                url="/redo-air" + url;
+                System.out.println("url..." + url);
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect( url );
+//                    System.out.println("FacesContext.getCurrentInstance().getExternalContext().redirect(url); + "+ url);
+                    return; // do redirect
 
-//            return "payment";
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
-
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("payment.jsf");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrect Username and Password",
                             "Please enter correct username and Password"));
-            return "login";
+//            return "login";
         }
     }
 
@@ -101,7 +117,7 @@ public class LoginController implements Serializable {
     }
 
     public void setUrl(String url) {
-        System.out.println("URL: " + url);
+//        System.out.println("URL: " + url);
         this.url = url;
     }
 }

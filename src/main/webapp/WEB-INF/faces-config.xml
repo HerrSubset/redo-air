@@ -14,7 +14,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>../login.xhtml</from-view-id>
+        <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>succes</from-outcome>
             <to-view-id>../payment.xhtml</to-view-id>
@@ -24,10 +24,8 @@
             <from-outcome>error</from-outcome>
             <to-view-id>../login.xhtml</to-view-id>
         </navigation-case>
+        
 
-        <navigation-case>
-            <to-view-id>../pay.xhtml</to-view-id>
-        </navigation-case>
 
         <navigation-case>
             <from-outcome>register</from-outcome>

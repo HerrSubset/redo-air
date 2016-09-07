@@ -64,7 +64,6 @@ public class IndexController {
     }
 
     public void setAirportService(AirportService airportService) {
-        System.out.println(airportService);
         this.airportService = airportService;
     }
 
@@ -73,7 +72,6 @@ public class IndexController {
     }
 
     public void setCategoryService(CategoryService categoryService) {
-        System.out.println(categoryService);
         this.categoryService = categoryService;
     }
 
@@ -82,7 +80,6 @@ public class IndexController {
     }
 
     public void setPartnerService(PartnerService partnerService) {
-        System.out.println(partnerService);
         this.partnerService = partnerService;
     }
 
@@ -91,7 +88,6 @@ public class IndexController {
     }
 
     public void setDepartureAirport(String departureAirport) {
-        System.out.println(departureAirport);
         this.departureAirport = departureAirport;
     }
 
@@ -100,7 +96,6 @@ public class IndexController {
     }
 
     public void setDestinationAirport(String destinationAirport) {
-        System.out.println(destinationAirport);
         this.destinationAirport = destinationAirport;
     }
 
@@ -109,7 +104,6 @@ public class IndexController {
     }
 
     public void setCategory(String category) {
-        System.out.println(category);
         this.category = category;
     }
 
@@ -118,7 +112,6 @@ public class IndexController {
     }
 
     public void setNumberOfPersons(int numberOfPersons) {
-        System.out.println(numberOfPersons);
         this.numberOfPersons = numberOfPersons;
     }
 
@@ -127,7 +120,6 @@ public class IndexController {
     }
 
     public void setAirline(String airline) {
-        System.out.println(airline);
         this.airline = airline;
     }
 
@@ -136,7 +128,6 @@ public class IndexController {
     }
 
     public void setOneWay(boolean oneWay) {
-        System.out.println(oneWay);
         this.oneWay = oneWay;
     }
 

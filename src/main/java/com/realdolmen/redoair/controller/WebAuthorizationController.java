@@ -42,15 +42,16 @@ public class WebAuthorizationController implements Filter {
                     || reqURI.contains("javax.faces.resource")
                     || reqURI.equals("/redo-air/")
                     || reqURI.contains("index.jsf")
-                    || reqURI.contains("register")
+                    || reqURI.contains("register.jsf")
                     || reqURI.contains("flights/search.jsf")
                     || reqURI.contains("flights/details")) {
                 chain.doFilter(request, response);
             } else {
                 resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8"));
+//                resp.sendRedirect(reqt.getContextPath());
             }
         } catch (Exception e) {
-            System.out.println( "Exception");
+//            System.out.println( "Exception");
             e.printStackTrace();
         }
     }
