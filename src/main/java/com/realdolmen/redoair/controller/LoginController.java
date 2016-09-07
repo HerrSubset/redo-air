@@ -69,15 +69,9 @@ public class LoginController implements Serializable {
         if (valid) {
             HttpSession session = sessionController.getSession();
             session.setAttribute("email", email);
-//            System.out.println("redirect...");
             if(url!=null) {
-                url=url.substring(9);
-//                url=url.replace("jsf", "xhtml");
-                url="/redo-air" + url;
-                System.out.println("url..." + url);
                 try {
                     FacesContext.getCurrentInstance().getExternalContext().redirect( url );
-//                    System.out.println("FacesContext.getCurrentInstance().getExternalContext().redirect(url); + "+ url);
                     return; // do redirect
 
                 } catch (Exception e) {
@@ -92,12 +86,7 @@ public class LoginController implements Serializable {
             }
             return;
         } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect Username and Password",
-                            "Please enter correct username and Password"));
-//            return "login";
+            //TODO give error message
         }
     }
 

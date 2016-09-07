@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -17,6 +18,9 @@ public class RegisterController implements Serializable {
 
     @Inject
     CustomerService customerService;
+
+    @Inject
+    private SessionController sessionController;
 
     @NotNull
     private String email;
@@ -58,6 +62,8 @@ public class RegisterController implements Serializable {
         if (c.getId()==null) {
             // geen waarde in de database
             if(customerService.saveCustomer(firstName, lastName, password, email)) {
+                HttpSession session = sessionController.getSession();
+                session.setAttribute("email", email);
                 return "payment.xhtml" + "faces-redirect=true";
             }
         }
@@ -86,10 +92,5 @@ public class RegisterController implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    private Customer findCustomer(String email) {
-        return customerService.getCustomerByEmail(email);
-
     }
 }

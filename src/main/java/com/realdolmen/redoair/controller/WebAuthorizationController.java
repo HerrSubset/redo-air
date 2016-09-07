@@ -49,7 +49,6 @@ public class WebAuthorizationController implements Filter {
                 chain.doFilter(request, response);
             } else {
                 resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8"));
-//                resp.sendRedirect(reqt.getContextPath());
             }
         } catch (Exception e) {
 //            System.out.println( "Exception");

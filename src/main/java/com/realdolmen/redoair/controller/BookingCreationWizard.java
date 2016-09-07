@@ -7,9 +7,16 @@ import com.realdolmen.redoair.service.CategoryService;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintValidator;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +28,9 @@ public class BookingCreationWizard implements Serializable {
 
     @Inject
     private CategoryService service;
+
+    @Inject
+    SessionController sessionController;
 
 
     private Long departureId;
@@ -102,7 +112,13 @@ public class BookingCreationWizard implements Serializable {
     }
 
     public String proceedToPayment() {
-        return "payment";
+
+//        try {
+//            FacesContext.getCurrentInstance().getExternalContext().redirect("../payment.jsf");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        return "/payment.xhtml";
     }
 
     public void test() {

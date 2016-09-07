@@ -5,10 +5,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 @SessionScoped
 @Named
-public class SessionController {
+public class SessionController implements Serializable {
 
     public HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance()
