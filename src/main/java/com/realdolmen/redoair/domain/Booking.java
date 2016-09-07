@@ -18,7 +18,7 @@ public class Booking {
     @Embedded
     private Payment payment;
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", fetch = FetchType.EAGER)
     private List<Ticket> tickets;
 
     /***********************************************************

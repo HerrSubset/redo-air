@@ -117,10 +117,12 @@ public class BookingCreationWizard implements Serializable {
         return "payment";
     }
 
-    public void createBooking() {
-        bookingService.createBooking(passengerlist, departureFlight, returnFlight, new Payment(PaymentType.CREDITCARD, new CreditCard(number)));
+    public String createBooking() {
+        Booking b = bookingService.createBooking(passengerlist, departureFlight, returnFlight, new Payment(PaymentType.CREDITCARD, new CreditCard(number)));
         if (!conversation.isTransient()){
             conversation.end();
         }
+
+        return "booking.jsf?bookingid=" + b.getId() + "&faces-redirect=true" ;
     }
 }

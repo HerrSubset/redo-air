@@ -51,4 +51,8 @@ public class BookingService implements Serializable{
 
         return tickets;
     }
+
+    public Booking getBooking(Long id) {
+        return bookingRepo.findById(id);
+    }
 }

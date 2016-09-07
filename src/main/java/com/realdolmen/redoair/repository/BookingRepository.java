@@ -31,7 +31,7 @@ public class BookingRepository {
         em.remove(b);
     }
 
-    private Booking findById(Long id) {
+    public Booking findById(Long id) {
         return em.find(Booking.class, id);
     }
 }
