@@ -118,6 +118,9 @@ public class BookingCreationWizard implements Serializable {
     }
 
     public void createBooking() {
-        bookingService.createBooking(passengerlist, departureFlight, new Payment(PaymentType.CREDITCARD, new CreditCard(number)));
+        bookingService.createBooking(passengerlist, departureFlight, returnFlight, new Payment(PaymentType.CREDITCARD, new CreditCard(number)));
+        if (!conversation.isTransient()){
+            conversation.end();
+        }
     }
 }

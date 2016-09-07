@@ -24,15 +24,12 @@ public class BookingService implements Serializable{
     @Inject
     private TicketRepository ticketRepo;
 
-    public Booking createBooking(List<NameContainer> passengers, Category category, Payment p) {
-
-        List<Ticket> tickets = new ArrayList<>();
-
+    public Booking createBooking(List<NameContainer> passengers, Category departureFlight, Category returnFlight, Payment p) {
         Booking b = new Booking(p);
-        for (NameContainer passenger: passengers) {
-            Ticket t = new Ticket(passenger.getFirstName(), passenger.getLastName(), category, b);
-            tickets.add(t);
-        }
+        List<Ticket> tickets = createTicketList(b, passengers, departureFlight);
+
+        if (returnFlight != null)
+            tickets.addAll(createTicketList(b, passengers, returnFlight));
 
 
         bookingRepo.create(b);
@@ -42,5 +39,16 @@ public class BookingService implements Serializable{
         }
 
         return b;
+    }
+
+    private List<Ticket> createTicketList(Booking b, List<NameContainer> passengers, Category category) {
+        List<Ticket> tickets = new ArrayList<>();
+
+        for (NameContainer p : passengers) {
+            Ticket t = new Ticket(p.getFirstName(), p.getLastName(), category, b);
+            tickets.add(t);
+        }
+
+        return tickets;
     }
 }
