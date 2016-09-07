@@ -13,6 +13,7 @@ public class BookingTest extends JpaPersistenceTest{
 
     @Before
     public void setUp() {
+        Payment p = new Payment(PaymentType.CREDITCARD, new CreditCard(1));
         b = new Booking();
     }
 

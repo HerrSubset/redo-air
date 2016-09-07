@@ -7,7 +7,7 @@ import javax.jms.*;
 
 /**
  * Base class to do all the housekeeping for doing interactions with JMS.
- * Extend from this class to run integration unit-tests that test the behaviour of Message Driven Beans.
+ * Extend from this class to run integration unit-tests that createBooking the behaviour of Message Driven Beans.
  */
 public abstract class RemoteJmsTest extends RemoteIntegrationTest {
     protected Connection connection;

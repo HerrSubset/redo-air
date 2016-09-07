@@ -1,6 +1,7 @@
 package com.realdolmen.redoair.repository;
 
 
+import com.realdolmen.redoair.domain.Booking;
 import com.realdolmen.redoair.domain.Category;
 import com.realdolmen.redoair.domain.Ticket;
 import com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest;
@@ -11,17 +12,21 @@ public class TicketRepositoryTest extends JpaPersistenceTest {
     private TicketRepository repo;
     private static final Long TEST_CATEGORY_ID = 5000L;
     private static final Long TEST_TICKET_ID = 5004L;
+    private static final Long TEST_BOOKING_ID = 5004L;
+    private Booking b;
+
 
     @Before
     public void setUp() {
         repo = new TicketRepository();
         repo.em = entityManager();
+        b = entityManager().find(Booking.class, TEST_BOOKING_ID);
     }
 
     @Test
     public void createShouldMakeNewTicket() {
         Category c = entityManager().find(Category.class, TEST_CATEGORY_ID);
-        Ticket t = new Ticket("John", "Steinbeck", c);
+        Ticket t = new Ticket("John", "Steinbeck", c, b);
         repo.create(t);
         assertNotNull(t.getId());
     }

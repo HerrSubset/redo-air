@@ -1,7 +1,25 @@
 package com.realdolmen.redoair.domain;
 
-/**
- * Created by PSTBB36 on 7/09/2016.
- */
-public class CreditCard {
+import javax.persistence.Embeddable;
+import java.io.Serializable;
+
+@Embeddable
+public class CreditCard implements Serializable {
+    private Long number;
+
+    public CreditCard() {
+
+    }
+
+    public CreditCard(long number) {
+        this.number = number;
+    }
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
 }

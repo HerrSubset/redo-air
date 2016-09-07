@@ -45,7 +45,7 @@ public abstract class JpaPersistenceTest extends DataSetPersistenceTest {
     }
 
     /**
-     * Provides connection settings for the database. These settings will merge with the ones already in the test persistence.xml.
+     * Provides connection settings for the database. These settings will merge with the ones already in the createBooking persistence.xml.
      * Subclasses can override this to customize.
      * @return Map of JPA properties.
      */

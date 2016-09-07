@@ -18,7 +18,7 @@
         - Use in-memory db strategy for unit tests
                 + Fastest
                 - Not as close to real environment
-                - No eyeball asserts (in-memory data is gone after test completes)
+                - No eyeball asserts (in-memory data is gone after createBooking completes)
         - Use in-container tests (such as with Arquillian)
                 + Less hassle once (if ever) you figure out how to configure it
                 - Tests rely on app server (maybe not a real issue if also adding functional tests such as with Selenium)
@@ -48,7 +48,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!--
-            Sadly, we have to add each Entity here (only needed for the persistence.xml in src/test/java.
+            Sadly, we have to add each Entity here (only needed for the persistence.xml in src/createBooking/java.
             This is due to the fact that JPA only scans automatically in the classpath root where its persistence.xml is
             found. Thus when loading JPA using this persistence.xml (in the unit tests), it does not 'see' the entities
             from src/main/java because they are in another source root.
@@ -80,12 +80,12 @@
             <!--
                 The default transaction isolation level of java.sql.Connection is to use the used DBMS's default.
                 Using MySQL, this is to use REPEATABLE_READ which is usually a sensible value for production
-                environments. However, in a unit test this can occasionally backfire, because it becomes difficult for
-                a transaction spawned in a test to "see" the values of another (already committed) transaction (under
-                test) to perform asserts on. This is why we set lower the isolation level just a notch to
-                READ_COMMITTED. The test will still only see changes that the system under test has committed (thus
+                environments. However, in a unit createBooking this can occasionally backfire, because it becomes difficult for
+                a transaction spawned in a createBooking to "see" the values of another (already committed) transaction (under
+                createBooking) to perform asserts on. This is why we set lower the isolation level just a notch to
+                READ_COMMITTED. The createBooking will still only see changes that the system under createBooking has committed (thus
                 preventing a false-positive assertion, but allows the testing transaction to see the changes they are
-                interested in seeing to happen. Note that we only use this on the test persistence.xml!
+                interested in seeing to happen. Note that we only use this on the createBooking persistence.xml!
             -->
             <property name="hibernate.connection.isolation" value="TRANSACTION_READ_COMMITTED" />
         </properties>

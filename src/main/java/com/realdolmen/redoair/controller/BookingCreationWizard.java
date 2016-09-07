@@ -1,7 +1,7 @@
 package com.realdolmen.redoair.controller;
 
-import com.realdolmen.redoair.domain.Category;
-import com.realdolmen.redoair.domain.NameContainer;
+import com.realdolmen.redoair.domain.*;
+import com.realdolmen.redoair.service.BookingService;
 import com.realdolmen.redoair.service.CategoryService;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +20,10 @@ public class BookingCreationWizard implements Serializable {
     private Conversation conversation;
 
     @Inject
-    private CategoryService service;
+    private BookingService bookingService;
+
+    @Inject
+    private CategoryService categoryService;
 
 
     private Long departureId;
@@ -29,6 +32,7 @@ public class BookingCreationWizard implements Serializable {
     private Category returnFlight;
     private int numberOfPeople;
     private List<NameContainer> passengerlist;
+    private Long number;
 
     @PostConstruct
     public void init() {
@@ -73,16 +77,24 @@ public class BookingCreationWizard implements Serializable {
 
     public Category getDepartureFlight() {
         if (departureFlight == null) {
-            this.departureFlight = service.getFlightById(this.departureId);
+            this.departureFlight = categoryService.getFlightById(this.departureId);
         }
         return this.departureFlight;
     }
 
     public Category getReturnFlight() {
         if (returnFlight == null) {
-            this.returnFlight = service.getFlightById(this.returnId);
+            this.returnFlight = categoryService.getFlightById(this.returnId);
         }
         return this.returnFlight;
+    }
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public boolean hasReturnFlight() {
@@ -105,9 +117,7 @@ public class BookingCreationWizard implements Serializable {
         return "payment";
     }
 
-    public void test() {
-        for (NameContainer n: this.passengerlist) {
-            System.out.println("Name: " + n.getFullName());
-        }
+    public void createBooking() {
+        bookingService.createBooking(passengerlist, departureFlight, new Payment(PaymentType.CREDITCARD, new CreditCard(number)));
     }
 }

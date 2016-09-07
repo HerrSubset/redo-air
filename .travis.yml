@@ -3,7 +3,7 @@ language: java
 jdk:
   - oraclejdk8
 
-script: "mvn test -DdatabaseEngine=h2"
+script: "mvn createBooking -DdatabaseEngine=h2"
 
 after_success:
   - mvn -DdatabaseEngine=h2 -Pcobertura clean cobertura:cobertura

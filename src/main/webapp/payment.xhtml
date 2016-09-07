@@ -24,7 +24,7 @@
 
             <h2>#{msg.payment_title_payment_details}</h2>
             <h:outputLabel for="card_number" value="#{msg.payment_credit_card_number}"/>
-            <h:inputText id="card_number" rendered="true"/>
+            <h:inputText id="card_number" rendered="true" value="#{bookingCreationWizard.number}"/>
 
             <h2>#{msg.payment_title_passengers}</h2>
             <h:dataTable value="#{bookingCreationWizard.passengerlist}" var="p">
@@ -39,7 +39,7 @@
             </h:dataTable>
 
             <h:panelGroup layout="block" styleClass="row">
-                <h:commandButton action="#{bookingCreationWizard.test()}" value="#{msg.payment_button_confirm}" styleClass="button-primary"/>
+                <h:commandButton action="#{bookingCreationWizard.createBooking()}" value="#{msg.payment_button_confirm}" styleClass="button-primary"/>
             </h:panelGroup>
 
         </h:form>
