@@ -14,7 +14,6 @@ import java.io.*;
  */
 public class QrCode {
     public void generateQrCode (String url) {
-
         ByteArrayOutputStream out = QRCode.from(url)
                 .to(ImageType.PNG).stream();
 

@@ -26,13 +26,9 @@ public class RegisterController implements Serializable {
     private String email;
     @NotNull
     private String password;
-    private String hashedPassword;
-    private String salt;
 
     private String firstName;
     private String lastName;
-
-    private boolean isLogin;
 
     public String getEmail() {
         return email;
@@ -50,9 +46,9 @@ public class RegisterController implements Serializable {
         this.password = password;
     }
 
-    public String login(){
-        return "login.xhtml"+"faces-redirect=true";
-    }
+//    public String login(){
+//        return "login.xhtml"+"faces-redirect=true";
+//    }
 
     public String register(){
         //todo check passwordlength etc...
@@ -70,13 +66,13 @@ public class RegisterController implements Serializable {
         return "register.xhtml" + "faces-redirect=true";
     }
 
-    public String encryptPassword(String passwordToHash) {
-        //https://github.com/jeremyh/jBCrypt
-        //https://mvnrepository.com/artifact/org.mindrot/jbcrypt
-        // gensalt's log_rounds parameter determines the complexity
-        // the work factor is 2**log_rounds, and the default is 10
-        return BCrypt.hashpw(passwordToHash, BCrypt.gensalt(12));
-    }
+//    public String encryptPassword(String passwordToHash) {
+//        //https://github.com/jeremyh/jBCrypt
+//        //https://mvnrepository.com/artifact/org.mindrot/jbcrypt
+//        // gensalt's log_rounds parameter determines the complexity
+//        // the work factor is 2**log_rounds, and the default is 10
+//        return BCrypt.hashpw(passwordToHash, BCrypt.gensalt(12));
+//    }
 
     public String getFirstName() {
         return firstName;

@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mindrot.jbcrypt.BCrypt;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -24,6 +25,8 @@ public class CustomerServiceTest {
     private List<Customer> customers;
     private Customer customer;
     private Long id;
+    private String email="";
+    private String pw="";
 
     @Before
     public void setUp() {
@@ -41,4 +44,11 @@ public class CustomerServiceTest {
         Mockito.when(repo.findById(id)).thenReturn(customer);
         Assert.assertSame(customer, service.getCustomerById(id));
     }
+
+    @Test
+    public void getCustomerByEmailReturnsItemReturnedByRepo() {
+        Mockito.when(repo.findCustomerByEmail(email)).thenReturn(customer);
+        Assert.assertSame(customer, service.getCustomerByEmail(email));
+    }
+
 }

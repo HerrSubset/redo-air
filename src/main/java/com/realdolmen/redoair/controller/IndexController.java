@@ -1,5 +1,6 @@
 package com.realdolmen.redoair.controller;
 
+import com.realdolmen.course.QrCode;
 import com.realdolmen.redoair.service.AirportService;
 import com.realdolmen.redoair.service.CategoryService;
 import com.realdolmen.redoair.service.PartnerService;
@@ -194,7 +195,6 @@ public class IndexController {
             // TODO: 1/09/2016
 //            e.printStackTrace();
         }
-
         return s+"faces-redirect=true";
     }
 

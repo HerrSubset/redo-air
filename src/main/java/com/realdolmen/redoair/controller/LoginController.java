@@ -5,16 +5,12 @@ import com.realdolmen.redoair.service.CustomerService;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.URL;
 
 
 @SessionScoped
