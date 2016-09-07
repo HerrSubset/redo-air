@@ -29,9 +29,11 @@
             <h2>#{msg.payment_title_passengers}</h2>
             <h:dataTable value="#{bookingCreationWizard.passengerlist}" var="p">
                 <h:column>
-                    <f:facet name="header">Name</f:facet>
-                    <h:outputLabel for="name_field" value="Name"/>
-                    <h:inputText id="name_field" value="#{p}"/>
+                    <h:inputText id="first_name_field" value="#{p.firstName}"/>
+                </h:column>
+
+                <h:column>
+                    <h:inputText id="last_name_field" value="#{p.lastName}"/>
                 </h:column>
 
             </h:dataTable>

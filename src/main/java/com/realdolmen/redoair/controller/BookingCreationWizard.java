@@ -1,6 +1,7 @@
 package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Category;
+import com.realdolmen.redoair.domain.NameContainer;
 import com.realdolmen.redoair.service.CategoryService;
 
 import javax.annotation.PostConstruct;
@@ -27,11 +28,10 @@ public class BookingCreationWizard implements Serializable {
     private Category departureFlight;
     private Category returnFlight;
     private int numberOfPeople;
-    private List<String> passengerlist;
+    private List<NameContainer> passengerlist;
 
     @PostConstruct
     public void init() {
-        this.numberOfPeople = 1;
         this.fillPassengerList();
     }
 
@@ -39,7 +39,7 @@ public class BookingCreationWizard implements Serializable {
         this.passengerlist = new ArrayList<>();
 
         for (int i = 0; i < numberOfPeople; i ++ ) {
-            passengerlist.add("");
+            passengerlist.add(new NameContainer());
         }
     }
 
@@ -51,6 +51,7 @@ public class BookingCreationWizard implements Serializable {
         if (conversation.isTransient()){
             conversation.begin();
         }
+        fillPassengerList();    // initialize list with the correct number of empty strings
         this.numberOfPeople = numberOfPeople;
     }
 
@@ -88,14 +89,11 @@ public class BookingCreationWizard implements Serializable {
         return this.returnId != null;
     }
 
-    public List<String> getPassengerlist() {
-        if (passengerlist.size() != this.numberOfPeople) {
-            this.fillPassengerList();
-        }
+    public List<NameContainer> getPassengerlist() {
         return passengerlist;
     }
 
-    public void setPassengerlist(List<String> passengerlist) {
+    public void setPassengerlist(List<NameContainer> passengerlist) {
         this.passengerlist = passengerlist;
     }
 
@@ -104,14 +102,12 @@ public class BookingCreationWizard implements Serializable {
     }
 
     public String proceedToPayment() {
-        System.out.print("Proceeding");
         return "payment";
     }
 
     public void test() {
-        System.out.println("testing test method");
-        for (String s: this.passengerlist) {
-            System.out.println("Name: " + s);
+        for (NameContainer n: this.passengerlist) {
+            System.out.println("Name: " + n.getFullName());
         }
     }
 }
