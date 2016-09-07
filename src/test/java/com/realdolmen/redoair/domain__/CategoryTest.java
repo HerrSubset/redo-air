@@ -5,6 +5,9 @@ import com.realdolmen.redoair.utilities.persistence.JpaPersistenceTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CategoryTest extends JpaPersistenceTest {
     private Category c;
@@ -24,5 +27,37 @@ public class CategoryTest extends JpaPersistenceTest {
     @Test
     public void testCalculatePrice() {
         assertEquals(94.731, c.getPrice(), 0);
+    }
+
+    @Test
+    public void shouldDecreaseFreeSeatsBy5() {
+        List<Ticket> tickets = new ArrayList<>();
+        Ticket t = new Ticket("Nick", "Hanot",new Category(), new Booking());
+        tickets.add(t);
+        c.setTickets(tickets);
+        assertEquals(c.getFreeSeats(), 19);
+        tickets.add(t);
+        tickets.add(t);
+        tickets.add(t);
+        tickets.add(t);
+        tickets.add(t);
+        c.setTickets(tickets);
+        assertEquals(c.getFreeSeats(), 14);
+    }
+
+    @Test
+    public void shouldGetFinalPrice() {
+        List<Ticket> tickets = new ArrayList<>();
+        Ticket t = new Ticket("Nick", "Hanot",new Category(), new Booking());
+        tickets.add(t);
+        c.setTickets(tickets);
+        assertEquals(c.getFreeSeats(), 19);
+        tickets.add(t);
+        tickets.add(t);
+        tickets.add(t);
+        tickets.add(t);
+        tickets.add(t);
+        c.setTickets(tickets);
+        assertEquals(c.getFinalPrice(), (Double) 94.731);
     }
 }

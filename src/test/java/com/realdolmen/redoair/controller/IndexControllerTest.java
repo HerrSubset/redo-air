@@ -66,38 +66,20 @@ public class IndexControllerTest extends JpaPersistenceTest {
     }
 
     @Test
-    public void shouldSetAndGetAirportService() {
-        AirportService airportService = new AirportService();
-        controller.setAirportService(airportService);
-        assertSame(controller.getAirportService(), airportService);
-    }
+    public void shouldTestTheDoActionMethod() {
+        String returnString = "/flights/search.jsf?numberofpeople=17&departuredate=25-11-2016&arrivalAirport=VIE&departureAirport=BRU&class=economy&returndate=24-11-2016&airline=Swissairfaces-redirect=true";
+        controller.setNumberOfPersons(17);
+        controller.setDepartureAirport("BRU - Western Europe");
+        controller.setDestinationAirport("VIE - Western Europe");
+        Date d = new Date( 1480000000000L);
+        controller.setReturndate(d);
+        d = new Date( 1480050000000L);
+        controller.setDeparturedate(d);
+        controller.setCategory("economy");
 
-    @Test
-    public void shouldSetAndGetPartnerService() {
-        PartnerService partnerService = new PartnerService();
-        controller.setPartnerService(partnerService);
-        assertSame(controller.getPartnerService(), partnerService);
+        controller.setAirline("Swissair");
+        assertTrue(controller.doAction().equals(returnString));
     }
-
-    @Test
-    public void shouldSetAndGetCategory() {
-        Category category =  new Category();
-        controller.setCategory("FIRSTCLASSS");
-        assertSame(controller.getCategory(), "FIRSTCLASSS");
-    }
-
-    @Test
-    public void shouldSetAndGetDestinationAirport() {
-        controller.setDestinationAirport("NORTH EUROPE");
-        assertSame(controller.getDestinationAirport(), "NORTH EUROPE");
-    }
-
-    @Test
-    public void shouldSetAndGetDepartureAirport() {
-        controller.setDepartureAirport("NORTH EUROPE");
-        assertSame(controller.getDepartureAirport(), "NORTH EUROPE");
-    }
-
 }
 
 
