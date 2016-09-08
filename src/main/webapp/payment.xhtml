@@ -21,19 +21,27 @@
             </p:selectOneRadio>
 
             <h2>#{msg.payment_title_payment_details}</h2>
+            <h:message for="card_number"/>
             <h:outputLabel for="card_number" value="#{msg.payment_credit_card_number}"/>
-            <h:inputText id="card_number" rendered="true" value="#{bookingCreationWizard.number}"/>
+            <h:inputText id="card_number" rendered="true" value="#{bookingCreationWizard.number}" validatorMessage="#{msg.payment_credit_card_error}">
+                <f:validateRegex pattern="[0-9]+"/>
+                <f:validateRequired/>
+            </h:inputText>
 
             <h2>#{msg.payment_title_passengers}</h2>
+            <h:messages/>
             <h:dataTable value="#{bookingCreationWizard.passengerlist}" var="p">
                 <h:column>
-                    <h:inputText id="first_name_field" value="#{p.firstName}"/>
+                    <h:inputText id="first_name_field" value="#{p.firstName}" validatorMessage="#{msg.payment_first_name_error}">
+                        <f:validateLength minimum="2" maximum="100" />
+                    </h:inputText>
                 </h:column>
 
                 <h:column>
-                    <h:inputText id="last_name_field" value="#{p.lastName}"/>
+                    <h:inputText id="last_name_field" value="#{p.lastName}" validatorMessage="#{msg.payment_last_name_error}">
+                        <f:validateLength minimum="2" maximum="100" />
+                    </h:inputText>
                 </h:column>
-
             </h:dataTable>
 
             <h:panelGroup layout="block" styleClass="row">
