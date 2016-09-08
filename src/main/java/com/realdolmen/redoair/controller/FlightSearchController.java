@@ -110,4 +110,16 @@ public class FlightSearchController implements Serializable {
             this.airline = airline;
         }
     }
+
+    public boolean flightsWereFound() {
+        boolean res = true;
+        List<FlightCombo> flightCombos = getFlightCombos();
+
+        if (flightCombos == null)
+            res = false;
+        else if (flightCombos.size() < 1)
+            res = false;
+
+        return res;
+    }
 }
