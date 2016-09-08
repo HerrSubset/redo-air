@@ -25,59 +25,61 @@
     <ui:define name="pageTitle">#{msg.search_title}</ui:define>
     <ui:define name="pageContent">
         <h1>#{msg.search_title}</h1>
+        <h:panelGroup rendered="#{flightSearchController.flightsWereFound()}">
+            <c:forEach items="#{flightSearchController.flightCombos}" var="combo">
+                <div class="flightInfo">
+                    <h:form>
+                        <h:commandLink action="#{bookingCreationWizard.chooseFlight()}">
+                            <!--<f:param name="departureId" value="#{combo.departureFlight.id}"/>-->
+                            <!--<f:param name="returnId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>-->
+                            <f:setPropertyActionListener target="#{bookingCreationWizard.departureId}"
+                                                         value="#{combo.departureFlight.id}"/>
+                            <f:setPropertyActionListener target="#{bookingCreationWizard.returnId}"
+                                                         value="#{combo.returnFlight.id}"/>
 
-        <c:forEach items="#{flightSearchController.flightCombos}" var="combo">
 
+                            <div class="departureFlight">
+                                <h2>#{msg.search_departure_title}</h2>
+                                <div>
+                                    <span class="airLine">#{combo.departureFlight.flight.airline.name}</span>
+                                    <span class="price">EUR #{combo.departureFlight.price}</span>
+                                </div>
+                                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
 
-            <div class="flightInfo">
-                <h:form>
-                <h:commandLink action="#{bookingCreationWizard.chooseFlight()}">
-                    <!--<f:param name="departureId" value="#{combo.departureFlight.id}"/>-->
-                    <!--<f:param name="returnId" value="#{combo.returnFlight.id}" disable="#{not combo.hasReturnFlight()}"/>-->
-                    <f:setPropertyActionListener target="#{bookingCreationWizard.departureId}" value="#{combo.departureFlight.id}" />
-                    <f:setPropertyActionListener target="#{bookingCreationWizard.returnId}" value="#{combo.returnFlight.id}" />
-
-
-
-                    <div class="departureFlight">
-                        <h2>#{msg.search_departure_title}</h2>
-                        <div>
-                            <span class="airLine">#{combo.departureFlight.flight.airline.name}</span>
-                            <span class="price">EUR #{combo.departureFlight.price}</span>
-                        </div>
-                        <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
-
-                        <div class="departureInfo">
-                            <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} #{combo.departureFlight.flight.departureTime}</span>
-                            <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} #{combo.departureFlight.flight.arrivalTime}</span>
-                        </div>
-                    </div>
-
-                    <h:panelGroup rendered="#{combo.hasReturnFlight()}">
-                        <div class="returnFlight">
-                            <h2>#{msg.search_return_title}</h2>
-                            <div>
-                                <span class="airLine">#{combo.returnFlight.flight.airline.name}</span>
-                                <span class="price">EUR #{combo.returnFlight.price}</span>
+                                <div class="departureInfo">
+                                    <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} #{combo.departureFlight.flight.departureTime}</span>
+                                    <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} #{combo.departureFlight.flight.arrivalTime}</span>
+                                </div>
                             </div>
-                            <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
 
-                            <div class="departureInfo">
-                                <span>#{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code} #{combo.returnFlight.flight.departureTime}</span>
-                                <span>#{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} #{combo.returnFlight.flight.arrivalTime}</span>
+                            <h:panelGroup rendered="#{combo.hasReturnFlight()}">
+                                <div class="returnFlight">
+                                    <h2>#{msg.search_return_title}</h2>
+                                    <div>
+                                        <span class="airLine">#{combo.returnFlight.flight.airline.name}</span>
+                                        <span class="price">EUR #{combo.returnFlight.price}</span>
+                                    </div>
+                                    <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
+
+                                    <div class="departureInfo">
+                                        <span>#{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code} #{combo.returnFlight.flight.departureTime}</span>
+                                        <span>#{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} #{combo.returnFlight.flight.arrivalTime}</span>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+
+                            <div class="priceInfo">
+                                <p>Total price: <span>EUR #{combo.totalPrice}</span></p>
                             </div>
-                        </div>
-                    </h:panelGroup>
-
-
-                    <div class="priceInfo">
-                        <p>Total price: <span>EUR #{combo.totalPrice}</span></p>
-                    </div>
-                </h:commandLink>
-                </h:form>
-            </div>
-        </c:forEach>
-
+                        </h:commandLink>
+                    </h:form>
+                </div>
+            </c:forEach>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not flightSearchController.flightsWereFound()}">
+            <p>Oops, no flights were found.</p>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
 
