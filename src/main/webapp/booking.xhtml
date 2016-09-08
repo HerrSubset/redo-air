@@ -45,14 +45,18 @@
                     <f:facet name="header">
                         <h:outputText value="Departure Date"/>
                     </f:facet>
-                    <h:outputText value="#{ticket.seatCategory.flight.departureTime}"/>
+                    <h:outputText value="#{ticket.seatCategory.flight.departureTime}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Arrival Date"/>
                     </f:facet>
-                    <h:outputText value="#{ticket.seatCategory.flight.arrivalTime}"/>
+                    <h:outputText value="#{ticket.seatCategory.flight.arrivalTime}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
                 </h:column>
 
                 <h:column>

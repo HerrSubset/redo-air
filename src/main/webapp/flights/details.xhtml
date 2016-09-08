@@ -33,9 +33,17 @@
                     <td>#{bookingCreationWizard.departureFlight.flight.airline.name}</td>
                     <td>#{bookingCreationWizard.departureFlight.name}</td>
                     <td>#{bookingCreationWizard.departureFlight.freeSeats}</td>
-                    <td>#{bookingCreationWizard.departureFlight.flight.departureTime}</td>
+                    <td>
+                        <h:outputText value="#{bookingCreationWizard.departureFlight.flight.departureTime}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </td>
                     <td>TODO</td>
-                    <td>#{bookingCreationWizard.departureFlight.flight.arrivalTime}</td>
+                    <td>
+                        <h:outputText value="#{bookingCreationWizard.departureFlight.flight.arrivalTime}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </td>
                     <td>#{bookingCreationWizard.departureFlight.flight.departureAirport.code}</td>
                     <td>#{bookingCreationWizard.departureFlight.flight.arrivalAirport.code}</td>
                     <td>#{bookingCreationWizard.departureFlight.price}</td>
@@ -61,9 +69,17 @@
                     <td>#{bookingCreationWizard.returnFlight.flight.airline.name}</td>
                     <td>#{bookingCreationWizard.returnFlight.name}</td>
                     <td>#{bookingCreationWizard.returnFlight.freeSeats}</td>
-                    <td>#{bookingCreationWizard.returnFlight.flight.departureTime}</td>
+                    <td>
+                        <h:outputText value="#{bookingCreationWizard.returnFlight.flight.departureTime}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </td>
                     <td>TODO</td>
-                    <td>#{bookingCreationWizard.returnFlight.flight.arrivalTime}</td>
+                    <td>
+                        <h:outputText value="#{bookingCreationWizard.returnFlight.flight.arrivalTime}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </td>
                     <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code}</td>
                     <td>#{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
                     <td>#{bookingCreationWizard.returnFlight.price}</td>
@@ -105,7 +121,8 @@
 
             <h:form>
                 <h:messages style="color:red;margin:8px;"/>
-                <h:commandLink action="#{bookingCreationWizard.proceedToPayment()}" value="#{msg.flight_details_booking_button}" styleClass="button button-primary" />
+                <h:commandLink action="#{bookingCreationWizard.proceedToPayment()}"
+                               value="#{msg.flight_details_booking_button}" styleClass="button button-primary"/>
             </h:form>
         </h:panelGroup>
 

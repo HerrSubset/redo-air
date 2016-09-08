@@ -47,8 +47,12 @@
                                 <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
 
                                 <div class="departureInfo">
-                                    <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} #{combo.departureFlight.flight.departureTime}</span>
-                                    <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} #{combo.departureFlight.flight.arrivalTime}</span>
+                                    <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} <h:outputText value="#{combo.departureFlight.flight.departureTime}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                            </h:outputText></span>
+                                    <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} <h:outputText value="#{combo.departureFlight.flight.arrivalTime}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                            </h:outputText></span>
                                 </div>
                             </div>
 
@@ -62,8 +66,13 @@
                                     <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
 
                                     <div class="departureInfo">
-                                        <span>#{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code} #{combo.returnFlight.flight.departureTime}</span>
-                                        <span>#{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} #{combo.returnFlight.flight.arrivalTime}</span>
+                                        <span>#{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code}
+                                            <h:outputText value="#{combo.returnFlight.flight.departureTime}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                            </h:outputText></span>
+                                        <span>#{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} <h:outputText value="#{combo.returnFlight.flight.arrivalTime}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                        </h:outputText></span>
                                     </div>
                                 </div>
                             </h:panelGroup>
