@@ -86,10 +86,18 @@
                 </tr>
 
                 <h:panelGroup rendered="#{bookingCreationWizard.hasReturnFlight()}">
-                    <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code} - #{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
-                    <td>#{bookingCreationWizard.numberOfPeople}</td>
-                    <td>#{bookingCreationWizard.returnFlight.finalPrice}</td>
+                    <tr>
+                        <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code} - #{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
+                        <td>#{bookingCreationWizard.numberOfPeople}</td>
+                        <td>#{bookingCreationWizard.returnFlight.finalPrice}</td>
+                    </tr>
                 </h:panelGroup>
+
+                <tr>
+                    <td>Total:</td>
+                    <td></td>
+                    <td>#{bookingCreationWizard.totalPrice}</td>
+                </tr>
             </table>
         </h:panelGroup>
 

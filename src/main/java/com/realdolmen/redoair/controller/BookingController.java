@@ -25,7 +25,7 @@ public class BookingController {
     }
 
     public Booking getBooking() {
-        if (booking == null) {
+        if (booking == null && bookingId != null) {
             this.booking = service.getBooking(bookingId);
         }
         return booking;
@@ -33,5 +33,9 @@ public class BookingController {
 
     public void setBooking(Booking booking) {
         this.booking = booking;
+    }
+
+    public boolean hasValidBooking() {
+        return getBooking() != null;
     }
 }
