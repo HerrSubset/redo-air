@@ -16,51 +16,57 @@
 
         <h1>#{msg.booking_title}</h1>
 
-        <h2>Tickets</h2>
-        <h:dataTable value="#{bookingController.booking.tickets}" var="ticket">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Name"/>
-                </f:facet>
-                <h:outputText value="#{ticket.fullName}"/>
-            </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="From"/>
-                </f:facet>
-                <h:outputText value="#{ticket.seatCategory.flight.departureAirport.code}"/>
-            </h:column>
+        <h:panelGroup rendered="#{bookingController.hasValidBooking()}">
+            <h2>Tickets</h2>
+            <h:dataTable value="#{bookingController.booking.tickets}" var="ticket">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.fullName}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="To"/>
-                </f:facet>
-                <h:outputText value="#{ticket.seatCategory.flight.arrivalAirport.code}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="From"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.seatCategory.flight.departureAirport.code}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Departure Date"/>
-                </f:facet>
-                <h:outputText value="#{ticket.seatCategory.flight.departureTime}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="To"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.seatCategory.flight.arrivalAirport.code}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Arrival Date"/>
-                </f:facet>
-                <h:outputText value="#{ticket.seatCategory.flight.arrivalTime}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Departure Date"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.seatCategory.flight.departureTime}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Operated By"/>
-                </f:facet>
-                <h:outputText value="#{ticket.seatCategory.flight.airline.name}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Arrival Date"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.seatCategory.flight.arrivalTime}"/>
+                </h:column>
 
-        </h:dataTable>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Operated By"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.seatCategory.flight.airline.name}"/>
+                </h:column>
+
+            </h:dataTable>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not bookingController.hasValidBooking()}">
+            <p>Oops, we could not find your booking.</p>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
 </html>
