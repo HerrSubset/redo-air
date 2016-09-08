@@ -3,6 +3,7 @@ package com.realdolmen.redoair.service;
 
 import com.realdolmen.redoair.domain.*;
 import com.realdolmen.redoair.repository.BookingRepository;
+import com.realdolmen.redoair.repository.CategoryRepository;
 import com.realdolmen.redoair.repository.TicketRepository;
 
 import javax.ejb.LocalBean;
@@ -24,21 +25,38 @@ public class BookingService implements Serializable{
     @Inject
     private TicketRepository ticketRepo;
 
+    @Inject
+    private CategoryRepository categoryRepo;
+
     public Booking createBooking(List<NameContainer> passengers, Category departureFlight, Category returnFlight, Payment p) {
         Booking b = new Booking(p);
-        List<Ticket> tickets = createTicketList(b, passengers, departureFlight);
+        if (hasThePlaneStillEnoughFreeSeatsLeft(passengers, departureFlight, returnFlight)) {
+            List<Ticket> tickets = createTicketList(b, passengers, departureFlight);
 
-        if (returnFlight != null)
-            tickets.addAll(createTicketList(b, passengers, returnFlight));
+            if (returnFlight != null)
+                tickets.addAll(createTicketList(b, passengers, returnFlight));
 
 
-        bookingRepo.create(b);
+            bookingRepo.create(b);
 
-        for (Ticket t: tickets) {
-            ticketRepo.create(t);
+            for (Ticket t : tickets) {
+                ticketRepo.create(t);
+            }
+
+            return b;
+        } else {
+            return new Booking();
         }
+    }
 
-        return b;
+    private boolean hasThePlaneStillEnoughFreeSeatsLeft(List<NameContainer> passengers, Category flight1, Category flight2) {
+        int i1 = categoryRepo.findById(flight1.getId()).getFreeSeats();
+        if (flight2!=null) {
+            int i2 = categoryRepo.findById(flight2.getId()).getFreeSeats();
+            return i1 >=passengers.size() && i2 >=passengers.size();
+        } else {
+            return i1 >= passengers.size();
+        }
     }
 
     private List<Ticket> createTicketList(Booking b, List<NameContainer> passengers, Category category) {
