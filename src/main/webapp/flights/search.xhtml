@@ -42,15 +42,15 @@
                                 <h2>#{msg.search_departure_title}</h2>
                                 <div>
                                     <span class="airLine">#{combo.departureFlight.flight.airline.name}</span>
-                                    <span class="price">EUR #{combo.departureFlight.price}</span>
+                                    <span class="price">&#8364; #{combo.departureFlight.price}</span>
                                 </div>
-                                <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
+                                <p class="clear"><h:graphicImage name="seat.png" library="images" width="16" height="16"/> #{msg.search_flightdiv_seatsavailable}: #{combo.departureFlight.freeSeats}</p>
 
                                 <div class="departureInfo">
-                                    <span>#{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} <h:outputText value="#{combo.departureFlight.flight.departureTime}">
+                                    <span><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/>  #{msg.search_flightdiv_departure}: #{combo.departureFlight.flight.departureAirport.code} <h:outputText value="#{combo.departureFlight.flight.departureTime}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                                             </h:outputText></span>
-                                    <span>#{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} <h:outputText value="#{combo.departureFlight.flight.arrivalTime}">
+                                    <span><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/>  #{msg.search_flightdiv_arrival}: #{combo.departureFlight.flight.arrivalAirport.code} <h:outputText value="#{combo.departureFlight.flight.arrivalTime}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                                             </h:outputText></span>
                                 </div>
@@ -61,16 +61,16 @@
                                     <h2>#{msg.search_return_title}</h2>
                                     <div>
                                         <span class="airLine">#{combo.returnFlight.flight.airline.name}</span>
-                                        <span class="price">EUR #{combo.returnFlight.price}</span>
+                                        <span class="price">&#8364; #{combo.returnFlight.price}</span>
                                     </div>
-                                    <p class="clear">#{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
+                                    <p class="clear"><h:graphicImage name="seat.png" library="images" width="16" height="16"/> #{msg.search_flightdiv_seatsavailable}: #{combo.returnFlight.freeSeats}</p>
 
                                     <div class="departureInfo">
-                                        <span>#{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code}
+                                        <span><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/>  #{msg.search_flightdiv_departure}: #{combo.returnFlight.flight.departureAirport.code}
                                             <h:outputText value="#{combo.returnFlight.flight.departureTime}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                                             </h:outputText></span>
-                                        <span>#{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} <h:outputText value="#{combo.returnFlight.flight.arrivalTime}">
+                                        <span><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/>  #{msg.search_flightdiv_arrival}: #{combo.returnFlight.flight.arrivalAirport.code} <h:outputText value="#{combo.returnFlight.flight.arrivalTime}">
                                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                                         </h:outputText></span>
                                     </div>
@@ -79,7 +79,7 @@
 
 
                             <div class="priceInfo">
-                                <p>Total price: <span>EUR #{combo.totalPrice}</span></p>
+                                <p>Total price: <span>&#8364; #{combo.totalPrice}</span></p>
                             </div>
                         </h:commandLink>
                     </h:form>

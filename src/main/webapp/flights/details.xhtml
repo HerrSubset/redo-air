@@ -21,10 +21,10 @@
                 <tr>
                     <th>Airline</th>
                     <th>Class</th>
-                    <th>Seats Remaining</th>
-                    <th>Departure Time</th>
-                    <th>Flight Duration</th>
-                    <th>Arrival Time</th>
+                    <th><h:graphicImage name="seat.png" library="images" width="16" height="16"/> Seats Remaining</th>
+                    <th><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/> Departure Time</th>
+                    <th><h:graphicImage name="time.png" library="images" width="16" height="16"/> Flight Duration</th>
+                    <th><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/> Arrival Time</th>
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
                     <th>Price</th>
@@ -46,7 +46,7 @@
                     </td>
                     <td>#{bookingCreationWizard.departureFlight.flight.departureAirport.code}</td>
                     <td>#{bookingCreationWizard.departureFlight.flight.arrivalAirport.code}</td>
-                    <td>#{bookingCreationWizard.departureFlight.price}</td>
+                    <td>&#8364; #{bookingCreationWizard.departureFlight.price}</td>
                 </tr>
             </table>
         </h:panelGroup>
@@ -57,10 +57,10 @@
                 <tr>
                     <th>Airline</th>
                     <th>Class</th>
-                    <th>Seats Remaining</th>
-                    <th>Departure Time</th>
-                    <th>Flight Duration</th>
-                    <th>Arrival Time</th>
+                    <th><h:graphicImage name="seat.png" library="images" width="16" height="16"/> Seats Remaining</th>
+                    <th><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/> Departure Time</th>
+                    <th><h:graphicImage name="time.png" library="images" width="16" height="16"/> Flight Duration</th>
+                    <th><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/> Arrival Time</th>
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
                     <th>Price</th>
@@ -82,7 +82,7 @@
                     </td>
                     <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code}</td>
                     <td>#{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
-                    <td>#{bookingCreationWizard.returnFlight.price}</td>
+                    <td>&#8364; #{bookingCreationWizard.returnFlight.price}</td>
                 </tr>
             </table>
         </h:panelGroup>
@@ -98,21 +98,21 @@
                 <tr>
                     <td>#{bookingCreationWizard.departureFlight.flight.departureAirport.code} - #{bookingCreationWizard.departureFlight.flight.arrivalAirport.code}</td>
                     <td>#{bookingCreationWizard.numberOfPeople}</td>
-                    <td>#{bookingCreationWizard.departureFlight.finalPrice}</td>
+                    <td>&#8364; #{bookingCreationWizard.departureFlight.finalPrice}</td>
                 </tr>
 
                 <h:panelGroup rendered="#{bookingCreationWizard.hasReturnFlight()}">
                     <tr>
                         <td>#{bookingCreationWizard.returnFlight.flight.departureAirport.code} - #{bookingCreationWizard.returnFlight.flight.arrivalAirport.code}</td>
                         <td>#{bookingCreationWizard.numberOfPeople}</td>
-                        <td>#{bookingCreationWizard.returnFlight.finalPrice}</td>
+                        <td>&#8364; #{bookingCreationWizard.returnFlight.finalPrice}</td>
                     </tr>
                 </h:panelGroup>
 
                 <tr>
                     <td>Total:</td>
                     <td></td>
-                    <td>#{bookingCreationWizard.totalPrice}</td>
+                    <td>&#8364; #{bookingCreationWizard.totalPrice}</td>
                 </tr>
             </table>
         </h:panelGroup>
