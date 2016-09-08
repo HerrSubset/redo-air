@@ -1,8 +1,8 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * DiscountStrategy class
@@ -12,17 +12,5 @@ import javax.persistence.Id;
  * seats have to be sold and how much reduction this gives is stored here
  */
 @Entity
-public class DiscountStrategy {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+public class DiscountStrategy extends AbstractEntity {
 }

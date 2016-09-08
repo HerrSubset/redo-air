@@ -1,5 +1,7 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,11 +15,7 @@ import java.util.List;
  * is stored in this class.
  */
 @Entity
-public class Category {
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Category extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "flight_fk")
     private Flight flight;
@@ -47,14 +45,6 @@ public class Category {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public int getMaxNumberOfSeats() {
         return maxNumberOfSeats;
     }

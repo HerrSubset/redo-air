@@ -3,69 +3,69 @@
         Never refer to items with id = 5004. These are used to createBooking deletions, so make sure no
         other entities are depending on their existence.
     -->
-    <customer id="5000" firstName="Benjamin" lastName="Graham" email="benjamingraham@example.com"/>
-    <customer id="5001" firstName="John" lastName="Tolkien" email="johnTolkien@example.com"/>
-    <customer id="5002" firstName="Oscar" lastName="Wilde" email="oscarWidle@example.com"/>
-    <customer id="5003" firstName="Edgar" lastName="Poe" email="edgarPoe@example.com"/>
+    <customer id="5000" firstName="Benjamin" lastName="Graham" email="benjamingraham@example.com" version="1"/>
+    <customer id="5001" firstName="John" lastName="Tolkien" email="johnTolkien@example.com" version="1"/>
+    <customer id="5002" firstName="Oscar" lastName="Wilde" email="oscarWidle@example.com" version="1"/>
+    <customer id="5003" firstName="Edgar" lastName="Poe" email="edgarPoe@example.com" version="1"/>
 
-    <booking id="5000" number="1"/>
-    <booking id="5001" number="1"/>
-    <booking id="5002" number="2"/>
-    <booking id="5003" number="2"/>
-    <booking id="5004" number="3"/>
+    <booking id="5000" number="1" version="1"/>
+    <booking id="5001" number="1" version="1"/>
+    <booking id="5002" number="2" version="1"/>
+    <booking id="5003" number="2" version="1"/>
+    <booking id="5004" number="3" version="1"/>
 
-    <region id="5000" name="Western Europe"/>
-    <region id="5001" name="Americas"/>
-    <region id="5002" name="Asia"/>
-    <region id="5003" name="Oceania"/>
-    <region id="5004" name="Eastern Europe"/>
+    <region id="5000" name="Western Europe" version="1"/>
+    <region id="5001" name="Americas" version="1"/>
+    <region id="5002" name="Asia" version="1"/>
+    <region id="5003" name="Oceania" version="1"/>
+    <region id="5004" name="Eastern Europe" version="1"/>
 
-    <airport id="5000" code="BRU" region_fk="5000"/>
-    <airport id="5001" code="VIE" region_fk="5000"/>
-    <airport id="5002" code="NYC" region_fk="5001"/>
-    <airport id="5003" code="LAX" region_fk="5001"/>
-    <airport id="5004" code="MUN" region_fk="5000"/>
+    <airport id="5000" code="BRU" region_fk="5000" version="1"/>
+    <airport id="5001" code="VIE" region_fk="5000" version="1"/>
+    <airport id="5002" code="NYC" region_fk="5001" version="1"/>
+    <airport id="5003" code="LAX" region_fk="5001" version="1"/>
+    <airport id="5004" code="MUN" region_fk="5000" version="1"/>
 
-    <partner id="5000" name="Brussels Airlines"/>
-    <partner id="5001" name="KLM"/>
-    <partner id="5002" name="Swissair"/>
-    <partner id="5003" name="Lufthansa"/>
-    <partner id="5004" name="EasyJet"/>
+    <partner id="5000" name="Brussels Airlines" version="1"/>
+    <partner id="5001" name="KLM" version="1"/>
+    <partner id="5002" name="Swissair" version="1"/>
+    <partner id="5003" name="Lufthansa" version="1"/>
+    <partner id="5004" name="EasyJet" version="1"/>
 
-    <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002" partner_fk="5000"/>
-    <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000" partner_fk="5000"/>
-    <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003" partner_fk="5001"/>
-    <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002" partner_fk="5001"/>
-    <flight id="5004" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002" partner_fk="5002"/>
-    <flight id="5005" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5002" departure_airport_fk="5001" partner_fk="5002"/>
-    <flight id="5006" arrivalTime="2016-10-20 09:23:16" departureTime="2016-10-20 20:41:11" arrival_airport_fk="5001" departure_airport_fk="5002" partner_fk="5002"/>
+    <flight id="5000" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5001" departure_airport_fk="5002" partner_fk="5000" version="1"/>
+    <flight id="5001" arrivalTime="2016-10-10 09:32:12" departureTime="2016-10-10 13:32:12" arrival_airport_fk="5001" departure_airport_fk="5000" partner_fk="5000" version="1"/>
+    <flight id="5002" arrivalTime="2016-10-10 08:54:48" departureTime="2016-10-10 14:32:12" arrival_airport_fk="5001" departure_airport_fk="5003" partner_fk="5001" version="1"/>
+    <flight id="5003" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002" partner_fk="5001" version="1"/>
+    <flight id="5004" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5003" departure_airport_fk="5002" partner_fk="5002" version="1"/>
+    <flight id="5005" arrivalTime="2016-10-10 08:32:12" departureTime="2016-10-10 12:32:12" arrival_airport_fk="5002" departure_airport_fk="5001" partner_fk="5002" version="1"/>
+    <flight id="5006" arrivalTime="2016-10-20 09:23:16" departureTime="2016-10-20 20:41:11" arrival_airport_fk="5001" departure_airport_fk="5002" partner_fk="5002" version="1"/>
 
-    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10" flight_fk="5000"/>
-    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11" flight_fk="5000"/>
-    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22" flight_fk="5001"/>
-    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5001"/>
-    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5002"/>
-    <category id="5005" name="business" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5005"/>
-    <category id="5006" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="9" flight_fk="5005"/>
-    <category id="5007" name="economy" baseMarkupPercentage="0.05" basePrice="90.00" maxNumberOfSeats="15" flight_fk="5006"/>
-    <category id="5008" name="business" baseMarkupPercentage="0.05" basePrice="200.00" maxNumberOfSeats="2" flight_fk="5006"/>
+    <category id="5000" name="economy" baseMarkupPercentage="0.05" basePrice="150.22" maxNumberOfSeats="10" flight_fk="5000" version="1"/>
+    <category id="5001" name="business" baseMarkupPercentage="0.05" basePrice="155.22" maxNumberOfSeats="11" flight_fk="5000" version="1"/>
+    <category id="5002" name="business" baseMarkupPercentage="0.04" basePrice="170.22" maxNumberOfSeats="22" flight_fk="5001" version="1"/>
+    <category id="5003" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5001" version="1"/>
+    <category id="5004" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5002" version="1"/>
+    <category id="5005" name="business" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="7" flight_fk="5005" version="1"/>
+    <category id="5006" name="economy" baseMarkupPercentage="0.05" basePrice="90.22" maxNumberOfSeats="9" flight_fk="5005" version="1"/>
+    <category id="5007" name="economy" baseMarkupPercentage="0.05" basePrice="90.00" maxNumberOfSeats="15" flight_fk="5006" version="1"/>
+    <category id="5008" name="business" baseMarkupPercentage="0.05" basePrice="200.00" maxNumberOfSeats="2" flight_fk="5006" version="1"/>
 
 
-    <priceoverride id="5000"/>
-    <priceoverride id="5001"/>
-    <priceoverride id="5002"/>
-    <priceoverride id="5003"/>
+    <priceoverride id="5000" version="1"/>
+    <priceoverride id="5001" version="1"/>
+    <priceoverride id="5002" version="1"/>
+    <priceoverride id="5003" version="1"/>
 
-    <discountstrategy id="5000"/>
-    <discountstrategy id="5001"/>
-    <discountstrategy id="5002"/>
-    <discountstrategy id="5003"/>
+    <discountstrategy id="5000" version="1"/>
+    <discountstrategy id="5001" version="1"/>
+    <discountstrategy id="5002" version="1"/>
+    <discountstrategy id="5003" version="1"/>
 
-    <ticket id="5000" passengerFirstName="Luke" passengerLastName="Skywalker" category_fk="5000"/>
-    <ticket id="5001" passengerFirstName="Anakin" passengerLastName="Skywalker" category_fk="5000"/>
-    <ticket id="5002" passengerFirstName="Leia" passengerLastName="Skywalker" category_fk="5000"/>
-    <ticket id="5003" passengerFirstName="Obi-Wan" passengerLastName="Kenobi" category_fk="5000"/>
-    <ticket id="5004" passengerFirstName="Sheev" passengerLastName="Palpatine" category_fk="5001"/>
+    <ticket id="5000" passengerFirstName="Luke" passengerLastName="Skywalker" category_fk="5000" version="1"/>
+    <ticket id="5001" passengerFirstName="Anakin" passengerLastName="Skywalker" category_fk="5000" version="1"/>
+    <ticket id="5002" passengerFirstName="Leia" passengerLastName="Skywalker" category_fk="5000" version="1"/>
+    <ticket id="5003" passengerFirstName="Obi-Wan" passengerLastName="Kenobi" category_fk="5000" version="1"/>
+    <ticket id="5004" passengerFirstName="Sheev" passengerLastName="Palpatine" category_fk="5001" version="1"/>
 
 
 </dataset>

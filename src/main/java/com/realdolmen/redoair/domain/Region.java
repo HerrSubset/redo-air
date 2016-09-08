@@ -1,8 +1,8 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * Region class.
@@ -11,11 +11,7 @@ import javax.persistence.Id;
  * ReDo air. It represents a region in the world (e.g. Western Europe).
  */
 @Entity
-public class Region {
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Region extends AbstractEntity {
     private String name;
 
 
@@ -44,14 +40,6 @@ public class Region {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

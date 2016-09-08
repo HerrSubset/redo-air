@@ -1,5 +1,7 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.*;
 
 /**
@@ -11,10 +13,7 @@ import javax.persistence.*;
  * bought them.
  */
 @Entity
-public class Ticket {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Ticket extends AbstractEntity {
     private String passengerFirstName;
     private String passengerLastName;
 
@@ -67,14 +66,6 @@ public class Ticket {
 
     public void setPassengerLastName(String passengerLastName) {
         this.passengerLastName = passengerLastName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Category getSeatCategory() {
