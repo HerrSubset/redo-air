@@ -1,8 +1,8 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * Partner class.
@@ -10,11 +10,7 @@ import javax.persistence.Id;
  * Stores information on a partner of ReDo air.
  */
 @Entity
-public class Partner {
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Partner extends AbstractEntity {
     private String name;
 
     /***********************************************************
@@ -40,14 +36,6 @@ public class Partner {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

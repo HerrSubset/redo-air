@@ -1,5 +1,7 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,11 +12,7 @@ import java.util.List;
  * It also holds information on how the order was paid for.
  */
 @Entity
-public class Booking {
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Booking extends AbstractEntity {
     @Embedded
     private Payment payment;
 
@@ -41,15 +39,6 @@ public class Booking {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Payment getPayment() {
         return payment;
     }

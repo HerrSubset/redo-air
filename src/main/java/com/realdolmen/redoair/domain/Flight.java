@@ -1,5 +1,7 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,11 +12,7 @@ import java.util.Date;
  * It has a destination
  */
 @Entity
-public class Flight {
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Flight extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "departure_airport_fk")
     private Airport departureAirport;
@@ -51,14 +49,6 @@ public class Flight {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Airport getDepartureAirport() {
         return departureAirport;
     }

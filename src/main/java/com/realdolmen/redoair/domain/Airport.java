@@ -1,5 +1,7 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.AbstractEntity;
+
 import javax.persistence.*;
 
 /**
@@ -8,11 +10,7 @@ import javax.persistence.*;
  * Represents an airport. An airport is situated in a region and has a code.
  */
 @Entity
-public class Airport {
-    @Id
-    @GeneratedValue
-    private Long id;
-
+public class Airport extends AbstractEntity {
     @OneToOne
     @JoinColumn(name = "region_fk")
     private Region region;
@@ -37,13 +35,6 @@ public class Airport {
     /***********************************************************
      * Getters / Setters
      ***********************************************************/
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Region getRegion() {
         return region;

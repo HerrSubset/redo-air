@@ -26,4 +26,11 @@ public class TicketTest extends JpaPersistenceTest{
         entityManager().persist(t);
         assertNotNull(t.getId());
     }
+
+    @Test
+    public void ticketGivesFullName() {
+        assertNull(t.getId());
+        entityManager().persist(t);
+        assertEquals(t.getFullName(), "George Orwell");
+    }
 }

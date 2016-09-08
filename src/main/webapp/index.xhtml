@@ -52,14 +52,23 @@
                         <h:panelGroup styleClass="six columns">
                             <h:outputLabel for="departure_picker" value="#{msg.index_form_from_date}"/>
                             <p:calendar value="#{indexController.departuredate}" mindate="#{indexController.currentDate}"
-                                        id="departure_picker"/>
+                                        id="departure_picker"
+                                        validatorMessage="#{msg.index_form_date_picker_errormessage}" label="DepartureDate">
+                                <f:ajax event="blur" render="departure_picker_errormessage"></f:ajax>
+                            </p:calendar>
+                            <h:message id="departure_picker_errormessage" for="departure_picker" />
+
                         </h:panelGroup>
 
                         <h:panelGroup styleClass="six columns">
                             <h:outputLabel for="return_picker" value="#{msg.index_form_to_date}"
                                            rendered="#{not indexController.oneWay}"/>
                             <p:calendar value="#{indexController.returndate}" mindate="#{indexController.currentDate}"
-                                        rendered="#{not indexController.oneWay}" id="return_picker"/>
+                                        rendered="#{not indexController.oneWay}" id="return_picker"
+                                        validatorMessage="#{msg.index_form_date_picker_errormessage}" label="ReturnDate">
+                                <f:ajax event="blur" render="return_picker_errormessage"></f:ajax>
+                            </p:calendar>
+                            <h:message id="return_picker_errormessage" for="return_picker" />
                         </h:panelGroup>
                     </h:panelGroup>
 
@@ -77,8 +86,10 @@
                         <h:panelGroup layout="block" styleClass="four columns">
                             <h:outputLabel for="index_form_person_input" value="#{msg.index_form_person}"/>
                             <h:inputText id="index_form_person_input" value="#{indexController.numberOfPersons}"
-                                         rendered="true" styleClass="u-full-width"/>
-                            <!--todo check value = valid-->
+                                         rendered="true" styleClass="u-full-width" label="PersonNumber">
+                                <f:ajax event="blur" render="index_form_person_input_errormessage"></f:ajax>
+                            </h:inputText>
+                            <h:message id="index_form_person_input_errormessage" for="index_form_person_input"/>
                         </h:panelGroup>
 
 
