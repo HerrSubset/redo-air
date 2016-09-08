@@ -1,6 +1,7 @@
 package com.realdolmen.redoair.domain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class Booking {
     private Long id;
 
     @Embedded
+    @Valid
     private Payment payment;
 
     @OneToMany(mappedBy = "booking", fetch = FetchType.EAGER)

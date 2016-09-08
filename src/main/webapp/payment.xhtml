@@ -10,7 +10,7 @@
     <ui:define name="pageContent">
 
         <h1>#{msg.payment_page_title}</h1>
-        <p style="color:red;">TODO: display summary info on what you want to pay for</p>
+        <h:messages/>
         <h:form>
             <h2>#{msg.payment_title_payment_method}</h2>
              <h:selectOneMenu id="gender" value="#{bookingCreationWizard.paymentType}">
@@ -25,7 +25,6 @@
             </h:inputText>
 
             <h2>#{msg.payment_title_passengers}</h2>
-            <h:messages/>
             <h:dataTable value="#{bookingCreationWizard.passengerlist}" var="p">
                 <h:column>
                     <h:inputText id="first_name_field" value="#{p.firstName}" validatorMessage="#{msg.payment_first_name_error}">

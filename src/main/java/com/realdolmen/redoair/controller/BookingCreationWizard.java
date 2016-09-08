@@ -7,20 +7,19 @@ import com.realdolmen.redoair.service.CategoryService;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-import javax.validation.ConstraintValidator;
-import java.io.IOException;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.groups.Default;
 import java.io.Serializable;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 @ConversationScoped
 @Named
@@ -166,6 +165,19 @@ public class BookingCreationWizard implements Serializable {
 
     public String createBooking() {
         Payment p = new Payment(paymentType);
+
+        // check if payment is valid;
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<Payment>> violations = validator.validate(p, Default.class);
+
+        if (violations.size() > 0 ) {
+            for (ConstraintViolation<Payment> v : violations) {
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( v.getMessage() ) );
+            }
+            return null;
+        }
+
+
         if ( number != null )
             p.setCreditCard(new CreditCard(number));
 
