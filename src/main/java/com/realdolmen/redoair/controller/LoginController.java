@@ -76,7 +76,8 @@ public class LoginController implements Serializable {
             }
 
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("payment.jsf");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+                return;
             } catch (Exception e) {
                 e.printStackTrace();
             }
