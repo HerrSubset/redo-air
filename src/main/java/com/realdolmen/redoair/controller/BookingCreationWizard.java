@@ -149,6 +149,17 @@ public class BookingCreationWizard implements Serializable {
         return items;
     }
 
+    public double getTotalPrice() {
+        double res = 0;
+
+        res += departureFlight.getPrice() * numberOfPeople;
+
+        if ( returnFlight != null )
+            res += departureFlight.getPrice() * numberOfPeople;
+
+        return res;
+    }
+
 
 
     /***********************************************************
