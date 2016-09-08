@@ -22,8 +22,8 @@
             <h:commandLink action="#{languageSwitcherController.changeLanguage('en')}" value="#{msg.language_english}"/> |
 
             <h:panelGroup rendered="#{not sessionController.userIsLoggedIn()}">
-                <h:commandLink action="#{loginController.logIn()}" value="log in"/> |
-                <h:commandLink action="#{loginController.register()}" value="register"/>
+                <h:link value="Log in" outcome="login"/> |
+                <h:link value="Register" outcome="register"/>
             </h:panelGroup>
 
             <h:panelGroup rendered="#{sessionController.userIsLoggedIn()}">
