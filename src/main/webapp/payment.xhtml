@@ -25,15 +25,19 @@
             <h:inputText id="card_number" rendered="true" value="#{bookingCreationWizard.number}"/>
 
             <h2>#{msg.payment_title_passengers}</h2>
+            <h:messages/>
             <h:dataTable value="#{bookingCreationWizard.passengerlist}" var="p">
                 <h:column>
-                    <h:inputText id="first_name_field" value="#{p.firstName}"/>
+                    <h:inputText id="first_name_field" value="#{p.firstName}" validatorMessage="#{msg.payment_first_name_error}">
+                        <f:validateLength minimum="2" maximum="100" />
+                    </h:inputText>
                 </h:column>
 
                 <h:column>
-                    <h:inputText id="last_name_field" value="#{p.lastName}"/>
+                    <h:inputText id="last_name_field" value="#{p.lastName}" validatorMessage="#{msg.payment_last_name_error}">
+                        <f:validateLength minimum="2" maximum="100" />
+                    </h:inputText>
                 </h:column>
-
             </h:dataTable>
 
             <h:panelGroup layout="block" styleClass="row">
