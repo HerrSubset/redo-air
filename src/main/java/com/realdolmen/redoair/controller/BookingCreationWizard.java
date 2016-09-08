@@ -17,6 +17,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.groups.Default;
 import java.io.Serializable;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +46,8 @@ public class BookingCreationWizard implements Serializable {
     private List<NameContainer> passengerlist;
     private Long number;
     private PaymentType paymentType;
+    private String returnFlightDuration;
+    private String departureFlightDuration;
 
     /***********************************************************
      * Util methods
@@ -138,6 +141,31 @@ public class BookingCreationWizard implements Serializable {
         this.passengerlist = passengerlist;
     }
 
+    public String getReturnFlightDuration() {
+        returnFlightDuration =  calcFlightDuration(returnFlight.getFlight());
+        return returnFlightDuration;
+    }
+
+    public void setReturnFlightDuration(String returnFlightDuration) {
+        this.returnFlightDuration = returnFlightDuration;
+    }
+
+    public String calcFlightDuration( Flight f) {
+        long diff = f.getDepartureTime().getTime() - f.getArrivalTime().getTime();
+        long diffMinutes = diff / (60 * 1000) % 60;
+        long diffHours = diff / (60 * 60 * 1000) % 60;
+        long diffDays = diff / (60 * 60 * 60 * 1000) % 24;
+        return diffHours + "H:" + diffMinutes + "M";
+    }
+
+    public String getDepartureFlightDuration() {
+        departureFlightDuration = calcFlightDuration(departureFlight.getFlight());
+        return departureFlightDuration;
+    }
+
+    public void setDepartureFlightDuration(String departureFlightDuration) {
+        this.departureFlightDuration = departureFlightDuration;
+    }
 
     /**
      * put all payment types in a SelectItem array so that they can be rendered easily by a radiobutton group
