@@ -1,11 +1,14 @@
 package com.realdolmen.redoair.domain;
 
+import com.realdolmen.redoair.validator.ValidPayment;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Embeddable
+@ValidPayment
 public class Payment {
     @Enumerated(EnumType.STRING)
     private PaymentType type;
@@ -15,6 +18,10 @@ public class Payment {
 
     public Payment() {
 
+    }
+
+    public Payment(PaymentType type) {
+        this.type = type;
     }
 
     public Payment(PaymentType type, CreditCard c) {

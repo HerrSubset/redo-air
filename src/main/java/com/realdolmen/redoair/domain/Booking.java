@@ -3,6 +3,7 @@ package com.realdolmen.redoair.domain;
 import com.realdolmen.redoair.AbstractEntity;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 public class Booking extends AbstractEntity {
     @Embedded
+    @Valid
     private Payment payment;
 
     @OneToMany(mappedBy = "booking", fetch = FetchType.EAGER)

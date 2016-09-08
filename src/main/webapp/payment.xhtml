@@ -4,32 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="WEB-INF/template.xhtml">
     <ui:define name="pageTitle">#{msg.payment_page_title}</ui:define>
     <ui:define name="pageContent">
 
         <h1>#{msg.payment_page_title}</h1>
-        <p style="color:red;">TODO: display summary info on what you want to pay for</p>
+        <h:messages/>
         <h:form>
             <h2>#{msg.payment_title_payment_method}</h2>
-            <p:selectOneRadio layout="grid" columns="1">
-                <f:selectItem itemLabel="#{msg.payment_option_creditcard}" itemValue="creditcard" />
-                <h:outputLabel>Label</h:outputLabel>
-                <f:selectItem itemLabel="#{msg.payment_option_endorsement}" itemValue="endorsement" />
-            </p:selectOneRadio>
+             <h:selectOneMenu id="gender" value="#{bookingCreationWizard.paymentType}">
+                <f:selectItems value="#{bookingCreationWizard.paymentOptions}" />
+            </h:selectOneMenu>
 
             <h2>#{msg.payment_title_payment_details}</h2>
             <h:message for="card_number"/>
             <h:outputLabel for="card_number" value="#{msg.payment_credit_card_number}"/>
             <h:inputText id="card_number" rendered="true" value="#{bookingCreationWizard.number}" validatorMessage="#{msg.payment_credit_card_error}">
-                <f:validateRegex pattern="[0-9]+"/>
-                <f:validateRequired/>
+                <!--<f:convertNumber longOnly="true"/>-->
+                <f:validateLongRange minimum="0"/>
             </h:inputText>
 
             <h2>#{msg.payment_title_passengers}</h2>
-            <h:messages/>
             <h:dataTable value="#{bookingCreationWizard.passengerlist}" var="p">
                 <h:column>
                     <h:inputText id="first_name_field" value="#{p.firstName}" validatorMessage="#{msg.payment_first_name_error}">
