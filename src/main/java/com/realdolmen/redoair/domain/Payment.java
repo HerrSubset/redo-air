@@ -17,6 +17,10 @@ public class Payment {
 
     }
 
+    public Payment(PaymentType type) {
+        this.type = type;
+    }
+
     public Payment(PaymentType type, CreditCard c) {
         this.type = type;
         this.creditCard = c;

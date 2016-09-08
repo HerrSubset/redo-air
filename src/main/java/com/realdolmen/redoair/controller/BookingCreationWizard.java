@@ -10,6 +10,7 @@ import javax.enterprise.context.ConversationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import java.io.Serializable;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @ConversationScoped
 @Named
@@ -43,6 +45,11 @@ public class BookingCreationWizard implements Serializable {
     private int numberOfPeople;
     private List<NameContainer> passengerlist;
     private Long number;
+    private PaymentType paymentType;
+
+    /***********************************************************
+     * Util methods
+     ***********************************************************/
 
     @PostConstruct
     public void init() {
@@ -56,6 +63,15 @@ public class BookingCreationWizard implements Serializable {
             passengerlist.add(new NameContainer());
         }
     }
+
+    public boolean hasReturnFlight() {
+        return this.returnId != null;
+    }
+
+
+    /***********************************************************
+     * Getters / Setters
+     ***********************************************************/
 
     public int getNumberOfPeople() {
         return this.numberOfPeople;
@@ -107,8 +123,12 @@ public class BookingCreationWizard implements Serializable {
         this.number = number;
     }
 
-    public boolean hasReturnFlight() {
-        return this.returnId != null;
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 
     public List<NameContainer> getPassengerlist() {
@@ -119,22 +139,38 @@ public class BookingCreationWizard implements Serializable {
         this.passengerlist = passengerlist;
     }
 
+
+    /**
+     * put all payment types in a SelectItem array so that they can be rendered easily by a radiobutton group
+     */
+    public SelectItem[] getPaymentOptions() {
+        SelectItem[] items = new SelectItem[2];
+        items[0] = new SelectItem(PaymentType.CREDITCARD, "Credit Card");
+        items[1] = new SelectItem(PaymentType.ENDORSEMENT, "Endorsement");
+        return items;
+    }
+
+
+
+    /***********************************************************
+     * Redirection methods
+     ***********************************************************/
     public String chooseFlight() {
         return "details.jsf?faces-redirect=true";
     }
 
     public String proceedToPayment() {
 
-//        try {
-//            FacesContext.getCurrentInstance().getExternalContext().redirect("../payment.jsf");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         return "/payment.xhtml";
     }
 
     public String createBooking() {
-        Booking b = bookingService.createBooking(passengerlist, departureFlight, returnFlight, new Payment(PaymentType.CREDITCARD, new CreditCard(number)));
+        Payment p = new Payment(paymentType);
+        if ( number != null )
+            p.setCreditCard(new CreditCard(number));
+
+
+        Booking b = bookingService.createBooking(passengerlist, departureFlight, returnFlight, p);
         if (!conversation.isTransient()){
             conversation.end();
         }
