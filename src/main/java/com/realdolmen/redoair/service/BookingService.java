@@ -3,6 +3,7 @@ package com.realdolmen.redoair.service;
 
 import com.realdolmen.redoair.domain.*;
 import com.realdolmen.redoair.repository.BookingRepository;
+import com.realdolmen.redoair.repository.CategoryRepository;
 import com.realdolmen.redoair.repository.TicketRepository;
 
 import javax.ejb.LocalBean;
@@ -24,8 +25,12 @@ public class BookingService implements Serializable{
     @Inject
     private TicketRepository ticketRepo;
 
+    @Inject
+    private CategoryRepository categoryRepo;
+
     public Booking createBooking(List<NameContainer> passengers, Category departureFlight, Category returnFlight, Payment p) {
         Booking b = new Booking(p);
+        System.out.println(Long.toString(departureFlight.getFreeSeats()));
         List<Ticket> tickets = createTicketList(b, passengers, departureFlight);
 
         if (returnFlight != null)
