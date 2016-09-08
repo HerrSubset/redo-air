@@ -165,6 +165,8 @@ public class BookingCreationWizard implements Serializable {
 
     public String createBooking() {
         Payment p = new Payment(paymentType);
+        if (number != null)
+            p.setCreditCard(new CreditCard(number));
 
         // check if payment is valid;
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
