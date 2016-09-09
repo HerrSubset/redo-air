@@ -40,6 +40,10 @@ public class BookingController {
         return getBooking() != null;
     }
 
+    public boolean bookingWentWrong() {
+        return bookingId == null;
+    }
+
     public String generateQRcode() {
 //        QrCode qrCode = new QrCode();
 //        qrCode.generateQrCode(Long.toString(bookingId));
