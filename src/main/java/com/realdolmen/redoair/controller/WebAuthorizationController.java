@@ -2,6 +2,7 @@ package com.realdolmen.redoair.controller;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.Filter;
         import javax.servlet.FilterChain;
@@ -42,11 +43,13 @@ public class WebAuthorizationController implements Filter {
                     || reqURI.contains("javax.faces.resource")
                     || reqURI.equals("/redo-air/")
                     || reqURI.contains("index.jsf")
+                    || reqURI.contains("error.jsf")
                     || reqURI.contains("register.jsf")
                     || reqURI.contains("flights/search.jsf")
                     || reqURI.contains("flights/details") ){
                 chain.doFilter(request, response);
             } else if ( (reqURI.contains("xhtml")) ){
+                resp.sendError(404);
             } else {
                 resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8"));
             }

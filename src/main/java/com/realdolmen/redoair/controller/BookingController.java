@@ -3,10 +3,15 @@ package com.realdolmen.redoair.controller;
 import com.realdolmen.course.QrCode;
 import com.realdolmen.redoair.domain.Booking;
 import com.realdolmen.redoair.service.BookingService;
+import com.sun.deploy.net.HttpRequest;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.net.URL;
 
 @Named
 @RequestScoped
@@ -41,22 +46,9 @@ public class BookingController {
     }
 
     public String generateQRcode() {
-//        QrCode qrCode = new QrCode();
-//        qrCode.generateQrCode(Long.toString(bookingId));
-//        System.out.println("qr code generated");
-//        return Long.toString(bookingId) + ".JPG";
-        return "http://localhost:8080/redo-air/booking.jsf?bookingid=" + bookingId;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String url = request.getRequestURL().toString();
+        String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+        return baseURL + "booking.jsf?bookingid=" + bookingId;
     }
-
-
-
-
-    private static final long serialVersionUID = 20120316L;
-    private String renderMethod;
-    private String text;
-    private String label;
-    private int mode;
-    private int size;
-    private String fillColor;
-
 }
