@@ -69,7 +69,7 @@
                 </h:column>
 
             </h:dataTable>
-            <p:barcode value="0123456789" type="qr"/>
+            <p:barcode value="#{bookingController.generateQRcode()}" type="qr" height="150"/>
         </h:panelGroup>
         <h:panelGroup rendered="#{not bookingController.hasValidBooking()}">
             <p>Oops, we could not find your booking.</p>

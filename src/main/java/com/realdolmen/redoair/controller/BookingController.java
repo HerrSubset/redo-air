@@ -41,10 +41,11 @@ public class BookingController {
     }
 
     public String generateQRcode() {
-        QrCode qrCode = new QrCode();
-        qrCode.generateQrCode(Long.toString(bookingId));
-        System.out.println("qr code generated");
-        return Long.toString(bookingId) + ".JPG";
+//        QrCode qrCode = new QrCode();
+//        qrCode.generateQrCode(Long.toString(bookingId));
+//        System.out.println("qr code generated");
+//        return Long.toString(bookingId) + ".JPG";
+        return "http://localhost:8080/redo-air/booking.jsf?bookingid=" + bookingId;
     }
 
 
