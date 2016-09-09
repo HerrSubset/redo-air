@@ -13,16 +13,25 @@
     <ui:define name="pageContent">
         <f:view>
             <h:form id="flights">
-                <h:panelGroup rendered="#{indexController.oneWay}" layout="block">
-                    <h:commandButton value="#{msg.index_form_one_way}" action="#{indexController.setOneWay(true)}"
-                                     styleClass="button-primary"/>
-                    <h:commandButton value="#{msg.index_form_roundtrip}" action="#{indexController.setOneWay(false)}"/>
+
+                <h:panelGroup rendered="#{indexController.oneWay}" layout="block" styleClass="login-register-buttons">
+                    <span>
+                        <h:commandButton value="#{msg.index_form_one_way}" action="#{indexController.setOneWay(true)}"
+                                          styleClass="button-primary"/>
+                    </span>
+                    <span>
+                        <h:commandButton value="#{msg.index_form_roundtrip}" action="#{indexController.setOneWay(false)}"/>
+                    </span>
                 </h:panelGroup>
 
-                <h:panelGroup rendered="#{not indexController.oneWay}" layout="block">
-                    <h:commandButton value="#{msg.index_form_one_way}" action="#{indexController.setOneWay(true)}"/>
-                    <h:commandButton value="#{msg.index_form_roundtrip}" action="#{indexController.setOneWay(false)}"
-                                     styleClass="button-primary"/>
+                <h:panelGroup rendered="#{not indexController.oneWay}" layout="block" styleClass="login-register-buttons">
+                    <span>
+                        <h:commandButton value="#{msg.index_form_one_way}" action="#{indexController.setOneWay(true)}"/>
+                    </span>
+                    <span>
+                        <h:commandButton value="#{msg.index_form_roundtrip}" action="#{indexController.setOneWay(false)}"
+                                         styleClass="button-primary"/>
+                    </span>
                 </h:panelGroup>
 
                 <h:panelGroup layout="block">

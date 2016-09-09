@@ -17,9 +17,15 @@
     <ui:define name="pageContent">
         <f:view>
             <h:form id="login">
-                <h:commandButton value="#{msg.login_button_login}" action="login.xhtml?faces-redirect=true"
-                                 styleClass="button-primary"/>
-                <h:commandButton value="#{msg.login_button_register}" action="register.xhtml?faces-redirect=true"/>
+                <h:panelGroup layout="block" styleClass="login-register-buttons">
+                    <span>
+                        <h:commandButton value="#{msg.login_button_login}" action="login.xhtml?faces-redirect=true"
+                                         styleClass="button-primary"/>
+                    </span>
+                    <span>
+                        <h:commandButton value="#{msg.login_button_register}" action="register.xhtml?faces-redirect=true"/>
+                    </span>
+                </h:panelGroup>
 
                 <h:panelGrid columns="2">
 
