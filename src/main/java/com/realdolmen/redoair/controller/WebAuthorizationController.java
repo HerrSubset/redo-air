@@ -44,9 +44,9 @@ public class WebAuthorizationController implements Filter {
                     || reqURI.contains("index.jsf")
                     || reqURI.contains("register.jsf")
                     || reqURI.contains("flights/search.jsf")
-                    || reqURI.contains("flights/details")
-                    ){
+                    || reqURI.contains("flights/details") ){
                 chain.doFilter(request, response);
+            } else if ( (reqURI.contains("xhtml")) ){
             } else {
                 resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8"));
             }

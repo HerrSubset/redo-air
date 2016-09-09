@@ -1,5 +1,6 @@
 package com.realdolmen.redoair.controller;
 
+import com.realdolmen.course.QrCode;
 import com.realdolmen.redoair.domain.Booking;
 import com.realdolmen.redoair.service.BookingService;
 
@@ -38,4 +39,23 @@ public class BookingController {
     public boolean hasValidBooking() {
         return getBooking() != null;
     }
+
+    public String generateQRcode() {
+        QrCode qrCode = new QrCode();
+        qrCode.generateQrCode(Long.toString(bookingId));
+        System.out.println("qr code generated");
+        return Long.toString(bookingId) + ".JPG";
+    }
+
+
+
+
+    private static final long serialVersionUID = 20120316L;
+    private String renderMethod;
+    private String text;
+    private String label;
+    private int mode;
+    private int size;
+    private String fillColor;
+
 }
