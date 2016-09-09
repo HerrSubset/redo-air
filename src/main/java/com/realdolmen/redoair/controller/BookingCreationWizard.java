@@ -200,7 +200,7 @@ public class BookingCreationWizard implements Serializable {
 
     public String proceedToPayment() {
 
-        return "/payment.xhtml";
+        return "/payment.xhtml?faces-redirect=true";
     }
 
     public String createBooking() {
