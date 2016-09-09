@@ -7,12 +7,14 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class RegisterController implements Serializable {
 
@@ -23,12 +25,21 @@ public class RegisterController implements Serializable {
     private SessionController sessionController;
 
     @NotNull
+    @Pattern(regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
     private String email;
     @NotNull
+    @Size(min=2)
     private String password;
 
+    @NotNull
+    @Size(min=2, max = 20)
     private String firstName;
+
+    @NotNull
+    @Size(min=5, max = 20)
     private String lastName;
+
+    private String url;
 
     public String getEmail() {
         return email;
@@ -52,7 +63,7 @@ public class RegisterController implements Serializable {
 
     public String register(){
         //todo check passwordlength etc...
-        System.out.println("Register");
+        System.out.println("Register" + url);
 
         Customer c = customerService.getCustomerByEmail(password);
         if (c.getId()==null) {
@@ -60,19 +71,20 @@ public class RegisterController implements Serializable {
             if(customerService.saveCustomer(firstName, lastName, password, email)) {
                 HttpSession session = sessionController.getSession();
                 session.setAttribute("email", email);
-                return "payment.xhtml" + "faces-redirect=true";
+
+                if(url!=null) {
+                    try {
+                        return url + "faces-redirect=true";
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                return "index.xhtml" + "faces-redirect=true";
             }
         }
         return "register.xhtml" + "faces-redirect=true";
     }
-
-//    public String encryptPassword(String passwordToHash) {
-//        //https://github.com/jeremyh/jBCrypt
-//        //https://mvnrepository.com/artifact/org.mindrot/jbcrypt
-//        // gensalt's log_rounds parameter determines the complexity
-//        // the work factor is 2**log_rounds, and the default is 10
-//        return BCrypt.hashpw(passwordToHash, BCrypt.gensalt(12));
-//    }
 
     public String getFirstName() {
         return firstName;
@@ -88,5 +100,14 @@ public class RegisterController implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        System.out.println("url:" + url);
+        this.url = url;
     }
 }

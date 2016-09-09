@@ -56,7 +56,7 @@
                                         validatorMessage="#{msg.index_form_date_picker_errormessage}" label="DepartureDate">
                                 <f:ajax event="blur" render="departure_picker_errormessage"></f:ajax>
                             </p:calendar>
-                            <h:message id="departure_picker_errormessage" for="departure_picker" />
+                            <h:message id="departure_picker_errormessage" for="departure_picker" styleClass="error_messages"/>
 
                         </h:panelGroup>
 
@@ -68,7 +68,7 @@
                                         validatorMessage="#{msg.index_form_date_picker_errormessage}" label="ReturnDate">
                                 <f:ajax event="blur" render="return_picker_errormessage"></f:ajax>
                             </p:calendar>
-                            <h:message id="return_picker_errormessage" for="return_picker" />
+                            <h:message id="return_picker_errormessage" for="return_picker" styleClass="error_messages"/>
                         </h:panelGroup>
                     </h:panelGroup>
 
@@ -89,7 +89,7 @@
                                          rendered="true" styleClass="u-full-width" label="PersonNumber">
                                 <f:ajax event="blur" render="index_form_person_input_errormessage"></f:ajax>
                             </h:inputText>
-                            <h:message id="index_form_person_input_errormessage" for="index_form_person_input"/>
+                            <h:message id="index_form_person_input_errormessage" for="index_form_person_input"  styleClass="error_messages"/>
                         </h:panelGroup>
 
 

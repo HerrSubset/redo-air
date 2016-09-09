@@ -30,7 +30,7 @@
 
                 <h:panelGroup rendered="#{sessionController.userIsLoggedIn()}">
                     <h:commandLink action="#{loginController.logout()}" value="log out"/> |
-                    <h:outputText value="Hello #{loginController.email}"/>
+                    <h:outputText value="Hello #{sessionController.email}"/>
                 </h:panelGroup>
 
             </h:form>
