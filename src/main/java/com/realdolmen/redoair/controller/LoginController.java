@@ -2,7 +2,6 @@ package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Customer;
 import com.realdolmen.redoair.service.CustomerService;
-import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
