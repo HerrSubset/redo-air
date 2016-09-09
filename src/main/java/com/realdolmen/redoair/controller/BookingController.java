@@ -42,6 +42,10 @@ public class BookingController {
         return getBooking() != null;
     }
 
+    public boolean bookingWentWrong() {
+        return bookingId == null;
+    }
+
     public String generateQRcode() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String url = request.getRequestURL().toString();

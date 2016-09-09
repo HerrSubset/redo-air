@@ -18,10 +18,15 @@
         <f:view>
             <h:form id="register">
 
-
-                <h:commandButton value="#{msg.register_button_login}" action="login.xhtml faces-redirect=true"/>
-                <h:commandButton value="#{msg.register_button_register}" action="register.xhtml faces-redirect=true"
-                                 styleClass="button-primary"/>
+                <h:panelGroup layout="block" styleClass="login-register-buttons">
+                    <span>
+                         <h:commandButton value="#{msg.register_button_login}" action="login.xhtml faces-redirect=true"/>
+                    </span>
+                    <span>
+                        <h:commandButton value="#{msg.register_button_register}" action="register.xhtml faces-redirect=true"
+                                         styleClass="button-primary"/>
+                    </span>
+                </h:panelGroup>
 
 
 

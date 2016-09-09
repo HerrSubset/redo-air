@@ -50,7 +50,8 @@ public class BookingService implements Serializable{
     }
 
     private boolean hasThePlaneStillEnoughFreeSeatsLeft(List<NameContainer> passengers, Category flight1, Category flight2) {
-        int i1 = categoryRepo.findById(flight1.getId()).getFreeSeats();
+        int i1 = categoryRepo.findById(flight1.getId())
+                .getFreeSeats();
         if (flight2!=null) {
             int i2 = categoryRepo.findById(flight2.getId()).getFreeSeats();
             return i1 >=passengers.size() && i2 >=passengers.size();

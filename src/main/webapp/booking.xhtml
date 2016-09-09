@@ -73,7 +73,12 @@
         </h:panelGroup>
         <h:panelGroup rendered="#{not bookingController.hasValidBooking()}">
             <h:graphicImage library="images" name="no-booking.png" width="200" height="200"/>
-            <p>Oops, we could not find your booking.</p>
+            <h:panelGroup rendered="#{bookingController.bookingWentWrong()}">
+                <p>We could not process your booking. Please try again.</p>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not bookingController.bookingWentWrong()}">
+                <p>Oops, we could not find your booking.</p>
+            </h:panelGroup>
         </h:panelGroup>
     </ui:define>
 </ui:composition>
