@@ -72,6 +72,7 @@
             <p:barcode value="#{bookingController.generateQRcode()}" type="qr" height="150"/>
         </h:panelGroup>
         <h:panelGroup rendered="#{not bookingController.hasValidBooking()}">
+            <h:graphicImage library="images" name="no-booking.png" width="200" height="200"/>
             <p>Oops, we could not find your booking.</p>
         </h:panelGroup>
     </ui:define>

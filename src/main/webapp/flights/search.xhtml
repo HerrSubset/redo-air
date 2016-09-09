@@ -86,7 +86,8 @@
                 </div>
             </c:forEach>
         </h:panelGroup>
-        <h:panelGroup rendered="#{not flightSearchController.flightsWereFound()}">
+        <h:panelGroup rendered="#{not flightSearchController.flightsWereFound()}" styleClass="errorMessage">
+            <h:graphicImage library="images" name="no-flights.png" height="200" width="200"/>
             <p>Oops, no flights were found.</p>
         </h:panelGroup>
     </ui:define>
