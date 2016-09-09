@@ -36,7 +36,7 @@ public class RegisterController implements Serializable {
     private String firstName;
 
     @NotNull
-    @Size(min=5, max = 20)
+    @Size(min=2, max = 240)
     private String lastName;
 
     private String url;
