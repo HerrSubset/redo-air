@@ -2,7 +2,6 @@ package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Customer;
 import com.realdolmen.redoair.service.CustomerService;
-import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -52,7 +51,7 @@ public class LoginController implements Serializable {
     }
 
     public String register(){
-        return "register.xhtml?faces-redirect=true";
+        return "register.xhtml?url=" + url + "&faces-redirect=true";
     }
 
     private Customer findCustomer(String email) {
@@ -103,7 +102,6 @@ public class LoginController implements Serializable {
     }
 
     public void setUrl(String url) {
-//        System.out.println("URL: " + url);
         this.url = url;
     }
 }

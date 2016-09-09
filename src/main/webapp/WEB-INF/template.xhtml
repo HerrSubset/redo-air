@@ -29,9 +29,8 @@
 
                 <h:panelGroup layout="block" rendered="#{sessionController.userIsLoggedIn()}" styleClass="u-pull-right">
                     <h:commandLink action="#{loginController.logout()}" value="log out"/> |
-                    <h:outputText value="#{msg.template_hello} #{loginController.email}"/>
+                    <h:outputText value="#{msg.template_hello} #{sessionController.email}"/>
                 </h:panelGroup>
-
             </h:form>
         </h:panelGroup>
         <h1>

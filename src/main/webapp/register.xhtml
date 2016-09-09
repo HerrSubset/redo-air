@@ -8,6 +8,11 @@
 <head></head>
 <body>
 <ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="metaData">
+        <f:metadata>
+            <f:viewParam name="url" value="#{registerController.url}"/>
+        </f:metadata>
+    </ui:define>
     <ui:define name="pageTitle">#{msg.register_title}</ui:define>
     <ui:define name="pageContent">
         <f:view>
@@ -29,26 +34,35 @@
 
                     <h:outputText value="#{msg.register_form_firstname}"/>
                     <h:panelGroup>
-                        <h:inputText id="register_form_firstname_input" value="#{registerController.firstName}"/>
+                        <h:inputText id="register_form_firstname_input" value="#{registerController.firstName}" required="true">
+                            <f:ajax event="blur" render="register_form_firstname_input register_form_firstname_input_error_empty"></f:ajax>
+                        </h:inputText>
+                        <h:message id="register_form_firstname_input_error_empty" for="register_form_firstname_input" styleClass="error_messages"/>
+
                     </h:panelGroup>
 
                     <h:outputText value="#{msg.register_form_lastname}"/>
                     <h:panelGroup>
-                        <h:inputText id="register_form_lastname_input" value="#{registerController.lastName}"/>
+                        <h:inputText id="register_form_lastname_input" value="#{registerController.lastName}" required="true">
+                            <f:ajax event="blur" render="register_form_lastname_input register_form_lastname_input_error_empty"></f:ajax>
+                        </h:inputText>
+                        <h:message id="register_form_lastname_input_error_empty" for="register_form_lastname_input" styleClass="error_messages"/>
                     </h:panelGroup>
 
 
                     <h:outputText value="#{msg.login_form_email}"/>
                     <h:panelGroup>
-                        <h:inputText id="register_form_email_input" value="#{registerController.email}">
+                        <h:inputText id="register_form_email_input" value="#{registerController.email}" required="true">
                             <f:ajax event="blur" render="register_form_email_input register_form_email_input_error_empty"></f:ajax>
                         </h:inputText>
-                        <h:message id="register_form_email_input_error_empty" for="register_form_email_input"/>
+                        <h:message id="register_form_email_input_error_empty" for="register_form_email_input" styleClass="error_messages"/>
                     </h:panelGroup>
 
                     <h:outputText value="#{msg.register_form_password}"/>
                     <h:panelGroup>
-                        <h:inputSecret id="register_form_password_input" value="#{registerController.password}"/>
+                        <h:inputSecret id="register_form_password_input" value="#{registerController.password}" required="true">
+                        </h:inputSecret>
+                        <h:message id="register_form_password_input_error_empty" for="register_form_password_input" styleClass="error_messages"/>
                     </h:panelGroup>
                 </h:panelGrid>
                 <h:commandButton value="#{msg.register_button_register_send}" action="#{registerController.register}"/>
