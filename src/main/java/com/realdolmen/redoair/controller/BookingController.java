@@ -1,17 +1,14 @@
 package com.realdolmen.redoair.controller;
 
-import com.realdolmen.course.QrCode;
+
 import com.realdolmen.redoair.domain.Booking;
 import com.realdolmen.redoair.service.BookingService;
-import com.sun.deploy.net.HttpRequest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.net.URL;
 
 @Named
 @RequestScoped
