@@ -19,15 +19,15 @@
             <h2>#{msg.flight_details_h2_departure}</h2>
             <table>
                 <tr>
-                    <th>Airline</th>
-                    <th>Class</th>
-                    <th><h:graphicImage name="seat.png" library="images" width="16" height="16"/> Seats Remaining</th>
-                    <th><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/> Departure Time</th>
-                    <th><h:graphicImage name="time.png" library="images" width="16" height="16"/> Flight Duration</th>
-                    <th><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/> Arrival Time</th>
-                    <th>Departure Airport</th>
-                    <th>Arrival Airport</th>
-                    <th>Price</th>
+                    <th>#{msg.details_table_airline}</th>
+                    <th>#{msg.details_table_class}</th>
+                    <th><h:graphicImage name="seat.png" library="images" width="16" height="16"/>#{msg.details_table_seats_remaining}</th>
+                    <th><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/>#{msg.details_table_departure_time}</th>
+                    <th><h:graphicImage name="time.png" library="images" width="16" height="16"/>#{msg.details_table_flight_duration}</th>
+                    <th><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/>#{msg.details_table_arrival_time}</th>
+                    <th>#{msg.details_table_departure_airport}</th>
+                    <th>#{msg.details_table_arrival_airport}</th>
+                    <th>#{msg.details_table_price}</th>
                 </tr>
                 <tr>
                     <td>#{bookingCreationWizard.departureFlight.flight.airline.name}</td>
@@ -55,15 +55,15 @@
             <h2>#{msg.flight_details_h2_return_flight}</h2>
             <table>
                 <tr>
-                    <th>Airline</th>
-                    <th>Class</th>
-                    <th><h:graphicImage name="seat.png" library="images" width="16" height="16"/> Seats Remaining</th>
-                    <th><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/> Departure Time</th>
-                    <th><h:graphicImage name="time.png" library="images" width="16" height="16"/> Flight Duration</th>
-                    <th><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/> Arrival Time</th>
-                    <th>Departure Airport</th>
-                    <th>Arrival Airport</th>
-                    <th>Price</th>
+                    <th>#{msg.details_table_airline}</th>
+                    <th>#{msg.details_table_class}</th>
+                    <th><h:graphicImage name="seat.png" library="images" width="16" height="16"/> #{msg.details_table_seats_remaining}</th>
+                    <th><h:graphicImage name="flight_leave.png" library="images" width="16" height="16"/> #{msg.details_table_departure_time}</th>
+                    <th><h:graphicImage name="time.png" library="images" width="16" height="16"/> #{msg.details_table_flight_duration}</th>
+                    <th><h:graphicImage name="flight_arrive.png" library="images" width="16" height="16"/> #{msg.details_table_arrival_time}</th>
+                    <th>#{msg.details_table_departure_airport}</th>
+                    <th>#{msg.details_table_arrival_airport}</th>
+                    <th>#{msg.details_table_price}</th>
                 </tr>
                 <tr>
                     <td>#{bookingCreationWizard.returnFlight.flight.airline.name}</td>
@@ -110,7 +110,7 @@
                 </h:panelGroup>
 
                 <tr>
-                    <td>Total:</td>
+                    <td>#{msg.details_total}:</td>
                     <td></td>
                     <td>&#8364; #{bookingCreationWizard.totalPrice}</td>
                 </tr>
