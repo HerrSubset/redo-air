@@ -24,28 +24,28 @@
             <h:dataTable value="#{bookingController.booking.tickets}" var="ticket">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Name"/>
+                        <h:outputText value="#{msg.booking_name}"/>
                     </f:facet>
                     <h:outputText value="#{ticket.fullName}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="From"/>
+                        <h:outputText value="#{msg.booking_from}"/>
                     </f:facet>
                     <h:outputText value="#{ticket.seatCategory.flight.departureAirport.code}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="To"/>
+                        <h:outputText value="#{msg.booking_to}"/>
                     </f:facet>
                     <h:outputText value="#{ticket.seatCategory.flight.arrivalAirport.code}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Departure Date"/>
+                        <h:outputText value="#{msg.booking_departure_date}"/>
                     </f:facet>
                     <h:outputText value="#{ticket.seatCategory.flight.departureTime}">
                         <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
@@ -54,7 +54,7 @@
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Arrival Date"/>
+                        <h:outputText value="#{msg.booking_arrival_date}"/>
                     </f:facet>
                     <h:outputText value="#{ticket.seatCategory.flight.arrivalTime}">
                         <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
@@ -63,7 +63,7 @@
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Operated By"/>
+                        <h:outputText value="#{msg.booking_operated_by}"/>
                     </f:facet>
                     <h:outputText value="#{ticket.seatCategory.flight.airline.name}"/>
                 </h:column>
@@ -74,10 +74,10 @@
         <h:panelGroup rendered="#{not bookingController.hasValidBooking()}">
             <h:graphicImage library="images" name="no-booking.png" width="200" height="200"/>
             <h:panelGroup rendered="#{bookingController.bookingWentWrong()}">
-                <p>We could not process your booking. Please try again.</p>
+                <p>#{msg.booking_could_not_process}</p>
             </h:panelGroup>
             <h:panelGroup rendered="#{not bookingController.bookingWentWrong()}">
-                <p>Oops, we could not find your booking.</p>
+                <p>#{msg.booking_could_not_find}</p>
             </h:panelGroup>
         </h:panelGroup>
     </ui:define>
