@@ -11,6 +11,7 @@
     <ui:define name="metaData">
         <f:metadata>
             <f:viewParam name="url" value="#{loginController.url}"/>
+            <f:viewParam name="cid" value="#{loginController.cid}"/>
         </f:metadata>
     </ui:define>
     <ui:define name="pageTitle">#{msg.login_title}</ui:define>
@@ -20,7 +21,7 @@
 
                 <h:panelGroup layout="block" styleClass="login-register-buttons">
                     <span>
-                        <h:commandButton value="#{msg.login_button_login}" action="login.xhtml?faces-redirect=true"
+                        <h:commandButton value="#{msg.login_button_login}" action="#{loginController.login()}"
                                          styleClass="button-primary"/>
                     </span>
                     <span>

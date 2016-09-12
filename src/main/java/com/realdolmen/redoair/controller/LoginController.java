@@ -28,6 +28,7 @@ public class LoginController implements Serializable {
     private boolean isLogin;
 
     private String url;
+    private String cid;
 
     @PostConstruct
     public void setUp() {
@@ -50,8 +51,22 @@ public class LoginController implements Serializable {
         this.password = password;
     }
 
-    public String register(){
-        return "register.xhtml?url=" + url + "&faces-redirect=true";
+    public void register(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("register.jsf?url=" + url);
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void login(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.jsf?url=" + url);
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private Customer findCustomer(String email) {
@@ -64,22 +79,22 @@ public class LoginController implements Serializable {
         if (valid) {
             HttpSession session = sessionController.getSession();
             session.setAttribute("email", email);
+            String redirectURL = "index.jsf";
             if(url!=null) {
-                try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect( url );
-                    return; // do redirect
+                 redirectURL = url;
+            }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            if(cid!=null) {
+                redirectURL += "&cid=" + cid;
             }
 
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+                FacesContext.getCurrentInstance().getExternalContext().redirect(redirectURL);
                 return;
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            System.out.println("url logincontroller " + url);
             return;
         } else {
             //TODO give error message
@@ -103,5 +118,13 @@ public class LoginController implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 }

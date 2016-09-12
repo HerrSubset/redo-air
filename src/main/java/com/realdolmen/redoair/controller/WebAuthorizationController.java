@@ -51,7 +51,11 @@ public class WebAuthorizationController implements Filter {
             } else if ( (reqURI.contains("xhtml")) ){
                 resp.sendError(404);
             } else {
-                resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8"));
+                String cidurl="";
+                if( reqt.getQueryString() != null ) {
+                    cidurl= "?" + reqt.getQueryString();
+                }
+                resp.sendRedirect(reqt.getContextPath() + "/login.jsf"+"?url=" + URLEncoder.encode(reqt.getRequestURI(), "UTF-8") + cidurl);
             }
         } catch (Exception e) {
 //            System.out.println( "Exception");

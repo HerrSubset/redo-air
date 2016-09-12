@@ -2,6 +2,7 @@ package com.realdolmen.redoair.controller;
 
 import com.realdolmen.redoair.domain.Customer;
 import com.realdolmen.redoair.service.CustomerService;
+import org.hibernate.validator.constraints.Email;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ public class RegisterController implements Serializable {
     private SessionController sessionController;
 
     @NotNull
-    @Pattern(regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+    @Email
     private String email;
     @NotNull
     @Size(min=2)
@@ -40,6 +41,7 @@ public class RegisterController implements Serializable {
     private String lastName;
 
     private String url;
+    private String cid;
 
     public String getEmail() {
         return email;
@@ -57,13 +59,8 @@ public class RegisterController implements Serializable {
         this.password = password;
     }
 
-//    public String login(){
-//        return "login.xhtml"+"faces-redirect=true";
-//    }
-
-    public String register(){
-        //todo check passwordlength etc...
-        System.out.println("Register" + url);
+    public void register(){
+        String redirectUrl="register.jsf";
 
         Customer c = customerService.getCustomerByEmail(password);
         if (c.getId()==null) {
@@ -73,17 +70,49 @@ public class RegisterController implements Serializable {
                 session.setAttribute("email", email);
 
                 if(url!=null) {
-                    try {
-                        return url + "faces-redirect=true";
+                    redirectUrl = url;
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                } else {
+                    redirectUrl = "index.jsf";
                 }
-                return "index.xhtml" + "faces-redirect=true";
             }
         }
-        return "register.xhtml" + "faces-redirect=true";
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void login(){
+        String redirectUrl="login.jsf";
+
+        Customer c = customerService.getCustomerByEmail(password);
+        if (c.getId()==null) {
+            // geen waarde in de database
+            if(customerService.saveCustomer(firstName, lastName, password, email)) {
+                HttpSession session = sessionController.getSession();
+                session.setAttribute("email", email);
+
+                if(url!=null) {
+                    redirectUrl = url;
+
+                } else {
+                    redirectUrl = "index.jsf";
+                }
+            }
+        }
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getFirstName() {
@@ -107,7 +136,15 @@ public class RegisterController implements Serializable {
     }
 
     public void setUrl(String url) {
-        System.out.println("url:" + url);
         this.url = url;
+    }
+
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 }
